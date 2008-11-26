@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'externalimport_tut'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_externalimporttut_departments">Departments</label>
+			<label index="tx_externalimporttut_departments.code">Code</label>
+			<label index="tx_externalimporttut_departments.name">Name</label>
+			<label index="tx_externalimporttut_employees">Employees</label>
+			<label index="tx_externalimporttut_employees.number">Employee number</label>
+			<label index="tx_externalimporttut_employees.lastname">Last name</label>
+			<label index="tx_externalimporttut_employees.firstname">First name</label>
+			<label index="tx_externalimporttut_employees.phone">Phone</label>
+			<label index="tx_externalimporttut_employees.email">Email</label>
+			<label index="tx_externalimporttut_employees.department">Department</label>
+			<label index="tx_externalimporttut_employees.holidays">Holidays</label>
+		</languageKey>
+	</data>
+</T3locallang>

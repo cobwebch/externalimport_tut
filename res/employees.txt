@@ -1,0 +1,5 @@
+employee_number;last_name;first_name;phone;mail;department
+256;Vader;Darth;3245 345 34;darth.vader@deathstar.com;12
+784;Emperor;The;23 234 234;the.boss@empire.org;12
+967;Smith;John;;;234
+598;Stevens;Miss;765 74567 345;miss.stevens@catering.deathstar.com;234
