@@ -33,7 +33,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'external_import' => '',
-			'svnconnector_csv' => '',
+			'svconnector_csv' => '',
 		),
 		'conflicts' => array(
 		),

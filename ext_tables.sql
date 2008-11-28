@@ -19,26 +19,13 @@ CREATE TABLE tx_externalimporttut_departments (
 
 
 #
-# Table structure for table 'tx_externalimporttut_employees'
+# Table structure for extending table 'fe_users'
 #
-CREATE TABLE tx_externalimporttut_employees (
-	uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
-	tstamp int(11) DEFAULT '0' NOT NULL,
-	crdate int(11) DEFAULT '0' NOT NULL,
-	cruser_id int(11) DEFAULT '0' NOT NULL,
-	deleted tinyint(4) DEFAULT '0' NOT NULL,
-	hidden tinyint(4) DEFAULT '0' NOT NULL,
-	starttime int(11) DEFAULT '0' NOT NULL,
-	endtime int(11) DEFAULT '0' NOT NULL,
-	number varchar(255) DEFAULT '' NOT NULL,
-	lastname varchar(255) DEFAULT '' NOT NULL,
-	firstname varchar(255) DEFAULT '' NOT NULL,
-	phone varchar(255) DEFAULT '' NOT NULL,
-	email varchar(255) DEFAULT '' NOT NULL,
-	department text,
-	holidays int(11) DEFAULT '0' NOT NULL,
-	
+CREATE TABLE fe_users (
+	tx_externalimporttut_code varchar(10) DEFAULT '' NOT NULL,
+	tx_externalimporttut_department text,
+	tx_externalimporttut_holidays double DEFAULT '0.0' NOT NULL,
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
