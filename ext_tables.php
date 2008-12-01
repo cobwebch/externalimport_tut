@@ -19,6 +19,22 @@ $TCA['tx_externalimporttut_departments'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'icon_tx_externalimporttut_departments.gif',
+		'external' => array(
+				0 => array(
+					'connector' => 'csv',
+					'parameters' => array(
+						'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/departments.txt'),
+						'delimiter' => "\t",
+						'text_qualifier' => '',
+						'skip_rows' => 1,
+						'encoding' => 'latin1'
+					),
+					'data' => 'array',
+					'reference_uid' => 'code',
+					'priority' => 10,
+					'description' => 'Import of all company departments'
+				)
+		)
 	),
 );
 
@@ -78,8 +94,8 @@ $TCA['fe_users']['ctrl']['external'] = array(
 			'encoding' => 'utf8'
 		),
 		'data' => 'array',
-		'reference_uid' => 'employee_number',
-		'priority' => 10,
+		'reference_uid' => 'tx_externalimporttut_code',
+		'priority' => 50,
 		'disabledOperations' => '',
 		'description' => 'Import of full employee list'
 	),
@@ -93,8 +109,8 @@ $TCA['fe_users']['ctrl']['external'] = array(
 			'encoding' => 'latin1'
 		),
 		'data' => 'array',
-		'reference_uid' => 'code',
-		'priority' => 20,
+		'reference_uid' => 'tx_externalimporttut_code',
+		'priority' => 60,
 		'disabledOperations' => 'insert,delete',
 		'description' => 'Import of holidays balance'
 	)
@@ -102,15 +118,54 @@ $TCA['fe_users']['ctrl']['external'] = array(
 
 // Add the external information for each column
 
-$TCA['fe_users']['ctrl']['columns']['name']['external'] = array(
+$TCA['fe_users']['columns']['name']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
-		'userFunc' => ''
+		'userFunc' => array(
+			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
+			'method' => 'assembleName'
+		)
 	)
 );
-$TCA['fe_users']['ctrl']['columns']['tx_externalimporttut_code']['external'] = array(
+$TCA['fe_users']['columns']['username']['external'] = array(
+	0 => array(
+		'field' => 'last_name',
+		'userFunc' => array(
+			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
+			'method' => 'assembleUserName'
+		)
+	)
+);
+$TCA['fe_users']['columns']['starttime']['external'] = array(
+	0 => array(
+		'field' => 'start_date',
+		'userFunc' => array(
+			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:&tx_externalimport_transformations',
+			'method' => 'parseDate'
+		)
+	)
+);
+$TCA['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
 	0 => array(
 		'field' => 'employee_number'
+	),
+	1 => array(
+		'field' => 'code'
+	)
+);
+$TCA['fe_users']['columns']['email']['external'] = array(
+	0 => array(
+		'field' => 'mail'
+	)
+);
+$TCA['fe_users']['columns']['telephone']['external'] = array(
+	0 => array(
+		'field' => 'phone'
+	)
+);
+$TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
+	0 => array(
+		'field' => 'department'
 	)
 );
 ?>

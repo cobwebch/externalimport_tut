@@ -25,7 +25,4 @@ CREATE TABLE fe_users (
 	tx_externalimporttut_code varchar(10) DEFAULT '' NOT NULL,
 	tx_externalimporttut_department text,
 	tx_externalimporttut_holidays double DEFAULT '0.0' NOT NULL,
-
-	PRIMARY KEY (uid),
-	KEY parent (pid)
 );
