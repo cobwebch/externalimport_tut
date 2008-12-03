@@ -13,7 +13,7 @@
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'External Import Tutorial',
 	'description' => 'Tutorial for the External Import extension. Contains the manual and the necessary files.',
-	'category' => 'doc',
+	'category' => 'example',
 	'author' => 'Francois Suter (Cobweb)',
 	'author_email' => 'typo3@cobweb.ch',
 	'shy' => '',
