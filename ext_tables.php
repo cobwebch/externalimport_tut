@@ -25,9 +25,9 @@ $TCA['tx_externalimporttut_departments'] = array(
 					'parameters' => array(
 						'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/departments.txt'),
 						'delimiter' => "\t",
-						'text_qualifier' => '',
+						'text_qualifier' => '"',
 						'skip_rows' => 1,
-						'encoding' => 'latin1'
+						'encoding' => 'utf8'
 					),
 					'data' => 'array',
 					'reference_uid' => 'code',
@@ -95,6 +95,7 @@ $TCA['fe_users']['ctrl']['external'] = array(
 		),
 		'data' => 'array',
 		'reference_uid' => 'tx_externalimporttut_code',
+		'additional_fields' => 'last_name,first_name',
 		'priority' => 50,
 		'disabledOperations' => '',
 		'description' => 'Import of full employee list'
@@ -103,10 +104,10 @@ $TCA['fe_users']['ctrl']['external'] = array(
 		'connector' => 'csv',
 		'parameters' => array(
 			'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/holidays.txt'),
-			'delimiter' => "\t",
+			'delimiter' => ',',
 			'text_qualifier' => '',
 			'skip_rows' => 1,
-			'encoding' => 'latin1'
+			'encoding' => 'utf8'
 		),
 		'data' => 'array',
 		'reference_uid' => 'tx_externalimporttut_code',
@@ -132,7 +133,10 @@ $TCA['fe_users']['columns']['username']['external'] = array(
 		'field' => 'last_name',
 		'userFunc' => array(
 			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
-			'method' => 'assembleUserName'
+			'method' => 'assembleUserName',
+			'params' => array(
+				'encoding' => 'utf8'
+			)
 		)
 	)
 );
@@ -165,7 +169,11 @@ $TCA['fe_users']['columns']['telephone']['external'] = array(
 );
 $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
 	0 => array(
-		'field' => 'department'
+		'field' => 'department',
+		'mapping' => array(
+			'table' => 'tx_externalimporttut_departments',
+			'reference_field' => 'code'
+		)
 	)
 );
 ?>

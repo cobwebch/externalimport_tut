@@ -24,6 +24,11 @@ $TCA['tx_externalimporttut_departments'] = array(
 				'size' => '10',	
 				'max' => '4',	
 				'eval' => 'required,trim',
+			),
+			'external' => array(
+				0 => array(
+					'field' => 'code'
+				)
 			)
 		),
 		'name' => array(
@@ -33,6 +38,11 @@ $TCA['tx_externalimporttut_departments'] = array(
 				'type' => 'input',	
 				'size' => '30',	
 				'eval' => 'required,trim',
+			),
+			'external' => array(
+				0 => array(
+					'field' => 'name'
+				)
 			)
 		),
 	),
