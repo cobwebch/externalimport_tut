@@ -64,11 +64,11 @@ class tx_externalimporttut_transformations {
 			// The base for the username will be the first name, a dot and the last name (lowercase)
 		$userNameBase = strtolower($record['first_name'] . '.' . $record['last_name']);
 			// We must make sure this doesn't contain non-ASCII characters
-//		$userName = $GLOBALS['LANG']->csConvObj->specCharsToASCII($params['encoding'], $userNameBase);
+		$userName = $GLOBALS['LANG']->csConvObj->specCharsToASCII($params['encoding'], $userNameBase);
 			// Lastly replace single quotes, double quotes or spaces by underscores
 //		$userNameClean = preg_replace('/[\'"\s]/', '_', trim($userName));
 		$userNameClean = preg_replace('/[^-a-zA-Z0-9_]/', '_', trim($userNameBase));
-//t3lib_div::devLog('Creating username for user: '.$record[$index], 'externalimport_tut', -1, array('base' => $userNameBase, 'no ascii' => $userName, 'clean' => $userNameClean));
+t3lib_div::devLog('Creating username for user: '.$record[$index], 'externalimport_tut', -1, array('base' => $userNameBase, 'no ascii' => $userName, 'clean' => $userNameClean));
 		return $userNameClean;
 	}
 

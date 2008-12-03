@@ -106,7 +106,7 @@ $TCA['fe_users']['ctrl']['external'] = array(
 			'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/holidays.txt'),
 			'delimiter' => ',',
 			'text_qualifier' => '',
-			'skip_rows' => 1,
+			'skip_rows' => 0,
 			'encoding' => 'utf8'
 		),
 		'data' => 'array',
@@ -154,7 +154,7 @@ $TCA['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
 		'field' => 'employee_number'
 	),
 	1 => array(
-		'field' => 'code'
+		'field' => 0
 	)
 );
 $TCA['fe_users']['columns']['email']['external'] = array(
@@ -174,6 +174,11 @@ $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = arr
 			'table' => 'tx_externalimporttut_departments',
 			'reference_field' => 'code'
 		)
+	)
+);
+$TCA['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = array(
+	1 => array(
+		'field' => 1
 	)
 );
 ?>
