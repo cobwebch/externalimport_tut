@@ -38,6 +38,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
+			'devlog' => ''
 		),
 	),
 	'_md5_values_when_last_written' => 'a:11:{s:9:"ChangeLog";s:4:"b1c0";s:10:"README.txt";s:4:"ee2d";s:12:"ext_icon.gif";s:4:"1bdc";s:14:"ext_tables.php";s:4:"7525";s:14:"ext_tables.sql";s:4:"c3e6";s:41:"icon_tx_externalimporttut_departments.gif";s:4:"475a";s:39:"icon_tx_externalimporttut_employees.gif";s:4:"475a";s:16:"locallang_db.xml";s:4:"fe1a";s:7:"tca.php";s:4:"59b7";s:19:"doc/wizard_form.dat";s:4:"5b8a";s:20:"doc/wizard_form.html";s:4:"ddf7";}',

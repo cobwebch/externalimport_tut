@@ -9,6 +9,10 @@
 			<label index="tx_externalimporttut_departments">Departments</label>
 			<label index="tx_externalimporttut_departments.code">Code</label>
 			<label index="tx_externalimporttut_departments.name">Name</label>
+			<label index="tx_externalimporttut_teams">Teams</label>
+			<label index="tx_externalimporttut_teams.code">Code</label>
+			<label index="tx_externalimporttut_teams.name">Name</label>
+			<label index="tx_externalimporttut_teams.members">Members</label>
 			<label index="tx_externalimporttut_employees">Employees</label>
 			<label index="tx_externalimporttut_employees.code">Employee number</label>
 			<label index="tx_externalimporttut_employees.department">Department</label>

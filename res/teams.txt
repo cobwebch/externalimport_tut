@@ -1,0 +1,5 @@
+code	name	employee	rank
+PLANE	Planet Destroyers	256	2
+PLANE	Planet Destroyers	784	1
+PLANE	Planet Destroyers	421	10
+SHUFF	Shufflepuck All Stars	967	2
