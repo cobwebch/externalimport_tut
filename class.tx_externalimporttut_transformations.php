@@ -46,7 +46,7 @@ class tx_externalimporttut_transformations {
 	 * @return	mixed	Timestamp or formatted date string
 	 */
 	function assembleName($record, $index, $params) {
-		$fullName .= $record[$index].' '.$record['first_name'];
+		$fullName = $record['last_name'].' '.$record['first_name'];
 		return $fullName;
 	}
 
