@@ -61,31 +61,17 @@ class tx_externalimporttut_transformations {
 	 * @return	mixed	Timestamp or formatted date string
 	 */
 	function assembleUserName($record, $index, $params) {
+			// Make sure the encoding uses the proper code
+		$encoding = $GLOBALS['LANG']->csConvObj->parse_charset($params['encoding']);
 			// The base for the username will be the first name, a dot and the last name (lowercase)
-		$userNameBase = strtolower($record['first_name'] . '.' . $record['last_name']);
+		$baseName = $record['first_name'] . '.' . $record['last_name'];
+		$userNameBase = $GLOBALS['LANG']->csConvObj->conv_case($encoding, $baseName, 'toLower');
 			// We must make sure this doesn't contain non-ASCII characters
-		$userName = $GLOBALS['LANG']->csConvObj->specCharsToASCII($params['encoding'], $userNameBase);
+		$userName = $GLOBALS['LANG']->csConvObj->specCharsToASCII($encoding, $userNameBase);
 			// Lastly replace single quotes, double quotes or spaces by underscores
-//		$userNameClean = preg_replace('/[\'"\s]/', '_', trim($userName));
-		$userNameClean = preg_replace('/[^-a-zA-Z0-9_]/', '_', trim($userNameBase));
-t3lib_div::devLog('Creating username for user: '.$record[$index], 'externalimport_tut', -1, array('base' => $userNameBase, 'no ascii' => $userName, 'clean' => $userNameClean));
+			// Other special characters are acceptable
+		$userNameClean = preg_replace('/[\'"\s]/', '_', trim($userName));
 		return $userNameClean;
-	}
-
-	/**
-	 * This method responds to the "insertPreProcess" hook of the external importer class
-	 * It is used to create a default password for a new user
-	 * 
-	 * @param	array	$record: the record to transform
-	 * @param	object	$pObj: a reference to the external importer object
-	 */
-	function processBeforeInsert($record, $pObj) {
-		if ($pObj->getTableName() == 'fe_users' && $pObj->getIndex() == 0) {
-			$origRecord = $record;
-				// Simply reverse the username to create the password
-			$record['password'] = strrev($record['username']);
-		}
-		return $record;
 	}
 }
 ?>
