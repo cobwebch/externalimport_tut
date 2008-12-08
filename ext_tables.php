@@ -29,7 +29,7 @@ $TCA['tx_externalimporttut_departments'] = array(
 						'delimiter' => "\t",
 						'text_qualifier' => '"',
 						'skip_rows' => 1,
-						'encoding' => 'utf8'
+						'encoding' => 'latin1'
 					),
 					'data' => 'array',
 					'reference_uid' => 'code',
