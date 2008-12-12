@@ -1,2 +1,3 @@
+A tutorial for the external_import extension.
 
-Feel free to add some documentation or simply add a link to the online manual.
+Please refer to the manual.

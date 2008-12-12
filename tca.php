@@ -117,12 +117,9 @@ $TCA['tx_externalimporttut_teams'] = array(
 				0 => array(
 					'field' => 'employee',
 					'MM' => array(
-						'mappings' => array(
-							'uid_foreign' => array(
-								'table' => 'fe_users',
-								'reference_field' => 'tx_externalimporttut_code',
-								'value_field' => 'uid'
-							)
+						'mapping' => array(
+							'table' => 'fe_users',
+							'reference_field' => 'tx_externalimporttut_code',
 						),
 						'sorting' => 'rank'
 					)
