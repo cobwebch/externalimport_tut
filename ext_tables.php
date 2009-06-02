@@ -208,6 +208,11 @@ $TCA['fe_users']['columns']['telephone']['external'] = array(
 		'field' => 'phone'
 	)
 );
+$TCA['fe_users']['columns']['company']['external'] = array(
+	0 => array(
+		'value' => 'The Empire'
+	)
+);
 $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
 	0 => array(
 		'field' => 'department',
