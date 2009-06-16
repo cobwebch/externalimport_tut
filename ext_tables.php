@@ -213,6 +213,18 @@ $TCA['fe_users']['columns']['company']['external'] = array(
 		'value' => 'The Empire'
 	)
 );
+$TCA['fe_users']['columns']['title']['external'] = array(
+	0 => array(
+		'field' => 'rank',
+		'mapping' => array(
+			'valueMap' => array(
+				'1' => 'Captain',
+				'2' => 'Senior',
+				'3' => 'Junior'
+			)
+		)
+	)
+);
 $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
 	0 => array(
 		'field' => 'department',
