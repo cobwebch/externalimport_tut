@@ -98,23 +98,23 @@ $tempColumns = array(
 		'exclude' => 0,
 		'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees.department',
 		'config' => array(
-			'type' => 'group',
-			'internal_type' => 'db',
-			'allowed' => 'tx_externalimporttut_departments',
-			'size' => 1,
-			'minitems' => 0,
-			'maxitems' => 1,
+			'type'			=> 'group',
+			'internal_type'	=> 'db',
+			'allowed'		=> 'tx_externalimporttut_departments',
+			'size'			=> 1,
+			'minitems'		=> 0,
+			'maxitems'		=> 1,
 		)
 	),
 	'tx_externalimporttut_holidays' => array(
 		'exclude' => 0,
 		'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees.holidays',
 		'config' => array(
-			'type'     => 'input',
-			'size'     => '10',
-			'eval'     => 'int',
-			'checkbox' => '0',
-			'default' => 0
+			'type'		=> 'input',
+			'size'		=> '10',
+			'eval'		=> 'int',
+			'checkbox'	=> '0',
+			'default'	=> 0
 		)
 	)
 );
