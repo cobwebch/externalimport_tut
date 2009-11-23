@@ -1,12 +1,17 @@
-09-06-16 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-11-23  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Updated the manual to fit latest version of external_import
+	* Released to TER as version 1.1.2
+
+2009-06-16  Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Added example for usage of fixed value maps
 	* Released to TER as version 1.1.0
 
-09-06-02 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-06-02  Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Added example for usage of fixed values
 
-09-01-16 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-01-16  Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* First public release
