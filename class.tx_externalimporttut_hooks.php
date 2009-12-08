@@ -27,8 +27,8 @@
 /**
  * Example hooks for the 'externalimport_tut' extension
  *
- * @author	Francois Suter (Cobweb) <typo3@cobweb.ch>
- * @package	TYPO3
+ * @author		Francois Suter (Cobweb) <typo3@cobweb.ch>
+ * @package		TYPO3
  * @subpackage	tx_externalimporttut
  */
 class tx_externalimporttut_hooks {
@@ -43,7 +43,6 @@ class tx_externalimporttut_hooks {
 	function processBeforeInsert($record, $pObj) {
 			// Perform operation only for the fe_users table and for external index 0
 		if ($pObj->getTableName() == 'fe_users' && $pObj->getIndex() == 0) {
-			$origRecord = $record;
 				// Simply reverse the username to create the password
 			$record['password'] = strrev($record['username']);
 		}

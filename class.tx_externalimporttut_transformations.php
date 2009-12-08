@@ -29,8 +29,8 @@
 /**
  * Example transformation functions for the 'externalimport_tut' extension
  *
- * @author	Francois Suter (Cobweb) <typo3@cobweb.ch>
- * @package	TYPO3
+ * @author		Francois Suter (Cobweb) <typo3@cobweb.ch>
+ * @package		TYPO3
  * @subpackage	tx_externalimporttut
  */
 class tx_externalimporttut_transformations {
@@ -46,7 +46,7 @@ class tx_externalimporttut_transformations {
 	 * @return	mixed	Timestamp or formatted date string
 	 */
 	function assembleName($record, $index, $params) {
-		$fullName = $record['last_name'].' '.$record['first_name'];
+		$fullName = $record['last_name'] . ' ' . $record['first_name'];
 		return $fullName;
 	}
 
