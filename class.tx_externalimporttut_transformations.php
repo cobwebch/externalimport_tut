@@ -20,11 +20,7 @@
 *  GNU General Public License for more details.
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
-*
-* $Id$
 ***************************************************************/
-
-//require_once(t3lib_extMgm::extPath('external_import').'class.tx_externalimport_importer.php');
 
 /**
  * Example transformation functions for the 'externalimport_tut' extension
@@ -32,6 +28,8 @@
  * @author		Francois Suter (Cobweb) <typo3@cobweb.ch>
  * @package		TYPO3
  * @subpackage	tx_externalimporttut
+ *
+ * $Id$
  */
 class tx_externalimporttut_transformations {
 
