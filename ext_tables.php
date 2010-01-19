@@ -222,7 +222,8 @@ $TCA['fe_users']['columns']['title']['external'] = array(
 				'2' => 'Senior',
 				'3' => 'Junior'
 			)
-		)
+		),
+		'excludedOperations' => 'update'
 	)
 );
 $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(

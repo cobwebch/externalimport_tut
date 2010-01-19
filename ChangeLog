@@ -1,3 +1,7 @@
+2010-01-19  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Added example for usage of excludedOperations property
+
 2009-11-23  Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Updated the manual to fit latest version of external_import
