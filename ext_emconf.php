@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author' => 'Francois Suter (Cobweb)',
 	'author_email' => 'typo3@cobweb.ch',
 	'shy' => '',
-	'dependencies' => 'external_import,svconnector_csv',
+	'dependencies' => 'external_import,svconnector_csv,tt_news',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
@@ -32,8 +32,9 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '1.1.3',
 	'constraints' => array(
 		'depends' => array(
-			'external_import' => '',
-			'svconnector_csv' => '',
+			'external_import' => '1.0.0-0.0.0',
+			'svconnector_csv' => '1.0.0-0.0.0',
+			'tt_news' => '3.0.0-0.0.0'
 		),
 		'conflicts' => array(
 		),

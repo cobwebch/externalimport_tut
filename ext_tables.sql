@@ -11,11 +11,10 @@ CREATE TABLE tx_externalimporttut_departments (
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	code varchar(4) DEFAULT '' NOT NULL,
 	name varchar(255) DEFAULT '' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
-
 
 
 #
@@ -51,7 +50,6 @@ CREATE TABLE tx_externalimporttut_teams_feusers_mm (
 );
 
 
-
 #
 # Table structure for extending table 'fe_users'
 #
@@ -59,4 +57,12 @@ CREATE TABLE fe_users (
 	tx_externalimporttut_code varchar(10) DEFAULT '' NOT NULL,
 	tx_externalimporttut_department text,
 	tx_externalimporttut_holidays int(11) DEFAULT '0' NOT NULL,
+);
+
+
+#
+# Table structure for extending table 'tt_news'
+#
+CREATE TABLE tt_news (
+	tx_externalimporttut_externalid varchar(100) DEFAULT '' NOT NULL,
 );

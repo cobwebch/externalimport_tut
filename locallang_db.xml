@@ -17,6 +17,7 @@
 			<label index="tx_externalimporttut_employees.code">Employee number</label>
 			<label index="tx_externalimporttut_employees.department">Department</label>
 			<label index="tx_externalimporttut_employees.holidays">Holidays balance</label>
+			<label index="tx_externalimporttut_ttnews.externalid">External ID</label>
 		</languageKey>
 	</data>
 </T3locallang>

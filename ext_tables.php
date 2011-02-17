@@ -237,4 +237,89 @@ $TCA['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = array
 		'field' => 1
 	)
 );
+
+	// Load description of table tt_news
+t3lib_div::loadTCA('tt_news');
+
+	// Add a new column for containing the external id
+$tempColumns = array(
+	'tx_externalimporttut_externalid' => array(
+		'exclude' => 0,
+		'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_ttnews.externalid',
+		'config' => array(
+			'type' => 'input',
+			'size' => '20'
+		)
+	),
+);
+t3lib_extMgm::addTCAcolumns('tt_news', $tempColumns, 1);
+t3lib_extMgm::addToAllTCAtypes('tt_news', 'tx_externalimporttut_externalid');
+
+	// Add the external information to the ctrl section
+$TCA['tt_news']['ctrl']['external'] = array(
+	0 => array(
+		'connector' => 'feed',
+		'parameters' => array(
+			'uri' => 'http://news.typo3.org/atom.xml'
+		),
+		'data' => 'xml',
+		'nodetype' => 'entry',
+		'reference_uid' => 'tx_externalimporttut_externalid',
+		'enforcePid' => TRUE,
+		'description' => 'Import of typo3.org news'
+	),
+);
+
+	// Add the external information for each column
+$TCA['tt_news']['columns']['title']['external'] = array(
+	0 => array(
+		'field' => 'title'
+	)
+);
+$TCA['tt_news']['columns']['tx_externalimporttut_externalid']['external'] = array(
+	0 => array(
+		'field' => 'id'
+	)
+);
+$TCA['tt_news']['columns']['datetime']['external'] = array(
+	0 => array(
+		'field' => 'issued',
+		'userFunc' => array(
+			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:&tx_externalimport_transformations',
+			'method' => 'parseDate'
+		)
+	)
+);
+$TCA['tt_news']['columns']['short']['external'] = array(
+	0 => array(
+		'field' => 'content',
+		'trim' => TRUE
+/*		'userFunc' => array(
+			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
+			'method' => 'stripCdata'
+		)*/
+	)
+);
+$TCA['tt_news']['columns']['author']['external'] = array(
+	0 => array(
+		'field' => 'author',
+		'xpath' => 'name'
+	)
+);
+$TCA['tt_news']['columns']['ext_url']['external'] = array(
+	0 => array(
+		'field' => 'link',
+		'attribute' => 'href'
+	)
+);
+$TCA['tt_news']['columns']['type']['external'] = array(
+	0 => array(
+		'value' => 2
+	)
+);
+$TCA['tt_news']['columns']['hidden']['external'] = array(
+	0 => array(
+		'value' => 0
+	)
+);
 ?>
