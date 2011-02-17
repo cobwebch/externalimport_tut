@@ -3,29 +3,31 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-// Base TCA for departments tables
+$extensionPath = t3lib_extMgm::extPath($_EXTKEY);
+$extensionRelativePath = t3lib_extMgm::extRelPath($_EXTKEY);
 
+	// Base TCA for departments tables
 t3lib_extMgm::allowTableOnStandardPages('tx_externalimporttut_departments');
 
 $TCA['tx_externalimporttut_departments'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments',		
-		'label'     => 'name',	
+		'title'     => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments',
+		'label'     => 'name',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'default_sortby' => 'ORDER BY name',	
-		'delete' => 'deleted',	
+		'default_sortby' => 'ORDER BY name',
+		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'icon_tx_externalimporttut_departments.gif',
+		'dynamicConfigFile' => $extensionPath . 'tca.php',
+		'iconfile'          => $extensionRelativePath . 'icon_tx_externalimporttut_departments.gif',
 		'external' => array(
 				0 => array(
 					'connector' => 'csv',
 					'parameters' => array(
-						'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/departments.txt'),
+						'filename' => $extensionPath . 'res/departments.txt',
 						'delimiter' => "\t",
 						'text_qualifier' => '"',
 						'skip_rows' => 1,
@@ -40,8 +42,7 @@ $TCA['tx_externalimporttut_departments'] = array(
 	),
 );
 
-// Base TCA for teams tables
-
+	// Base TCA for teams tables
 t3lib_extMgm::allowTableOnStandardPages('tx_externalimporttut_teams');
 
 $TCA['tx_externalimporttut_teams'] = array(
@@ -56,8 +57,8 @@ $TCA['tx_externalimporttut_teams'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'icon_tx_externalimporttut_teams.gif',
+		'dynamicConfigFile' => $extensionPath . 'tca.php',
+		'iconfile'          => $extensionRelativePath . 'icon_tx_externalimporttut_teams.gif',
 		'external' => array(
 				0 => array(
 					'connector' => 'csv',
@@ -78,12 +79,10 @@ $TCA['tx_externalimporttut_teams'] = array(
 	),
 );
 
-// Expand fe_users table
-
+	// Expand fe_users table
 t3lib_div::loadTCA('fe_users');
 
-// Add the new columns
-
+	// Add the new columns
 $tempColumns = array(
 	'tx_externalimporttut_code' => array(
 		'exclude' => 0,
@@ -121,13 +120,12 @@ $tempColumns = array(
 t3lib_extMgm::addTCAcolumns('fe_users', $tempColumns, 1);
 t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees,tx_externalimporttut_code;;;;1-1-1,tx_externalimporttut_department,tx_externalimporttut_holidays');
 
-// Add the external information to the ctrl section
-
+	// Add the external information to the ctrl section
 $TCA['fe_users']['ctrl']['external'] = array(
 	0 => array(
 		'connector' => 'csv',
 		'parameters' => array(
-			'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/employees.txt'),
+			'filename' => $extensionPath . 'res/employees.txt',
 			'delimiter' => ';',
 			'text_qualifier' => '',
 			'skip_rows' => 1,
@@ -138,13 +136,13 @@ $TCA['fe_users']['ctrl']['external'] = array(
 		'additional_fields' => 'last_name,first_name',
 		'priority' => 50,
 		'disabledOperations' => '',
-		'enforcePid' => true,
+		'enforcePid' => TRUE,
 		'description' => 'Import of full employee list'
 	),
 	1 => array(
 		'connector' => 'csv',
 		'parameters' => array(
-			'filename' => t3lib_extMgm::extPath($_EXTKEY, 'res/holidays.txt'),
+			'filename' => $extensionPath . 'res/holidays.txt',
 			'delimiter' => ',',
 			'text_qualifier' => '',
 			'skip_rows' => 0,
@@ -158,8 +156,7 @@ $TCA['fe_users']['ctrl']['external'] = array(
 	)
 );
 
-// Add the external information for each column
-
+	// Add the external information for each column
 $TCA['fe_users']['columns']['name']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
