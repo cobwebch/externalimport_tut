@@ -41,7 +41,7 @@ class tx_externalimporttut_transformations {
 	 * @param	array	$record: the full record that is being transformed
 	 * @param	string	$index: the index of the field to transform
 	 * @param	array	$params: additional parameters from the TCA
-	 * @return	mixed	Timestamp or formatted date string
+	 * @return	mixed	Full name, i.e. last name and first name concatenated
 	 */
 	public function assembleName($record, $index, $params) {
 		$fullName = $record['last_name'] . ' ' . $record['first_name'];
@@ -56,12 +56,12 @@ class tx_externalimporttut_transformations {
 	 * @param	array	$record: the full record that is being transformed
 	 * @param	string	$index: the index of the field to transform
 	 * @param	array	$params: additional parameters from the TCA
-	 * @return	mixed	Timestamp or formatted date string
+	 * @return	mixed	Calculated user name
 	 */
 	public function assembleUserName($record, $index, $params) {
 			// Make sure the encoding uses the proper code
 		$encoding = $GLOBALS['LANG']->csConvObj->parse_charset($params['encoding']);
-			// The base for the username will be the first name, a dot and the last name (lowercase)
+			// The base for the user name will be the first name, a dot and the last name (lowercase)
 		$baseName = $record['first_name'] . '.' . $record['last_name'];
 		$userNameBase = $GLOBALS['LANG']->csConvObj->conv_case($encoding, $baseName, 'toLower');
 			// We must make sure this doesn't contain non-ASCII characters
