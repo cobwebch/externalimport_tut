@@ -43,7 +43,7 @@ class tx_externalimporttut_transformations {
 	 * @param	array	$params: additional parameters from the TCA
 	 * @return	mixed	Timestamp or formatted date string
 	 */
-	function assembleName($record, $index, $params) {
+	public function assembleName($record, $index, $params) {
 		$fullName = $record['last_name'] . ' ' . $record['first_name'];
 		return $fullName;
 	}
@@ -58,7 +58,7 @@ class tx_externalimporttut_transformations {
 	 * @param	array	$params: additional parameters from the TCA
 	 * @return	mixed	Timestamp or formatted date string
 	 */
-	function assembleUserName($record, $index, $params) {
+	public function assembleUserName($record, $index, $params) {
 			// Make sure the encoding uses the proper code
 		$encoding = $GLOBALS['LANG']->csConvObj->parse_charset($params['encoding']);
 			// The base for the username will be the first name, a dot and the last name (lowercase)
