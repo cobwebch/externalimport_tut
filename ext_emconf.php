@@ -34,6 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'external_import' => '1.0.0-0.0.0',
 			'svconnector_csv' => '1.0.0-0.0.0',
+			'svconnector_feed' => '1.0.0-0.0.0',
 			'tt_news' => '3.0.0-0.0.0'
 		),
 		'conflicts' => array(
