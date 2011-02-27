@@ -266,6 +266,7 @@ $TCA['tt_news']['ctrl']['external'] = array(
 		'nodetype' => 'entry',
 		'reference_uid' => 'tx_externalimporttut_externalid',
 		'enforcePid' => TRUE,
+		'disabledOperations' => 'delete',
 		'description' => 'Import of typo3.org news'
 	),
 );
@@ -294,10 +295,6 @@ $TCA['tt_news']['columns']['short']['external'] = array(
 	0 => array(
 		'field' => 'content',
 		'trim' => TRUE
-/*		'userFunc' => array(
-			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
-			'method' => 'stripCdata'
-		)*/
 	)
 );
 $TCA['tt_news']['columns']['author']['external'] = array(
