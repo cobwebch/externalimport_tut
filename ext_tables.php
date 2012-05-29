@@ -260,10 +260,10 @@ $TCA['tt_news']['ctrl']['external'] = array(
 	0 => array(
 		'connector' => 'feed',
 		'parameters' => array(
-			'uri' => 'http://news.typo3.org/atom.xml'
+			'uri' => 'http://typo3.org/xml-feeds/rss.xml'
 		),
 		'data' => 'xml',
-		'nodetype' => 'entry',
+		'nodetype' => 'item',
 		'reference_uid' => 'tx_externalimporttut_externalid',
 		'enforcePid' => TRUE,
 		'disabledOperations' => 'delete',
@@ -279,12 +279,12 @@ $TCA['tt_news']['columns']['title']['external'] = array(
 );
 $TCA['tt_news']['columns']['tx_externalimporttut_externalid']['external'] = array(
 	0 => array(
-		'field' => 'id'
+		'field' => 'link'
 	)
 );
 $TCA['tt_news']['columns']['datetime']['external'] = array(
 	0 => array(
-		'field' => 'issued',
+		'field' => 'pubDate',
 		'userFunc' => array(
 			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:&tx_externalimport_transformations',
 			'method' => 'parseDate'
@@ -293,25 +293,24 @@ $TCA['tt_news']['columns']['datetime']['external'] = array(
 );
 $TCA['tt_news']['columns']['short']['external'] = array(
 	0 => array(
-		'field' => 'content',
+		'field' => 'description',
 		'trim' => TRUE
 	)
 );
-$TCA['tt_news']['columns']['author']['external'] = array(
+$TCA['tt_news']['columns']['bodytext']['external'] = array(
 	0 => array(
-		'field' => 'author',
-		'xpath' => 'name'
+		'field' => 'encoded',
+		'rteEnabled' => TRUE
 	)
 );
 $TCA['tt_news']['columns']['ext_url']['external'] = array(
 	0 => array(
 		'field' => 'link',
-		'attribute' => 'href'
 	)
 );
 $TCA['tt_news']['columns']['type']['external'] = array(
 	0 => array(
-		'value' => 2
+		'value' => 0
 	)
 );
 $TCA['tt_news']['columns']['hidden']['external'] = array(

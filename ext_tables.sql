@@ -64,5 +64,5 @@ CREATE TABLE fe_users (
 # Table structure for extending table 'tt_news'
 #
 CREATE TABLE tt_news (
-	tx_externalimporttut_externalid varchar(100) DEFAULT '' NOT NULL,
+	tx_externalimporttut_externalid varchar(255) DEFAULT '' NOT NULL,
 );
