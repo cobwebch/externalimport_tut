@@ -1,3 +1,7 @@
+2012-05-29  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Updated XML import example to match new typo3.org RSS feed, resolves #37573
+
 2011-03-08  Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Released version 1.2.0
