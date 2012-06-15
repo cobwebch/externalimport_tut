@@ -29,13 +29,14 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '1.2.0',
+	'version' => '1.3.0',
 	'constraints' => array(
 		'depends' => array(
-			'external_import' => '1.2.0-0.0.0',
+			'external_import' => '2.0.0-0.0.0',
 			'svconnector_csv' => '1.1.0-0.0.0',
 			'svconnector_feed' => '1.0.0-0.0.0',
 			'tt_news' => '3.0.0-0.0.0',
+			'typo3' => '4.5.0-4.7.99'
 		),
 		'conflicts' => array(
 		),
