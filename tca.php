@@ -3,12 +3,12 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 // Columns definition for the departments table
 
-$TCA['tx_externalimporttut_departments'] = array(
-	'ctrl' => $TCA['tx_externalimporttut_departments']['ctrl'],
+$GLOBALS['TCA']['tx_externalimporttut_departments'] = array(
+	'ctrl' => $GLOBALS['TCA']['tx_externalimporttut_departments']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,code,name'
 	),
-	'feInterface' => $TCA['tx_externalimporttut_departments']['feInterface'],
+	'feInterface' => $GLOBALS['TCA']['tx_externalimporttut_departments']['feInterface'],
 	'columns' => array(
 		'hidden' => array(
 			'exclude' => 1,
@@ -19,12 +19,12 @@ $TCA['tx_externalimporttut_departments'] = array(
 			)
 		),
 		'code' => array(
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.code',		
+			'exclude' => 0,
+			'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.code',
 			'config' => array(
-				'type' => 'input',	
-				'size' => '10',	
-				'max' => '4',	
+				'type' => 'input',
+				'size' => '10',
+				'max' => '4',
 				'eval' => 'required,trim',
 			),
 			'external' => array(
@@ -34,11 +34,11 @@ $TCA['tx_externalimporttut_departments'] = array(
 			)
 		),
 		'name' => array(
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.name',		
+			'exclude' => 0,
+			'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.name',
 			'config' => array(
-				'type' => 'input',	
-				'size' => '30',	
+				'type' => 'input',
+				'size' => '30',
 				'eval' => 'required,trim',
 			),
 			'external' => array(
@@ -58,12 +58,12 @@ $TCA['tx_externalimporttut_departments'] = array(
 
 // Columns definition for the teams table
 
-$TCA['tx_externalimporttut_teams'] = array(
-	'ctrl' => $TCA['tx_externalimporttut_teams']['ctrl'],
+$GLOBALS['TCA']['tx_externalimporttut_teams'] = array(
+	'ctrl' => $GLOBALS['TCA']['tx_externalimporttut_teams']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,code,name'
 	),
-	'feInterface' => $TCA['tx_externalimporttut_teams']['feInterface'],
+	'feInterface' => $GLOBALS['TCA']['tx_externalimporttut_teams']['feInterface'],
 	'columns' => array(
 		'hidden' => array(
 			'exclude' => 1,

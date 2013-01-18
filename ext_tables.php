@@ -9,7 +9,7 @@ $extensionRelativePath = t3lib_extMgm::extRelPath($_EXTKEY);
 	// Base TCA for departments tables
 t3lib_extMgm::allowTableOnStandardPages('tx_externalimporttut_departments');
 
-$TCA['tx_externalimporttut_departments'] = array(
+$GLOBALS['TCA']['tx_externalimporttut_departments'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments',
 		'label'     => 'name',
@@ -45,7 +45,7 @@ $TCA['tx_externalimporttut_departments'] = array(
 	// Base TCA for teams tables
 t3lib_extMgm::allowTableOnStandardPages('tx_externalimporttut_teams');
 
-$TCA['tx_externalimporttut_teams'] = array(
+$GLOBALS['TCA']['tx_externalimporttut_teams'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams',
 		'label'     => 'name',
@@ -121,7 +121,7 @@ t3lib_extMgm::addTCAcolumns('fe_users', $tempColumns, 1);
 t3lib_extMgm::addToAllTCAtypes('fe_users', '--div--;LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees,tx_externalimporttut_code;;;;1-1-1,tx_externalimporttut_department,tx_externalimporttut_holidays');
 
 	// Add the external information to the ctrl section
-$TCA['fe_users']['ctrl']['external'] = array(
+$GLOBALS['TCA']['fe_users']['ctrl']['external'] = array(
 	0 => array(
 		'connector' => 'csv',
 		'parameters' => array(
@@ -157,7 +157,7 @@ $TCA['fe_users']['ctrl']['external'] = array(
 );
 
 	// Add the external information for each column
-$TCA['fe_users']['columns']['name']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['name']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
 		'userFunc' => array(
@@ -166,7 +166,7 @@ $TCA['fe_users']['columns']['name']['external'] = array(
 		)
 	)
 );
-$TCA['fe_users']['columns']['username']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['username']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
 		'userFunc' => array(
@@ -178,7 +178,7 @@ $TCA['fe_users']['columns']['username']['external'] = array(
 		)
 	)
 );
-$TCA['fe_users']['columns']['starttime']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = array(
 	0 => array(
 		'field' => 'start_date',
 		'userFunc' => array(
@@ -187,7 +187,7 @@ $TCA['fe_users']['columns']['starttime']['external'] = array(
 		)
 	)
 );
-$TCA['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
 	0 => array(
 		'field' => 'employee_number'
 	),
@@ -195,22 +195,22 @@ $TCA['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
 		'field' => 0
 	)
 );
-$TCA['fe_users']['columns']['email']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['email']['external'] = array(
 	0 => array(
 		'field' => 'mail'
 	)
 );
-$TCA['fe_users']['columns']['telephone']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['telephone']['external'] = array(
 	0 => array(
 		'field' => 'phone'
 	)
 );
-$TCA['fe_users']['columns']['company']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['company']['external'] = array(
 	0 => array(
 		'value' => 'The Empire'
 	)
 );
-$TCA['fe_users']['columns']['title']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['title']['external'] = array(
 	0 => array(
 		'field' => 'rank',
 		'mapping' => array(
@@ -223,7 +223,7 @@ $TCA['fe_users']['columns']['title']['external'] = array(
 		'excludedOperations' => 'update'
 	)
 );
-$TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
 	0 => array(
 		'field' => 'department',
 		'mapping' => array(
@@ -232,14 +232,14 @@ $TCA['fe_users']['columns']['tx_externalimporttut_department']['external'] = arr
 		)
 	)
 );
-$TCA['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = array(
 	1 => array(
 		'field' => 1
 	)
 );
 
-	// Load description of table tt_news
-t3lib_div::loadTCA('tt_news');
+	// Load description of table tx_news_domain_model_news
+t3lib_div::loadTCA('tx_news_domain_model_news');
 
 	// Add a new column for containing the external id
 $tempColumns = array(
@@ -252,11 +252,11 @@ $tempColumns = array(
 		)
 	),
 );
-t3lib_extMgm::addTCAcolumns('tt_news', $tempColumns, 1);
-t3lib_extMgm::addToAllTCAtypes('tt_news', 'tx_externalimporttut_externalid');
+t3lib_extMgm::addTCAcolumns('tx_news_domain_model_news', $tempColumns, 1);
+t3lib_extMgm::addToAllTCAtypes('tx_news_domain_model_news', 'tx_externalimporttut_externalid');
 
 	// Add the external information to the ctrl section
-$TCA['tt_news']['ctrl']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = array(
 	0 => array(
 		'connector' => 'feed',
 		'parameters' => array(
@@ -272,17 +272,17 @@ $TCA['tt_news']['ctrl']['external'] = array(
 );
 
 	// Add the external information for each column
-$TCA['tt_news']['columns']['title']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = array(
 	0 => array(
 		'field' => 'title'
 	)
 );
-$TCA['tt_news']['columns']['tx_externalimporttut_externalid']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['tx_externalimporttut_externalid']['external'] = array(
 	0 => array(
 		'field' => 'link'
 	)
 );
-$TCA['tt_news']['columns']['datetime']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] = array(
 	0 => array(
 		'field' => 'pubDate',
 		'userFunc' => array(
@@ -291,29 +291,29 @@ $TCA['tt_news']['columns']['datetime']['external'] = array(
 		)
 	)
 );
-$TCA['tt_news']['columns']['short']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = array(
 	0 => array(
 		'field' => 'description',
 		'trim' => TRUE
 	)
 );
-$TCA['tt_news']['columns']['bodytext']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = array(
 	0 => array(
 		'field' => 'encoded',
 		'rteEnabled' => TRUE
 	)
 );
-$TCA['tt_news']['columns']['ext_url']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['ext_url']['external'] = array(
 	0 => array(
 		'field' => 'link',
 	)
 );
-$TCA['tt_news']['columns']['type']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = array(
 	0 => array(
 		'value' => 0
 	)
 );
-$TCA['tt_news']['columns']['hidden']['external'] = array(
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['hidden']['external'] = array(
 	0 => array(
 		'value' => 0
 	)
