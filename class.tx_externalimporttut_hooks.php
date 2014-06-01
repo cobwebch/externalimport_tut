@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007 Francois Suter (Cobweb) <typo3@cobweb.ch>
+*  (c) 2007-2014 Francois Suter (Cobweb) <typo3@cobweb.ch>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,22 +28,21 @@
  * @author		Francois Suter (Cobweb) <typo3@cobweb.ch>
  * @package		TYPO3
  * @subpackage	tx_externalimporttut
- *
- * $Id$
  */
-class tx_externalimporttut_hooks {
+class tx_externalimporttut_hooks implements t3lib_Singleton {
 
 	/**
 	 * This method responds to the "insertPreProcess" hook of the external importer class
 	 * It is used to create a default password for a new user
-	 * 
-	 * @param	array	$record: the record to transform
-	 * @param	object	$pObj: a reference to the external importer object
+	 *
+	 * @param array $record The record to transform
+	 * @param tx_externalimport_importer $pObj A reference to the external importer object
+	 * @return array
 	 */
 	function processBeforeInsert($record, $pObj) {
-			// Perform operation only for the fe_users table and for external index 0
+		// Perform operation only for the fe_users table and for external index 0
 		if ($pObj->getTableName() == 'fe_users' && $pObj->getIndex() == 0) {
-				// Simply reverse the username to create the password
+			// Simply reverse the username to create the password
 			$record['password'] = strrev($record['username']);
 		}
 		return $record;

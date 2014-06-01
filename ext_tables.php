@@ -161,7 +161,7 @@ $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
 		'userFunc' => array(
-			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
+			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:tx_externalimporttut_transformations',
 			'method' => 'assembleName'
 		)
 	)
@@ -170,7 +170,7 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = array(
 	0 => array(
 		'field' => 'last_name',
 		'userFunc' => array(
-			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:&tx_externalimporttut_transformations',
+			'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:tx_externalimporttut_transformations',
 			'method' => 'assembleUserName',
 			'params' => array(
 				'encoding' => 'utf8'
@@ -182,7 +182,7 @@ $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = array(
 	0 => array(
 		'field' => 'start_date',
 		'userFunc' => array(
-			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:&tx_externalimport_transformations',
+			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:tx_externalimport_transformations',
 			'method' => 'parseDate'
 		)
 	)
@@ -286,7 +286,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] 
 	0 => array(
 		'field' => 'pubDate',
 		'userFunc' => array(
-			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:&tx_externalimport_transformations',
+			'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:tx_externalimport_transformations',
 			'method' => 'parseDate'
 		)
 	)
