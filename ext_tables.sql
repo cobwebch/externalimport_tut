@@ -56,7 +56,7 @@ CREATE TABLE tx_externalimporttut_teams_feusers_mm (
 CREATE TABLE fe_users (
 	tx_externalimporttut_code varchar(10) DEFAULT '' NOT NULL,
 	tx_externalimporttut_department text,
-	tx_externalimporttut_holidays int(11) DEFAULT '0' NOT NULL,
+	tx_externalimporttut_holidays int(11) DEFAULT '0' NOT NULL
 );
 
 
@@ -64,5 +64,5 @@ CREATE TABLE fe_users (
 # Table structure for extending table 'tx_news_domain_model_news'
 #
 CREATE TABLE tx_news_domain_model_news (
-	tx_externalimporttut_externalid varchar(255) DEFAULT '' NOT NULL,
+	tx_externalimporttut_externalid varchar(255) DEFAULT '' NOT NULL
 );

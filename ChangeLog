@@ -1,6 +1,7 @@
 2014-06-03 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Moved documentation to reStructuredText, resolves #58402
+	* Verified compatibility with TYPO3 CMS 6.2, resolves #58401
 
 2014-06-01 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
