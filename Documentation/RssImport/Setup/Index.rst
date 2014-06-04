@@ -11,11 +11,29 @@
 The external import setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First of all, please note that a new column was added to the
-tx\_news\_domain\_model\_news table. It will be used to store the
+The import of a RSS feed into table :code:`tx_news_domain_model_news`
+poses a particular challenge. We want to store the URI of the news
+item in the related links table, which uses IRRE and a "parent" field
+to relate links to news items.
+
+We will see later what the trick is. The first important thing to
+note is the order of import. Since it is links that are related to
+news items, we must import news **before** links.
+
+A second peculiarity is that both links and news items are in the
+same source of data. Thus we will import the RSS feed twice.
+
+
+.. _rss-import-setup-news:
+
+Importing news items
+""""""""""""""""""""
+
+Thus we start with the news items. A new column was added to the
+:code:`tx_news_domain_model_news` table. It is used to store the
 external id found in the RSS feed.
 
-Now here's the setup for the "ctrl" section:
+Here is the setup for the "ctrl" section:
 
 .. code-block:: php
 
@@ -48,7 +66,7 @@ takes place only in the predefined page and that existing news items
 entered somewhere else are not deleted. This is a useful precaution to
 take.
 
-Also note that the delete operation is deleted. This makes sense in
+Also note that the delete operation is disabled. This makes sense in
 this case, as an RSS feed normally contains only the latest news
 items. Thus if you don't want each import to delete the data from the
 previous import, the delete operation should be disabled.
@@ -88,11 +106,6 @@ Let's now look at the setup for the columns:
 			'rteEnabled' => TRUE
 		)
 	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['ext_url']['external'] = array(
-		0 => array(
-			'field' => 'link',
-		)
-	);
 	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = array(
 		0 => array(
 			'value' => 0
@@ -117,6 +130,76 @@ saving. This helps ensure that such content can be edited correctly in
 a RTE-enabled field in the TYPO3 backend, although the varying quality
 of available HTML makes it impossible to guarantee a 100% smooth
 process.
+
+
+.. _rss-import-setup-links:
+
+Importing related links
+"""""""""""""""""""""""
+
+Next we want to run this import again, to store the links and make
+them related to their respective news items. Here is the "ctrl"
+section for the :code:`tx_news_domain_model_link`:
+
+.. code-block:: php
+
+	$GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = array(
+		0 => array(
+			'connector' => 'feed',
+			'parameters' => array(
+				'uri' => 'http://typo3.org/xml-feeds/rss.xml'
+			),
+			'data' => 'xml',
+			'nodetype' => 'item',
+			'reference_uid' => 'uri',
+			'enforcePid' => TRUE,
+			'priority' => 210,
+			'disabledOperations' => 'delete',
+			'description' => 'Import of typo3.org news related links'
+		),
+	);
+
+In this case we don't need to add a special field for storing
+the external primary key, since we are using the URI and there
+is already a field for this.
+
+Now we face slight problem. We want to fill the "parent" column
+with the primary key of the related news item, but that field has
+no TCA. A field without TCA cannot be manipulated by External Import.
+So we need to add a configuration for that field. As we don't need
+anything special, we can just give it the
+:ref:`passthrough <t3tca:columns-passthrough>` type.
+
+So here is the complete setup, with the special bit highlighted:
+
+.. code-block:: php
+   :emphasize-lines: 11-24
+
+	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = array(
+		0 => array(
+			'field' => 'title'
+		)
+	);
+	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = array(
+		0 => array(
+			'field' => 'link'
+		)
+	);
+	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = array(
+		'config' => array(
+			'type' => 'passthrough',
+		),
+		'external' => array(
+			0 => array(
+				'field' => 'link',
+				'mapping' => array(
+					'table' => 'tx_news_domain_model_news',
+					'reference_field' => 'tx_externalimporttut_externalid'
+				)
+			)
+		)
+	);
+
 
 After running the import, check out the page/folder where the imported
 news items are stored. It should look something like this:
