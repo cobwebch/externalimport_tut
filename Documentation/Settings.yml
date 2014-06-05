@@ -21,6 +21,9 @@ conf.py:
   latex_use_parts: True
   latex_show_pagerefs: True
   intersphinx_mapping:
+    t3tca:
+    - http://docs.typo3.org/typo3cms/TCAReference/
+    - null
     extimp:
     - http://docs.typo3.org/typo3cms/extensions/external_import/
     - null
