@@ -1,6 +1,7 @@
 2014-06-19 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Corrected LaTeX setup for PDF rendering, resolves #59665
+	* Released version 1.6.1, resolves #59668
 
 2014-06-05 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
