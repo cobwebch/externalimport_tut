@@ -2,7 +2,7 @@
 
 return array(
         'ctrl' => array(
-                'title' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments',
+                'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
                 'label' => 'name',
                 'tstamp' => 'tstamp',
                 'crdate' => 'crdate',
@@ -50,7 +50,7 @@ return array(
                 ),
                 'code' => array(
                         'exclude' => 0,
-                        'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.code',
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.code',
                         'config' => array(
                                 'type' => 'input',
                                 'size' => '10',
@@ -65,7 +65,7 @@ return array(
                 ),
                 'name' => array(
                         'exclude' => 0,
-                        'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_departments.name',
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.name',
                         'config' => array(
                                 'type' => 'input',
                                 'size' => '30',

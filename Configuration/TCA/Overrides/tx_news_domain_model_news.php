@@ -3,7 +3,7 @@
 $tempColumns = array(
         'tx_externalimporttut_externalid' => array(
                 'exclude' => 0,
-                'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_ttnews.externalid',
+                'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_ttnews.externalid',
                 'config' => array(
                         'type' => 'input',
                         'size' => '20'

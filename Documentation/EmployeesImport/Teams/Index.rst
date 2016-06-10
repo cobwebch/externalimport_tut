@@ -80,7 +80,7 @@ table:
 			...
 			'members' => array(
 				'exclude' => 0,
-				'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams.members',
+				'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.members',
 				'config' => array(
 					'type' => 'group',
 					'size' => 5,

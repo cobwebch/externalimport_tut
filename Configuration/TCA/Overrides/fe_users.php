@@ -4,7 +4,7 @@
 $newColumns = array(
         'tx_externalimporttut_code' => array(
                 'exclude' => 0,
-                'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees.code',
+                'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees.code',
                 'config' => array(
                         'type' => 'input',
                         'size' => '10',
@@ -13,7 +13,7 @@ $newColumns = array(
         ),
         'tx_externalimporttut_department' => array(
                 'exclude' => 0,
-                'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees.department',
+                'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees.department',
                 'config' => array(
                         'type' => 'group',
                         'internal_type' => 'db',
@@ -25,7 +25,7 @@ $newColumns = array(
         ),
         'tx_externalimporttut_holidays' => array(
                 'exclude' => 0,
-                'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees.holidays',
+                'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees.holidays',
                 'config' => array(
                         'type' => 'input',
                         'size' => '10',
@@ -42,7 +42,7 @@ $newColumns = array(
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'fe_users',
-        '--div--;LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_employees,tx_externalimporttut_code,tx_externalimporttut_department,tx_externalimporttut_holidays'
+        '--div--;LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees,tx_externalimporttut_code,tx_externalimporttut_department,tx_externalimporttut_holidays'
 );
 
 // Add the external information to the ctrl section

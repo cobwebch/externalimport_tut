@@ -2,7 +2,7 @@
 
 return array(
         'ctrl' => array(
-                'title' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams',
+                'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams',
                 'label' => 'name',
                 'tstamp' => 'tstamp',
                 'crdate' => 'crdate',
@@ -51,7 +51,7 @@ return array(
                 ),
                 'code' => array(
                         'exclude' => 0,
-                        'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams.code',
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.code',
                         'config' => array(
                                 'type' => 'input',
                                 'size' => '10',
@@ -66,7 +66,7 @@ return array(
                 ),
                 'name' => array(
                         'exclude' => 0,
-                        'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams.name',
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.name',
                         'config' => array(
                                 'type' => 'input',
                                 'size' => '30',
@@ -80,7 +80,7 @@ return array(
                 ),
                 'members' => array(
                         'exclude' => 0,
-                        'label' => 'LLL:EXT:externalimport_tut/locallang_db.xml:tx_externalimporttut_teams.members',
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.members',
                         'config' => array(
                                 'type' => 'group',
                                 'size' => 5,

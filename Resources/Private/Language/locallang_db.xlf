@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-10T09:33:07Z" product-name="externalimport_tut">
+		<header/>
+		<body>
+			<trans-unit id="tx_externalimporttut_departments" xml:space="preserve">
+				<source>Departments</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_departments.code" xml:space="preserve">
+				<source>Code</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_departments.name" xml:space="preserve">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_teams" xml:space="preserve">
+				<source>Teams</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_teams.code" xml:space="preserve">
+				<source>Code</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_teams.name" xml:space="preserve">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_teams.members" xml:space="preserve">
+				<source>Members</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_employees" xml:space="preserve">
+				<source>Employees</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_employees.code" xml:space="preserve">
+				<source>Employee number</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_employees.department" xml:space="preserve">
+				<source>Department</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_employees.holidays" xml:space="preserve">
+				<source>Holidays balance</source>
+			</trans-unit>
+			<trans-unit id="tx_externalimporttut_ttnews.externalid" xml:space="preserve">
+				<source>External ID</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

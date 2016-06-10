@@ -1,6 +1,7 @@
 2016-06-10 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Updated and restructured for TYPO3 CMS 7 LTS, resolves #76575
+	* Migrated language file to XLIFF, resolves #76577
 
 2014-06-19 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
