@@ -196,9 +196,9 @@ the "parameters" property. So what happens for these three fields?
 
    .. code-block:: php
 
-		public function assembleName($record, $index, $params) {
-			$fullName = $record['last_name'] . ' ' . $record['first_name'];
-			return $fullName;
+		public function assembleName($record, $index, $params)
+		{
+			return $record['last_name'] . ' ' . $record['first_name'];
 		}
 
    The method receives the record being handled, so that all fields
@@ -312,12 +312,11 @@ that it cleanly relates to a department.
 
 	Viewing the imported FE user data in the TYPO3 backend
 
-And since the data manipulation operations rely on TCEmain the
+And since the data manipulation operations rely on DataHandler the
 reference index has been kept up to date, as you can see by looking at
-the departments in mode Web > List (e.g. "Catering" should have a
-reference count of 3).
+the information of any department in the backend:
 
-.. figure:: ../../Images/ListViewWithReferences.png
-	:alt: The list view with references
+.. figure:: ../../Images/ListOfReferences.png
+	:alt: The information view with references
 
-	Viewing the imported departments in the BE, with correct number of references
+	Viewing the details of an imported department in the BE, with correct number of references

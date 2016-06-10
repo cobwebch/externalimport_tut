@@ -47,7 +47,8 @@ Verifying the configuration
 To ensure that the records inserted or deleted by the external import
 process don't interfere with the other data in your TYPO3
 installation, don't forget to properly define a page for storage in
-the configuration of the "external\_import" extension.
+the configuration of the "external\_import" extension
+(scroll down to find that option).
 
 .. figure:: ../Images/SettingStoragePage.png
 	:alt: Setting a storage page
