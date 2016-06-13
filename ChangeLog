@@ -2,6 +2,7 @@
 
 	* Adapted to renamed configuration properties, resolves #76620
 	* Added composer support, resolves #76622
+	* Released version 2.0.0, resolves #76580
 
 2016-06-10 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
