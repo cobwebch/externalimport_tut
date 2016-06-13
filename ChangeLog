@@ -1,6 +1,7 @@
 2016-06-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Adapted to renamed configuration properties, resolves #76620
+	* Added composer support, resolves #76622
 
 2016-06-10 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
