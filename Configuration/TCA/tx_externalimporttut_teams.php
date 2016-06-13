@@ -30,8 +30,8 @@ return array(
                                         'encoding' => 'utf8'
                                 ),
                                 'data' => 'array',
-                                'reference_uid' => 'code',
-                                'additional_fields' => 'rank',
+                                'referenceUid' => 'code',
+                                'additionalFields' => 'rank',
                                 'priority' => 100,
                                 'description' => 'Import of all employee teams'
                         )

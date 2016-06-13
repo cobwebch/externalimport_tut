@@ -45,7 +45,7 @@ Here is the setup for the "ctrl" section:
 			),
 			'data' => 'xml',
 			'nodetype' => 'item',
-			'reference_uid' => 'tx_externalimporttut_externalid',
+			'referenceUid' => 'tx_externalimporttut_externalid',
 			'enforcePid' => TRUE,
 			'disabledOperations' => 'delete',
 			'description' => 'Import of typo3.org news'
@@ -151,7 +151,7 @@ section for the :code:`tx_news_domain_model_link`:
 			),
 			'data' => 'xml',
 			'nodetype' => 'item',
-			'reference_uid' => 'uri',
+			'referenceUid' => 'uri',
 			'enforcePid' => TRUE,
 			'priority' => 210,
 			'disabledOperations' => 'delete',

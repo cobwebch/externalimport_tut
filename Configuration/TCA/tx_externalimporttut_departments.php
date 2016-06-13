@@ -30,7 +30,7 @@ return array(
                                         'encoding' => 'latin1'
                                 ),
                                 'data' => 'array',
-                                'reference_uid' => 'code',
+                                'referenceUid' => 'code',
                                 'priority' => 10,
                                 'description' => 'Import of all company departments'
                         )

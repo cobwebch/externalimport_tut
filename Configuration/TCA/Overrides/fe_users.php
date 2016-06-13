@@ -57,8 +57,8 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = array(
                         'encoding' => 'utf8'
                 ),
                 'data' => 'array',
-                'reference_uid' => 'tx_externalimporttut_code',
-                'additional_fields' => 'last_name,first_name',
+                'referenceUid' => 'tx_externalimporttut_code',
+                'additionalFields' => 'last_name,first_name',
                 'priority' => 50,
                 'disabledOperations' => '',
                 'enforcePid' => true,
@@ -74,7 +74,7 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = array(
                         'encoding' => 'utf8'
                 ),
                 'data' => 'array',
-                'reference_uid' => 'tx_externalimporttut_code',
+                'referenceUid' => 'tx_externalimporttut_code',
                 'priority' => 60,
                 'disabledOperations' => 'insert,delete',
                 'description' => 'Import of holidays balance'

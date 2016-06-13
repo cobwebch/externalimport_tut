@@ -1,3 +1,7 @@
+2016-06-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Adapted to renamed configuration properties, resolves #76620
+
 2016-06-10 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Updated and restructured for TYPO3 CMS 7 LTS, resolves #76575

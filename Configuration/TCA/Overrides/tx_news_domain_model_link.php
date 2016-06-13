@@ -9,7 +9,7 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = array(
                 ),
                 'data' => 'xml',
                 'nodetype' => 'item',
-                'reference_uid' => 'uri',
+                'referenceUid' => 'uri',
                 'enforcePid' => true,
                 'priority' => 210,
                 'disabledOperations' => 'delete',

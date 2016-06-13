@@ -29,7 +29,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = array(
                 ),
                 'data' => 'xml',
                 'nodetype' => 'item',
-                'reference_uid' => 'tx_externalimporttut_externalid',
+                'referenceUid' => 'tx_externalimporttut_externalid',
                 'enforcePid' => true,
                 'priority' => 200,
                 'disabledOperations' => 'delete',
