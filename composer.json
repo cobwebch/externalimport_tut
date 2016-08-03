@@ -19,7 +19,7 @@
 	"version": "2.0.0",
 	"require": {
 		"typo3/cms-core": ">=7.6.0,<8.0",
-		"cobweb/externalimport_tut": ">=3.0.0"
+		"cobweb/externalimport_tut": ">=3.0.2"
 	},
 	"replace": {
 		"externalimport_tut": "self.version",

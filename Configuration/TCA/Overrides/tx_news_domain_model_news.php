@@ -51,7 +51,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] 
         0 => array(
                 'field' => 'pubDate',
                 'userFunc' => array(
-                        'class' => \Cobweb\ExternalImport\Task\DateTimeTransformation::class,
+                        'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
                         'method' => 'parseDate'
                 )
         )

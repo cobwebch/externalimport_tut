@@ -1,3 +1,7 @@
+2016-08-03 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Corrected wrong namespaces, resolves #77382
+
 2016-06-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Adapted to renamed configuration properties, resolves #76620

@@ -1,5 +1,5 @@
 <?php
-namespace Cobweb\ExternalimportTut\Hook;
+namespace Cobweb\ExternalimportTut\Transformation;
 
 /*
  * This file is part of the TYPO3 CMS project.

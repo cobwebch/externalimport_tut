@@ -86,7 +86,7 @@ $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = array(
         0 => array(
                 'field' => 'last_name',
                 'userFunc' => array(
-                        'class' => \Cobweb\ExternalimportTut\Hook\NameTransformation::class,
+                        'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                         'method' => 'assembleName'
                 )
         )
@@ -95,7 +95,7 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = array(
         0 => array(
                 'field' => 'last_name',
                 'userFunc' => array(
-                        'class' => \Cobweb\ExternalimportTut\Hook\NameTransformation::class,
+                        'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                         'method' => 'assembleUserName',
                         'params' => array(
                                 'encoding' => 'utf8'
@@ -107,7 +107,7 @@ $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = array(
         0 => array(
                 'field' => 'start_date',
                 'userFunc' => array(
-                        'class' => \Cobweb\ExternalImport\Task\DateTimeTransformation::class,
+                        'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
                         'method' => 'parseDate'
                 )
         )
