@@ -1,6 +1,7 @@
 2016-08-03 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Corrected wrong namespaces, resolves #77382
+	* Released version 2.0.1, resolves #77395
 
 2016-06-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
