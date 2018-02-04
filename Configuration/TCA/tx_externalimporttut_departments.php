@@ -1,7 +1,7 @@
 <?php
 
-return array(
-        'ctrl' => array(
+return [
+        'ctrl' => [
                 'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
                 'label' => 'name',
                 'tstamp' => 'tstamp',
@@ -9,17 +9,17 @@ return array(
                 'cruser_id' => 'cruser_id',
                 'default_sortby' => 'ORDER BY name',
                 'delete' => 'deleted',
-                'enablecolumns' => array(
+                'enablecolumns' => [
                         'disabled' => 'hidden',
-                ),
+                ],
                 'searchFields' => 'code,name',
-                'typeicon_classes' => array(
+                'typeicon_classes' => [
                         'default' => 'tx_externalimport_tut-department'
-                ),
-                'external' => array(
-                        0 => array(
+                ],
+                'external' => [
+                        0 => [
                                 'connector' => 'csv',
-                                'parameters' => array(
+                                'parameters' => [
                                         'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(
                                                 'externalimport_tut',
                                                 'Resources/Private/Data/departments.txt'
@@ -28,57 +28,57 @@ return array(
                                         'text_qualifier' => '"',
                                         'skip_rows' => 1,
                                         'encoding' => 'latin1'
-                                ),
+                                ],
                                 'data' => 'array',
                                 'referenceUid' => 'code',
                                 'priority' => 10,
                                 'description' => 'Import of all company departments'
-                        )
-                )
-        ),
-        'interface' => array(
+                        ]
+                ]
+        ],
+        'interface' => [
                 'showRecordFieldList' => 'hidden,code,name'
-        ),
-        'columns' => array(
-                'hidden' => array(
+        ],
+        'columns' => [
+                'hidden' => [
                         'exclude' => 1,
                         'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-                        'config' => array(
+                        'config' => [
                                 'type' => 'check',
                                 'default' => '0'
-                        )
-                ),
-                'code' => array(
+                        ]
+                ],
+                'code' => [
                         'exclude' => 0,
                         'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.code',
-                        'config' => array(
+                        'config' => [
                                 'type' => 'input',
-                                'size' => '10',
-                                'max' => '4',
+                                'size' => 10,
+                                'max' => 4,
                                 'eval' => 'required,trim',
-                        ),
-                        'external' => array(
-                                0 => array(
+                        ],
+                        'external' => [
+                                0 => [
                                         'field' => 'code'
-                                )
-                        )
-                ),
-                'name' => array(
+                                ]
+                        ]
+                ],
+                'name' => [
                         'exclude' => 0,
                         'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.name',
-                        'config' => array(
+                        'config' => [
                                 'type' => 'input',
-                                'size' => '30',
+                                'size' => 30,
                                 'eval' => 'required,trim',
-                        ),
-                        'external' => array(
-                                0 => array(
+                        ],
+                        'external' => [
+                                0 => [
                                         'field' => 'name'
-                                )
-                        )
-                ),
-        ),
-        'types' => array(
-                '0' => array('showitem' => 'hidden, code, name')
-        )
-);
+                                ]
+                        ]
+                ],
+        ],
+        'types' => [
+                '0' => ['showitem' => 'hidden, code, name']
+        ]
+];

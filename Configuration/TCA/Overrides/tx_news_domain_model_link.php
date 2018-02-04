@@ -1,12 +1,12 @@
 <?php
 
 // Add the external information to the ctrl section
-$GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = array(
-        0 => array(
+$GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
+        0 => [
                 'connector' => 'feed',
-                'parameters' => array(
+                'parameters' => [
                         'uri' => 'http://typo3.org/xml-feeds/rss.xml'
-                ),
+                ],
                 'data' => 'xml',
                 'nodetype' => 'item',
                 'referenceUid' => 'uri',
@@ -14,30 +14,34 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = array(
                 'priority' => 210,
                 'disabledOperations' => 'delete',
                 'description' => 'Import of typo3.org news related links'
-        ),
-);
+        ],
+];
 // Add the external information for each column
-$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = array(
-        0 => array(
+$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = [
+        0 => [
                 'field' => 'title'
-        )
-);
-$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = array(
-        0 => array(
+        ]
+];
+$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = [
+        0 => [
                 'field' => 'link'
-        )
-);
-$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = array(
-        'config' => array(
+        ]
+];
+$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
+        'config' => [
                 'type' => 'passthrough',
-        ),
-        'external' => array(
-                0 => array(
+        ],
+        'external' => [
+                0 => [
                         'field' => 'link',
-                        'mapping' => array(
-                                'table' => 'tx_news_domain_model_news',
-                                'reference_field' => 'tx_externalimporttut_externalid'
-                        )
-                )
-        )
-);
+                        'transformations' => [
+                                10 => [
+                                        'mapping' => [
+                                                'table' => 'tx_news_domain_model_news',
+                                                'referenceField' => 'tx_externalimporttut_externalid'
+                                        ]
+                                ]
+                        ]
+                ]
+        ]
+];
