@@ -27,7 +27,7 @@ External Import Tutorial
 		  data import, fetch data, services, tutorial
 
 	:Copyright:
-		2007-2016
+		2007-2018
 
 	:Author:
 		  François Suter (Cobweb)

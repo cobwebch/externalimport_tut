@@ -95,7 +95,7 @@ return [
                                         'MM' => [
                                                 'mapping' => [
                                                         'table' => 'fe_users',
-                                                        'reference_field' => 'tx_externalimporttut_code',
+                                                        'referenceField' => 'tx_externalimporttut_code',
                                                 ],
                                                 'sorting' => 'rank'
                                         ]

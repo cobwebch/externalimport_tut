@@ -74,37 +74,37 @@ table:
 .. code-block:: php
    :emphasize-lines: 19-25
 
-	$GLOBALS['TCA']['tx_externalimporttut_teams'] = array(
-		...
-		'columns' => array(
-			...
-			'members' => array(
-				'exclude' => 0,
-				'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.members',
-				'config' => array(
-					'type' => 'group',
-					'size' => 5,
-					'internal_type' => 'db',
-					'allowed' => 'fe_users',
-					'MM' => 'tx_externalimporttut_teams_feusers_mm',
-					'maxitems' => 100
-				),
-				'external' => array(
-					0 => array(
-						'field' => 'employee',
-						'MM' => array(
-							'mapping' => array(
-								'table' => 'fe_users',
-								'reference_field' => 'tx_externalimporttut_code',
-							),
-							'sorting' => 'rank'
-						)
-					)
-				)
-			),
-		),
-		...
-	);
+	$GLOBALS['TCA']['tx_externalimporttut_teams'] = [
+           ...
+           'columns' => [
+                   ...
+                   'members' => [
+                           'exclude' => 0,
+                           'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_teams.members',
+                           'config' => [
+                                   'type' => 'group',
+                                   'size' => 5,
+                                   'internal_type' => 'db',
+                                   'allowed' => 'fe_users',
+                                   'MM' => 'tx_externalimporttut_teams_feusers_mm',
+                                   'maxitems' => 100
+                           ],
+                           'external' => [
+                                   0 => [
+                                           'field' => 'employee',
+                                           'MM' => [
+                                                   'mapping' => [
+                                                           'table' => 'fe_users',
+                                                           'referenceField' => 'tx_externalimporttut_code',
+                                                   ],
+                                                   'sorting' => 'rank'
+                                           ]
+                                   ]
+                           ]
+                   ],
+           ],
+           ...
+	];
 
 Looking at the TCA for this column, you can see that it contains the
 traditional information for a MM column. The external part describes
@@ -135,5 +135,5 @@ After running the teams import, you should get something like this:
 
 We can see that the teams were properly related to the
 fe\_users. The sorting has also been kept correctly although with a
-renumbering (done automatically by TCEmain).
+renumbering (done automatically by DataHandler).
 

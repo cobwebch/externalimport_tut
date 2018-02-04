@@ -25,7 +25,7 @@ their members (employees). The goal is to import all this data into
 TYPO3 tables all the while maintaining the relationships.
 
 The departments and the teams will go into new tables. The employees
-should go into the fe\_users table, so that each employee can then log
+should go into the :code:`fe_users` table, so that each employee can then log
 into the corporate intranet powered by TYPO3. One implication is that
 user names and passwords must be created on the fly for each new
 employee.
@@ -45,6 +45,6 @@ Second scenario
 
 In order to be more complete, this tutorial proposes a second
 workflow: in this other case we want to import an RSS feed into the
-tx\_news\_domain\_model\_news table. This scenario demonstrates the
+:code:`tx_news_domain_model_news` table. This scenario demonstrates the
 processing of an XML input.
 

@@ -11,7 +11,7 @@
 The employees (and their holidays)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The list of employees will be stored in the fe\_users table, which
+The list of employees will be stored in the :code:`fe_users` table, which
 must be extended to add the necessary fields:
 
 .. code-block:: sql
@@ -22,55 +22,57 @@ must be extended to add the necessary fields:
 		tx_externalimporttut_holidays int(11) DEFAULT '0' NOT NULL,
 	);
 
-These new columns are added to the TCA of the fe\_users table. At this
+These new columns are added to the TCA of the :code:`fe_users` table. At this
 point we don't yet set the external data for these columns, as we will
 do it later for all relevant columns. As this is a standard TCA
 operation, it is not repeated here and can be simply looked up in the
 :file:`ext_tables.php` file.
 
 Next we add the external information to the "ctrl" section of the
-fe\_users table:
+:code:`fe_users` table:
 
 .. code-block:: php
 
-	$GLOBALS['TCA']['fe_users']['ctrl']['external'] = array(
-		0 => array(
-			'connector' => 'csv',
-			'parameters' => array(
-				'filename' => $extensionPath . 'res/employees.txt',
-				'delimiter' => ';',
-				'text_qualifier' => '',
-				'skip_rows' => 1,
-				'encoding' => 'utf8'
-			),
-			'data' => 'array',
-			'referenceUid' => 'tx_externalimporttut_code',
-			'additional_fields' => 'last_name,first_name',
-			'priority' => 50,
-			'disabledOperations' => '',
-			'enforcePid' => TRUE,
-			'description' => 'Import of full employee list'
-		),
-		1 => array(
-			'connector' => 'csv',
-			'parameters' => array(
-				'filename' => $extensionPath . 'res/holidays.txt',
-				'delimiter' => ',',
-				'text_qualifier' => '',
-				'skip_rows' => 0,
-				'encoding' => 'utf8'
-			),
-			'data' => 'array',
-			'referenceUid' => 'tx_externalimporttut_code',
-			'priority' => 60,
-			'disabledOperations' => 'insert,delete',
-			'description' => 'Import of holidays balance'
-		)
-	);
+	$GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
+           0 => [
+                   'connector' => 'csv',
+                   'parameters' => [
+                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
+                                   'Resources/Private/Data/employees.txt'),
+                           'delimiter' => ';',
+                           'text_qualifier' => '',
+                           'skip_rows' => 1,
+                           'encoding' => 'utf8'
+                   ],
+                   'data' => 'array',
+                   'referenceUid' => 'tx_externalimporttut_code',
+                   'additionalFields' => 'last_name,first_name',
+                   'priority' => 50,
+                   'disabledOperations' => '',
+                   'enforcePid' => true,
+                   'description' => 'Import of full employee list'
+           ],
+           1 => [
+                   'connector' => 'csv',
+                   'parameters' => [
+                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
+                                   'Resources/Private/Data/holidays.txt'),
+                           'delimiter' => ',',
+                           'text_qualifier' => '',
+                           'skip_rows' => 0,
+                           'encoding' => 'utf8'
+                   ],
+                   'data' => 'array',
+                   'referenceUid' => 'tx_externalimporttut_code',
+                   'priority' => 60,
+                   'disabledOperations' => 'insert,delete',
+                   'description' => 'Import of holidays balance'
+           ]
+	];
 
 The first thing to note is that there are 2 external configurations in
 this case. As was described in the description of the scenario, the
-fe\_users users table will be synchronised with the employees list and
+:code:`fe_users` users table will be synchronised with the employees list and
 with a second file containing the balance of holidays. Two things are
 worth of notice in the first configuration:
 
@@ -80,11 +82,11 @@ worth of notice in the first configuration:
    need to keep those two fields for calculations, but they won't be
    stored at the end of the process.
 
-#. The "enforcePid" property is set to true so that not all fe\_users
-   records will be affected be the import process. If some fe\_users are
+#. The "enforcePid" property is set to true so that not all :code:`fe_users`
+   records will be affected be the import process. If some :code:`fe_users` are
    stored in a different page than the one where the imported records are
    stored, those records will not be considered for updates or deletion.
-   This makes it possible to have several sources of fe\_users without
+   This makes it possible to have several sources of :code:`fe_users` without
    interference with one another.
 
 In the second configuration, we make use of the "disabledOperations"
@@ -100,91 +102,115 @@ Finally we set the external configuration for each column that will
 receive external data.
 
 .. code-block:: php
-   :emphasize-lines: 1-30,49-75
+   :emphasize-lines: 1-42,61-99
 
-	$GLOBALS['TCA']['fe_users']['columns']['name']['external'] = array(
-		0 => array(
-			'field' => 'last_name',
-			'userFunc' => array(
-				'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:tx_externalimporttut_transformations',
-				'method' => 'assembleName'
-			)
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['username']['external'] = array(
-		0 => array(
-			'field' => 'last_name',
-			'userFunc' => array(
-				'class' => 'EXT:externalimport_tut/class.tx_externalimporttut_transformations.php:tx_externalimporttut_transformations',
-				'method' => 'assembleUserName',
-				'params' => array(
-					'encoding' => 'utf8'
-				)
-			)
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = array(
-		0 => array(
-			'field' => 'start_date',
-			'userFunc' => array(
-				'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:tx_externalimport_transformations',
-				'method' => 'parseDate'
-			)
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_code']['external'] = array(
-		0 => array(
-			'field' => 'employee_number'
-		),
-		1 => array(
-			'field' => 0
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['email']['external'] = array(
-		0 => array(
-			'field' => 'mail'
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['telephone']['external'] = array(
-		0 => array(
-			'field' => 'phone'
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['company']['external'] = array(
-		0 => array(
-			'value' => 'The Empire'
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['title']['external'] = array(
-		0 => array(
-			'field' => 'rank',
-			'mapping' => array(
-				'valueMap' => array(
-					'1' => 'Captain',
-					'2' => 'Senior',
-					'3' => 'Junior'
-				)
-			),
-			'excludedOperations' => 'update'
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = array(
-		0 => array(
-			'field' => 'department',
-			'mapping' => array(
-				'table' => 'tx_externalimporttut_departments',
-				'reference_field' => 'code'
-			)
-		)
-	);
-	$GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = array(
-		1 => array(
-			'field' => 1
-		)
-	);
+   $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
+           0 => [
+                   'field' => 'last_name',
+                   'transformations' => [
+                           10 => [
+                                   'userFunc' => [
+                                           'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                                           'method' => 'assembleName'
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
+           0 => [
+                   'field' => 'last_name',
+                   'transformations' => [
+                           10 => [
+                                   'userFunc' => [
+                                           'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                                           'method' => 'assembleUserName',
+                                           'params' => [
+                                                   'encoding' => 'utf8'
+                                           ]
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
+           0 => [
+                   'field' => 'start_date',
+                   'transformations' => [
+                           10 => [
+                                   'userFunc' => [
+                                           'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                                           'method' => 'parseDate'
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_code']['external'] = [
+           0 => [
+                   'field' => 'employee_number'
+           ],
+           1 => [
+                   'field' => 0
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['email']['external'] = [
+           0 => [
+                   'field' => 'mail'
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['telephone']['external'] = [
+           0 => [
+                   'field' => 'phone'
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['company']['external'] = [
+           0 => [
+                   'transformations' => [
+                           10 => [
+                                   'value' => 'The Empire'
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
+           0 => [
+                   'field' => 'rank',
+                   'transformations' => [
+                           10 => [
+                                   'mapping' => [
+                                           'valueMap' => [
+                                                   '1' => 'Captain',
+                                                   '2' => 'Senior',
+                                                   '3' => 'Junior'
+                                           ]
+                                   ]
+                           ]
+                   ],
+                   'excludedOperations' => 'update'
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = [
+           0 => [
+                   'field' => 'department',
+                   'transformations' => [
+                           10 => [
+                                   'mapping' => [
+                                           'table' => 'tx_externalimporttut_departments',
+                                           'referenceField' => 'code'
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = [
+           1 => [
+                   'field' => 1
+           ]
+   ];
 
 Several columns have more interesting configurations than the
-departments table described before. They have been highlighted.
+departments table described previously. They have been highlighted.
 The first three fields will use a user function. The user
 functions are defined using a "class" property and a "method"
 property. Additional parameters can be passed to the function using
@@ -229,7 +255,7 @@ the "parameters" property. So what happens for these three fields?
 #. The "company" field is actually not filled with values coming from the
    external source, but with a fixed value. This is achieved by using the
    "value" property instead of the "field" property. In this example, the
-   "company" field for every fe\_users record will contain the value "The
+   "company" field for every :code:`fe_users` record will contain the value "The
    Empire".
 
 #. The same goes for the "title" field, but a bit more sophisticated. In
@@ -246,7 +272,7 @@ the "parameters" property. So what happens for these three fields?
 #. Last but not least, the "tx\_externalimporttut\_department" will need
    to relate to the department the employee works in. Now we don't want
    to use the primary key of the external data for departments as a
-   foreign key in the fe\_users table. We want the uid from the
+   foreign key in the :code:`fe_users` table. We want the uid from the
    departments as they were inserted into the TYPO3 database. This is the
    task of the "mapping" property. The first sub-property – "table" – is
    used to point to the table where the records are stored inside the
@@ -256,10 +282,10 @@ the "parameters" property. So what happens for these three fields?
    mapping function will build a hash table relating the external primary
    keys from the departments table ("code" column) to the internal
    primary keys ("uid" column). This hash table is then used to find out
-   the foreign keys for the fe\_users.
+   the foreign keys for the :code:`fe_users`.
 
 One more operation happens during the import process, but is not
-visible in the TCA. In the ext\_localconf.php file, we make use of the
+visible in the TCA. In the :file:`ext_localconf.php` file, we make use of the
 "insertPreProcess" hook:
 
 .. code-block:: php

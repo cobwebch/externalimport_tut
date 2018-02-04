@@ -37,20 +37,21 @@ Here is the setup for the "ctrl" section:
 
 .. code-block:: php
 
-	$GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = array(
-		0 => array(
-			'connector' => 'feed',
-			'parameters' => array(
-				'uri' => 'http://typo3.org/xml-feeds/rss.xml'
-			),
-			'data' => 'xml',
-			'nodetype' => 'item',
-			'referenceUid' => 'tx_externalimporttut_externalid',
-			'enforcePid' => TRUE,
-			'disabledOperations' => 'delete',
-			'description' => 'Import of typo3.org news'
-		),
-	);
+   $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = [
+           0 => [
+                   'connector' => 'feed',
+                   'parameters' => [
+                           'uri' => 'http://typo3.org/xml-feeds/rss.xml'
+                   ],
+                   'data' => 'xml',
+                   'nodetype' => 'item',
+                   'referenceUid' => 'tx_externalimporttut_externalid',
+                   'enforcePid' => true,
+                   'priority' => 200,
+                   'disabledOperations' => 'delete',
+                   'description' => 'Import of typo3.org news'
+           ],
+   ];
 
 Note that we don't use the same connector service as before. Indeed,
 we now need the "feed" sub-type, which is provided by extension
@@ -61,7 +62,7 @@ from some source (remote or local), which is defined with the
 Next, we declare that the data will be provided in XML format and that
 the reference node type in "item". With this instruction, External
 Import will take all nodes of type "item" and import each of them. The
-:code:`enforcePid` property is set to :code:`TRUE` so that the import
+:code:`enforcePid` property is set to :code:`true` so that the import
 takes place only in the predefined page and that existing news items
 entered somewhere else are not deleted. This is a useful precaution to
 take.
@@ -75,47 +76,67 @@ Let's now look at the setup for the columns:
 
 .. code-block:: php
 
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = array(
-		0 => array(
-			'field' => 'title'
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['tx_externalimporttut_externalid']['external'] = array(
-		0 => array(
-			'field' => 'link'
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] = array(
-		0 => array(
-			'field' => 'pubDate',
-			'userFunc' => array(
-				'class' => 'EXT:external_import/samples/class.tx_externalimport_transformations.php:tx_externalimport_transformations',
-				'method' => 'parseDate'
-			)
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = array(
-		0 => array(
-			'field' => 'description',
-			'trim' => TRUE
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = array(
-		0 => array(
-			'field' => 'encoded',
-			'rteEnabled' => TRUE
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = array(
-		0 => array(
-			'value' => 0
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['hidden']['external'] = array(
-		0 => array(
-			'value' => 0
-		)
-	);
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = [
+           0 => [
+                   'field' => 'title'
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['tx_externalimporttut_externalid']['external'] = [
+           0 => [
+                   'field' => 'link'
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] = [
+           0 => [
+                   'field' => 'pubDate',
+                   'transformations' => [
+                           10 => [
+                                   'userFunc' => [
+                                           'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                                           'method' => 'parseDate'
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = [
+           0 => [
+                   'field' => 'description',
+                   'transformations' => [
+                           10 => [
+                                   'trim' => true
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = [
+           0 => [
+                   'field' => 'encoded',
+                   'transformations' => [
+                           10 => [
+                                   'rteEnabled' => true
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = [
+           0 => [
+                   'transformations' => [
+                           10 => [
+                                   'value' => 0
+                           ]
+                   ]
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['hidden']['external'] = [
+           0 => [
+                   'transformations' => [
+                           10 => [
+                                   'value' => 0
+                           ]
+                   ]
+           ]
+   ];
 
 For most of the fields, the setup is just as simple as if we were
 importing database records, thanks to the connector services, which
@@ -143,21 +164,21 @@ section for the :code:`tx_news_domain_model_link`:
 
 .. code-block:: php
 
-	$GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = array(
-		0 => array(
-			'connector' => 'feed',
-			'parameters' => array(
-				'uri' => 'http://typo3.org/xml-feeds/rss.xml'
-			),
-			'data' => 'xml',
-			'nodetype' => 'item',
-			'referenceUid' => 'uri',
-			'enforcePid' => TRUE,
-			'priority' => 210,
-			'disabledOperations' => 'delete',
-			'description' => 'Import of typo3.org news related links'
-		),
-	);
+   $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
+           0 => [
+                   'connector' => 'feed',
+                   'parameters' => [
+                           'uri' => 'http://typo3.org/xml-feeds/rss.xml'
+                   ],
+                   'data' => 'xml',
+                   'nodetype' => 'item',
+                   'referenceUid' => 'uri',
+                   'enforcePid' => true,
+                   'priority' => 210,
+                   'disabledOperations' => 'delete',
+                   'description' => 'Import of typo3.org news related links'
+           ],
+   ];
 
 In this case we don't need to add a special field for storing
 the external primary key, since we are using the URI and there
@@ -173,32 +194,36 @@ anything special, we can just give it the
 So here is the complete setup, with the special bit highlighted:
 
 .. code-block:: php
-   :emphasize-lines: 11-24
+   :emphasize-lines: 11-28
 
-	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = array(
-		0 => array(
-			'field' => 'title'
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = array(
-		0 => array(
-			'field' => 'link'
-		)
-	);
-	$GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = array(
-		'config' => array(
-			'type' => 'passthrough',
-		),
-		'external' => array(
-			0 => array(
-				'field' => 'link',
-				'mapping' => array(
-					'table' => 'tx_news_domain_model_news',
-					'reference_field' => 'tx_externalimporttut_externalid'
-				)
-			)
-		)
-	);
+   $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = [
+           0 => [
+                   'field' => 'title'
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = [
+           0 => [
+                   'field' => 'link'
+           ]
+   ];
+   $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
+           'config' => [
+                   'type' => 'passthrough',
+           ],
+           'external' => [
+                   0 => [
+                           'field' => 'link',
+                           'transformations' => [
+                                   10 => [
+                                           'mapping' => [
+                                                   'table' => 'tx_news_domain_model_news',
+                                                   'referenceField' => 'tx_externalimporttut_externalid'
+                                           ]
+                                   ]
+                           ]
+                   ]
+           ]
+   ];
 
 
 After running the import, check out the page/folder where the imported

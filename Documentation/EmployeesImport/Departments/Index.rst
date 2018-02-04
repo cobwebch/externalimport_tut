@@ -36,47 +36,52 @@ and the TCA looks like this (without the "columns" section, which is
 in the dynamic configuration file):
 
 .. code-block:: php
-   :emphasize-lines: 15-30
+   :emphasize-lines: 17-35
 
-	$GLOBALS['TCA']['tx_externalimporttut_departments'] = array(
-		'ctrl' => array(
-			'title'     => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
-			'label'     => 'name',
-			'tstamp'    => 'tstamp',
-			'crdate'    => 'crdate',
-			'cruser_id' => 'cruser_id',
-			'default_sortby' => 'ORDER BY name',
-			'delete' => 'deleted',
-			'enablecolumns' => array(
-				'disabled' => 'hidden',
-			),
-			'dynamicConfigFile' => $extensionPath . 'tca.php',
-			'iconfile'          => $extensionRelativePath . 'icon_tx_externalimporttut_departments.gif',
-			'external' => array(
-				0 => array(
-					'connector' => 'csv',
-					'parameters' => array(
-						'filename' => $extensionPath . 'res/departments.txt',
-						'delimiter' => "\t",
-						'text_qualifier' => '"',
-						'skip_rows' => 1,
-						'encoding' => 'latin1'
-					),
-					'data' => 'array',
-					'referenceUid' => 'code',
-					'priority' => 10,
-					'description' => 'Import of all company departments'
-				)
-			)
-		),
-	);
+	$GLOBALS['TCA']['tx_externalimporttut_departments'] = [
+           'ctrl' => [
+                   'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
+                   'label' => 'name',
+                   'tstamp' => 'tstamp',
+                   'crdate' => 'crdate',
+                   'cruser_id' => 'cruser_id',
+                   'default_sortby' => 'ORDER BY name',
+                   'delete' => 'deleted',
+                   'enablecolumns' => [
+                           'disabled' => 'hidden',
+                   ],
+                   'searchFields' => 'code,name',
+                   'typeicon_classes' => [
+                           'default' => 'tx_externalimport_tut-department'
+                   ],
+                   'external' => [
+                           0 => [
+                                   'connector' => 'csv',
+                                   'parameters' => [
+                                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(
+                                                   'externalimport_tut',
+                                                   'Resources/Private/Data/departments.txt'
+                                           ),
+                                           'delimiter' => "\t",
+                                           'text_qualifier' => '"',
+                                           'skip_rows' => 1,
+                                           'encoding' => 'latin1'
+                                   ],
+                                   'data' => 'array',
+                                   'referenceUid' => 'code',
+                                   'priority' => 10,
+                                   'description' => 'Import of all company departments'
+                           ]
+                   ]
+           ],
+	];
 
 Compared to a traditional "ctrl" section, this TCA declaration
 contains an "external" sub-section which is used to described the
 external source from which the data will come. This external sub-
 section is itself an indexed array (note index "0" in the TCA extract
 above). Several indices are used when a table is synchronised with
-multiple external sources. We will see with with the fe\_users table.
+multiple external sources. We will see with with the :code:`fe_users` table.
 
 The first property used above is "connector". This defines the sub-
 type of connector service that is needed for connecting to and reading
@@ -98,7 +103,7 @@ as appropriate if the file's charset does not match your BE's charset.
 
 Then the "data" property indicates in what format the data will be
 provided by the connector. "array" means that it will be a PHP array.
-The "reference\_uid" property indicates in which field from the
+The "referenceUid" property indicates in which field from the
 departments table the primary key from the external source will be
 stored.
 
@@ -130,65 +135,51 @@ it relevant.
 The next step is to defined external information for each column.
 Indeed this is where the real mapping takes places: which column in
 the external data will fit into which field in the internal database.
-This is how it looks for the departments table (full TCA included for
-having the information in its context, just concentrate on the
-highlighted parts):
+This is how it looks for the departments table (columns configuration
+only, with External Import-related part highlighted):
 
 .. code-block:: php
-   :emphasize-lines: 25-29,39-43
+   :emphasize-lines: 19-23,33-37
 
-	$GLOBALS['TCA']['tx_externalimporttut_departments'] = array(
-		'ctrl' => $GLOBALS['TCA']['tx_externalimporttut_departments']['ctrl'],
-		'interface' => array(
-			'showRecordFieldList' => 'hidden,code,name'
-		),
-		'feInterface' => $GLOBALS['TCA']['tx_externalimporttut_departments']['feInterface'],
-		'columns' => array(
-			'hidden' => array(
-				'exclude' => 1,
-				'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-				'config'  => array(
-					'type'    => 'check',
-					'default' => '0'
-				)
-			),
-			'code' => array(
-				'exclude' => 0,
-				'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.code',
-				'config' => array(
-					'type' => 'input',
-					'size' => '10',
-					'max' => '4',
-					'eval' => 'required,trim',
-				),
-				'external' => array(
-					0 => array(
-						'field' => 'code'
-					)
-				)
-			),
-			'name' => array(
-				'exclude' => 0,
-				'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.name',
-				'config' => array(
-					'type' => 'input',
-					'size' => '30',
-					'eval' => 'required,trim',
-				),
-				'external' => array(
-					0 => array(
-						'field' => 'name'
-					)
-				)
-			),
-		),
-		'types' => array(
-			'0' => array('showitem' => 'hidden;;1;;1-1-1, code, name')
-		),
-		'palettes' => array(
-			'1' => array('showitem' => '')
-		)
-	);
+        'columns' => [
+                'hidden' => [
+                        'exclude' => 1,
+                        'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+                        'config' => [
+                                'type' => 'check',
+                                'default' => '0'
+                        ]
+                ],
+                'code' => [
+                        'exclude' => 0,
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.code',
+                        'config' => [
+                                'type' => 'input',
+                                'size' => 10,
+                                'max' => 4,
+                                'eval' => 'required,trim',
+                        ],
+                        'external' => [
+                                0 => [
+                                        'field' => 'code'
+                                ]
+                        ]
+                ],
+                'name' => [
+                        'exclude' => 0,
+                        'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments.name',
+                        'config' => [
+                                'type' => 'input',
+                                'size' => 30,
+                                'eval' => 'required,trim',
+                        ],
+                        'external' => [
+                                0 => [
+                                        'field' => 'name'
+                                ]
+                        ]
+                ],
+        ],
 
 The departments table is quite simple and is comprised of only three
 fields beyond the usual complement of TYPO3 fields (uid, pid, etc.).
