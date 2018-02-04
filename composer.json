@@ -3,7 +3,7 @@
 	"type": "typo3-cms-extension",
 	"description": "Tutorial for the External Import extension. Contains the manual and the necessary files.",
 	"license": [
-		"GPL-2.0+"
+		"GPL-2.0-or-later"
 	],
 	"authors": [
 		{
@@ -16,10 +16,13 @@
 			"Cobweb\\ExternalimportTut\\": "Classes/"
 		}
 	},
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"require": {
 		"typo3/cms-core": ">=7.6.0,<9.0",
-		"cobweb/external_import": ">=4.0.0"
+		"cobweb/external_import": ">=4.0.0",
+		"cobweb/svconnector_csv": "2.2.0",
+		"cobweb/svconnector_feed": "2.2.0",
+		"georgringer/news": ">=6.2.0"
 	},
 	"replace": {
 		"externalimport_tut": "self.version",
