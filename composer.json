@@ -20,8 +20,8 @@
 	"require": {
 		"typo3/cms-core": ">=7.6.0,<9.0",
 		"cobweb/external_import": ">=4.0.0",
-		"cobweb/svconnector_csv": "^2.2",
-		"cobweb/svconnector_feed": "^2.2",
+		"cobweb/svconnector_csv": ">=2.2.0",
+		"cobweb/svconnector_feed": ">=2.2.0",
 		"georgringer/news": ">=6.2.0"
 	},
 	"replace": {
