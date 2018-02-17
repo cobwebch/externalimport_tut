@@ -19,14 +19,14 @@ $EM_CONF[$_EXTKEY] = array (
   'createDirs' => '',
   'clearCacheOnLoad' => 1,
   'author_company' => '',
-  'version' => '2.1.0',
+  'version' => '2.1.1',
   'constraints' =>
   array (
     'depends' =>
     array (
       'external_import' => '4.0.0-0.0.0',
-      'svconnector_csv' => '2.2.0-0.0.0',
-      'svconnector_feed' => '2.2.0-0.0.0',
+      'svconnector_csv' => '2.2.1-0.0.0',
+      'svconnector_feed' => '2.2.1-0.0.0',
       'news' => '6.2.0-0.0.0',
       'typo3' => '7.6.0-8.99.99',
     ),
