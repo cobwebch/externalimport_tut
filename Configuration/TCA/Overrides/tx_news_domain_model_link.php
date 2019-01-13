@@ -12,6 +12,7 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
                 'referenceUid' => 'uri',
                 'enforcePid' => true,
                 'priority' => 210,
+                'group' => 'externalimport_tut',
                 'disabledOperations' => 'delete',
                 'description' => 'Import of typo3.org news related links'
         ],

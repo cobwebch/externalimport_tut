@@ -29,6 +29,15 @@ answers. Please use the bug tracker on forge.typo3.org to report
 problem or suggest features
 (https://github.com/cobwebch/externalimport_tut/issues).
 
+.. _credits:
+
+Credits
+^^^^^^^
+
+Icons for tables come from the Noun Project:
+
+* Department Hierarchy by Chameleon Design for the "departments" table
+* team by OliM for the "teams" table
 
 .. _happy-developer:
 

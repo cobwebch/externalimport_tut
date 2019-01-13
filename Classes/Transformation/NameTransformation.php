@@ -14,7 +14,9 @@ namespace Cobweb\ExternalimportTut\Transformation;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Charset\CharsetConverter;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Example transformation functions for the 'externalimport_tut' extension
@@ -53,17 +55,14 @@ class NameTransformation implements SingletonInterface
      */
     public function assembleUserName($record, $index, $params)
     {
+        $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
         // Make sure the encoding uses the proper code
-        $encoding = $GLOBALS['LANG']->csConvObj->parse_charset($params['encoding']);
+        $encoding = $charsetConverter->parse_charset($params['encoding']);
         // The base for the user name will be the first name, a dot and the last name (lowercase)
         $baseName = $record['first_name'] . '.' . $record['last_name'];
-        $userNameBase = $GLOBALS['LANG']->csConvObj->conv_case(
-                $encoding,
-                $baseName,
-                'toLower'
-        );
+        $userNameBase = mb_strtolower($baseName, $encoding);
         // We must make sure this doesn't contain non-ASCII characters
-        $userName = $GLOBALS['LANG']->csConvObj->specCharsToASCII(
+        $userName = $charsetConverter->specCharsToASCII(
                 $encoding,
                 $userNameBase
         );

@@ -60,6 +60,7 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
                 'referenceUid' => 'tx_externalimporttut_code',
                 'additionalFields' => 'last_name,first_name',
                 'priority' => 50,
+                'group' => 'externalimport_tut',
                 'disabledOperations' => '',
                 'enforcePid' => true,
                 'description' => 'Import of full employee list'

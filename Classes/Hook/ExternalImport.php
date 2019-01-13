@@ -35,7 +35,7 @@ class ExternalImport implements SingletonInterface
      * @param Importer $pObj A reference to the external importer object
      * @return array
      */
-    public function processBeforeInsert($record, $pObj)
+    public function processBeforeInsert($record, $pObj): array
     {
         // Perform operation only for the fe_users table and for external index 0
         if ($pObj->getExternalConfiguration()->getTable() === 'fe_users' && $pObj->getExternalConfiguration()->getIndex() == 0) {

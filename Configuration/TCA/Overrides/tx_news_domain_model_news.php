@@ -31,6 +31,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = [
                 'referenceUid' => 'tx_externalimporttut_externalid',
                 'enforcePid' => true,
                 'priority' => 200,
+                'group' => 'externalimport_tut',
                 'disabledOperations' => 'delete',
                 'description' => 'Import of typo3.org news'
         ],
@@ -74,6 +75,15 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] 
                 'field' => 'encoded',
                 'transformations' => [
                         10 => [
+                                'userFunc' => [
+                                        'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
+                                        'method' => 'absolutizeUrls',
+                                        'params' => [
+                                                'host' => 'https://typo3.org'
+                                        ]
+                                ]
+                        ],
+                        20 => [
                                 'rteEnabled' => true
                         ]
                 ]
