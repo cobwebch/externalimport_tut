@@ -34,8 +34,7 @@ single copy of each team, based on the external primary key (the
 
 .. note::
 
-   Since "external_import" version 2.3.0, it is also possible
-   to create MM-relationships with data represented as a
+   It is also possible to create MM-relationships with data represented as a
    comma-separated list of keys, commonly used in TYPO3.
 
 In the example data above, you can see that there's a "rank" field.

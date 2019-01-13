@@ -37,8 +37,7 @@ Next we add the external information to the "ctrl" section of the
            0 => [
                    'connector' => 'csv',
                    'parameters' => [
-                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
-                                   'Resources/Private/Data/employees.txt'),
+                           'filename' => 'EXT:externalimport_tut/Resources/Private/Data/employees.txt',
                            'delimiter' => ';',
                            'text_qualifier' => '',
                            'skip_rows' => 1,
@@ -48,6 +47,7 @@ Next we add the external information to the "ctrl" section of the
                    'referenceUid' => 'tx_externalimporttut_code',
                    'additionalFields' => 'last_name,first_name',
                    'priority' => 50,
+                   'group' => 'externalimport_tut',
                    'disabledOperations' => '',
                    'enforcePid' => true,
                    'description' => 'Import of full employee list'
@@ -55,8 +55,7 @@ Next we add the external information to the "ctrl" section of the
            1 => [
                    'connector' => 'csv',
                    'parameters' => [
-                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
-                                   'Resources/Private/Data/holidays.txt'),
+                           'filename' => 'EXT:externalimport_tut/Resources/Private/Data/holidays.txt',
                            'delimiter' => ',',
                            'text_qualifier' => '',
                            'skip_rows' => 0,
@@ -65,6 +64,7 @@ Next we add the external information to the "ctrl" section of the
                    'data' => 'array',
                    'referenceUid' => 'tx_externalimporttut_code',
                    'priority' => 60,
+                   'group' => 'externalimport_tut',
                    'disabledOperations' => 'insert,delete',
                    'description' => 'Import of holidays balance'
            ]

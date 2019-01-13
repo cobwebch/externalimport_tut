@@ -48,6 +48,7 @@ Here is the setup for the "ctrl" section:
                    'referenceUid' => 'tx_externalimporttut_externalid',
                    'enforcePid' => true,
                    'priority' => 200,
+                   'group' => 'externalimport_tut',
                    'disabledOperations' => 'delete',
                    'description' => 'Import of typo3.org news'
            ],
@@ -92,9 +93,15 @@ Let's now look at the setup for the columns:
                    'transformations' => [
                            10 => [
                                    'userFunc' => [
-                                           'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
-                                           'method' => 'parseDate'
+                                           'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
+                                           'method' => 'absolutizeUrls',
+                                           'params' => [
+                                                   'host' => 'https://typo3.org'
+                                           ]
                                    ]
+                           ],
+                           20 => [
+                                   'rteEnabled' => true
                            ]
                    ]
            ]
@@ -175,6 +182,7 @@ section for the :code:`tx_news_domain_model_link`:
                    'referenceUid' => 'uri',
                    'enforcePid' => true,
                    'priority' => 210,
+                   'group' => 'externalimport_tut',
                    'disabledOperations' => 'delete',
                    'description' => 'Import of typo3.org news related links'
            ],

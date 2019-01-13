@@ -36,7 +36,7 @@ and the TCA looks like this (without the "columns" section, which is
 in the dynamic configuration file):
 
 .. code-block:: php
-   :emphasize-lines: 17-35
+   :emphasize-lines: 17-33
 
 	$GLOBALS['TCA']['tx_externalimporttut_departments'] = [
            'ctrl' => [
@@ -58,10 +58,7 @@ in the dynamic configuration file):
                            0 => [
                                    'connector' => 'csv',
                                    'parameters' => [
-                                           'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(
-                                                   'externalimport_tut',
-                                                   'Resources/Private/Data/departments.txt'
-                                           ),
+                                           'filename' => 'EXT:externalimport_tut/Resources/Private/Data/departments.txt',
                                            'delimiter' => "\t",
                                            'text_qualifier' => '"',
                                            'skip_rows' => 1,
@@ -70,6 +67,7 @@ in the dynamic configuration file):
                                    'data' => 'array',
                                    'referenceUid' => 'code',
                                    'priority' => 10,
+                                   'group' => 'externalimport_tut',
                                    'description' => 'Import of all company departments'
                            ]
                    ]
