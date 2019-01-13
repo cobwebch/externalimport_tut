@@ -20,10 +20,7 @@ return [
                         0 => [
                                 'connector' => 'csv',
                                 'parameters' => [
-                                        'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath(
-                                                'externalimport_tut',
-                                                'Resources/Private/Data/teams.txt'
-                                        ),
+                                        'filename' => 'EXT:externalimport_tut/Resources/Private/Data/teams.txt',
                                         'delimiter' => "\t",
                                         'text_qualifier' => '',
                                         'skip_rows' => 1,

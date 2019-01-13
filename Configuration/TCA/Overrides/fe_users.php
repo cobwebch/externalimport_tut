@@ -49,8 +49,7 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
         0 => [
                 'connector' => 'csv',
                 'parameters' => [
-                        'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
-                                'Resources/Private/Data/employees.txt'),
+                        'filename' => 'EXT:externalimport_tut/Resources/Private/Data/employees.txt',
                         'delimiter' => ';',
                         'text_qualifier' => '',
                         'skip_rows' => 1,
@@ -68,8 +67,7 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
         1 => [
                 'connector' => 'csv',
                 'parameters' => [
-                        'filename' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('externalimport_tut',
-                                'Resources/Private/Data/holidays.txt'),
+                        'filename' => 'EXT:externalimport_tut/Resources/Private/Data/holidays.txt',
                         'delimiter' => ',',
                         'text_qualifier' => '',
                         'skip_rows' => 0,
@@ -78,6 +76,7 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
                 'data' => 'array',
                 'referenceUid' => 'tx_externalimporttut_code',
                 'priority' => 60,
+                'group' => 'externalimport_tut',
                 'disabledOperations' => 'insert,delete',
                 'description' => 'Import of holidays balance'
         ]
