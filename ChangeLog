@@ -1,3 +1,11 @@
+2019-01-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+
+	* Ensure compatibility with TYPO3 9 LTS, drop support for TYPO3 7
+	* Adapt code to new Connector Services possibilities
+	* Update documentation
+	* Change icons to SVG
+	* Release version 2.2.0
+
 2018-02-17 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
 	* Released version 2.1.1
