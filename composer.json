@@ -18,7 +18,7 @@
 	},
 	"version": "2.2.0",
 	"require": {
-		"typo3/cms-core": ">=8.7.0,<10.0",
+		"typo3/cms-core": ">=8.7.0,<11.0",
 		"cobweb/external_import": "dev-bilby",
 		"cobweb/svconnector_csv": ">=2.3.0",
 		"cobweb/svconnector_feed": ">=2.3.0",
