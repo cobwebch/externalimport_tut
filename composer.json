@@ -16,7 +16,7 @@
 			"Cobweb\\ExternalimportTut\\": "Classes/"
 		}
 	},
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"require": {
 		"typo3/cms-core": ">=9.5.0,<11.0",
 		"cobweb/external_import": ">=4.3.0",

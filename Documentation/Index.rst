@@ -27,13 +27,13 @@ External Import Tutorial
 		  data import, fetch data, services, tutorial
 
 	:Copyright:
-		2007-2019
+		2007-2020
 
 	:Author:
-		  François Suter (Cobweb)
+		  François Suter (Idéative)
 
 	:Email:
-		  typo3@cobweb.ch
+		  typo3@ideative.ch
 
 	:License:
 		This document is published under the Open Content License
@@ -44,7 +44,7 @@ External Import Tutorial
 
 
 The content of this document is related to TYPO3,
-a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
+a GNU/GPL CMS/Framework available from `typo3.org <https://typo3.org/>`_.
 
 
 .. toctree::
