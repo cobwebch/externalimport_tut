@@ -12,8 +12,8 @@ $EM_CONF[$_EXTKEY] = [
         'title' => 'External Import Tutorial',
         'description' => 'Tutorial for the External Import extension. Contains the manual and the necessary files.',
         'category' => 'example',
-        'author' => 'Francois Suter (Cobweb)',
-        'author_email' => 'typo3@cobweb.ch',
+        'author' => 'Francois Suter (Idéative)',
+        'author_email' => 'typo3@ideative.ch',
         'state' => 'stable',
         'uploadfolder' => 0,
         'createDirs' => '',
@@ -24,10 +24,10 @@ $EM_CONF[$_EXTKEY] = [
                 [
                         'depends' =>
                                 [
-                                        'external_import' => '4.1.0-0.0.0',
+                                        'external_import' => '4.3.0-0.0.0',
                                         'svconnector_csv' => '2.3.0-0.0.0',
                                         'svconnector_feed' => '2.3.0-0.0.0',
-                                        'news' => '7.0.0-0.0.0',
+                                        'news' => '8.0.0-0.0.0',
                                         'typo3' => '9.5.0-10.4.99',
                                 ],
                         'conflicts' =>

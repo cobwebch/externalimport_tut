@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Example transformation functions for the 'externalimport_tut' extension
  *
- * @author Francois Suter (Cobweb) <typo3@cobweb.ch>
+ * @author Francois Suter (Cobweb) <typo3@ideative.ch>
  * @package TYPO3
  * @subpackage tx_externalimporttut
  */
@@ -56,14 +56,12 @@ class NameTransformation implements SingletonInterface
     public function assembleUserName($record, $index, $params)
     {
         $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
-        // Make sure the encoding uses the proper code
-        $encoding = $charsetConverter->parse_charset($params['encoding']);
         // The base for the user name will be the first name, a dot and the last name (lowercase)
         $baseName = $record['first_name'] . '.' . $record['last_name'];
-        $userNameBase = mb_strtolower($baseName, $encoding);
+        $userNameBase = mb_strtolower($baseName, $params['encoding']);
         // We must make sure this doesn't contain non-ASCII characters
         $userName = $charsetConverter->specCharsToASCII(
-                $encoding,
+                $params['encoding'],
                 $userNameBase
         );
         // Lastly replace single quotes, double quotes or spaces by underscores

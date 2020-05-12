@@ -105,7 +105,7 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
                                         'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                                         'method' => 'assembleUserName',
                                         'params' => [
-                                                'encoding' => 'utf8'
+                                                'encoding' => 'utf-8'
                                         ]
                                 ]
                         ]

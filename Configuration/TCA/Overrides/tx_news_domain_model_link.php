@@ -5,7 +5,7 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
         0 => [
                 'connector' => 'feed',
                 'parameters' => [
-                        'uri' => 'http://typo3.org/xml-feeds/rss.xml'
+                        'uri' => 'https://typo3.org/?type=100'
                 ],
                 'data' => 'xml',
                 'nodetype' => 'item',
