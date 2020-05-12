@@ -48,4 +48,4 @@ Every encouragement keeps the developer ticking, so don't hesitate
 to send thanks or share your enthusiasm about the extension.
 
 If you appreciate this work and want to show some support, please
-check http://www.monpetitcoin.com/en/francois/support-me/.
+check https://www.monpetitcoin.com/en/support-me/.

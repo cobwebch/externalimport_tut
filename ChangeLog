@@ -1,6 +1,7 @@
 2020-05-12 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Ensure compatibility with TYPO3 10 LTS and updates to external_import and connector services, resolves #5
+	* Update documentation settings, resolves #6
 
 2019-01-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
 
