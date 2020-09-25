@@ -25,7 +25,6 @@
 		"georgringer/news": "^8"
 	},
 	"replace": {
-		"externalimport_tut": "self.version",
 		"typo3-ter/externalimport_tut": "self.version"
 	}
 }
