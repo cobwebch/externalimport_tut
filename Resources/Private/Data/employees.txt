@@ -1,7 +1,0 @@
-employee_number;last_name;first_name;phone;mail;department;start_date;rank
-256;Vader;Darth;3245 345 34;darth.vader@deathstar.com;AA12;1998-10-01;2
-784;Emperor;The;23 234 234;the.boss@empire.org;AA12;1977-04-15;1
-967;Smith;John;;;B234;1999-04-01;3
-598;Stevens;Miss;765 74567 345;miss.stevens@catering.deathstar.com;B234;2001-06-01;1
-421;Børgån;Spacìk;456 398 12 12;spacik.borgan@deathstar.com;A101;2000-01-01;2
-1543;Van T'ung;Gert;;;B234;2020-01-01;3

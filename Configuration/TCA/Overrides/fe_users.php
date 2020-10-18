@@ -47,15 +47,12 @@ $newColumns = [
 // Add the general external information
 $GLOBALS['TCA']['fe_users']['external']['general'] = [
         0 => [
-                'connector' => 'csv',
+                'connector' => 'feed',
                 'parameters' => [
-                        'filename' => 'EXT:externalimport_tut/Resources/Private/Data/employees.txt',
-                        'delimiter' => ';',
-                        'text_qualifier' => '',
-                        'skip_rows' => 1,
-                        'encoding' => 'utf8'
+                        'uri' => 'EXT:externalimport_tut/Resources/Private/Data/employees.xml'
                 ],
-                'data' => 'array',
+                'data' => 'xml',
+                'nodetype' => 'employee',
                 'referenceUid' => 'tx_externalimporttut_code',
                 'priority' => 50,
                 'group' => 'externalimport_tut',
@@ -177,6 +174,49 @@ $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
                         ]
                 ],
                 'excludedOperations' => 'update'
+        ]
+];
+$GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
+        0 => [
+                'field' => 'picture',
+                'transformations' => [
+                        10 => [
+                                'userFunc' => [
+                                        'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
+                                        'method' => 'saveImageFromBase64',
+                                        'params' => [
+                                                'storage' => '1:imported_images',
+                                                'nameField' => 'name',
+                                                'defaultExtension' => 'jpg'
+                                        ]
+                                ]
+                        ]
+                ],
+                'children' => [
+                        'table' => 'sys_file_reference',
+                        'columns' => [
+                                'uid_local' => [
+                                        'field' => 'image'
+                                ],
+                                'uid_foreign' => [
+                                        'field' => '__parent.id__'
+                                ],
+                                'title' => [
+                                        'field' => 'name'
+                                ],
+                                'tablenames' => [
+                                        'value' => 'fe_users'
+                                ],
+                                'fieldname' => [
+                                        'value' => 'image'
+                                ],
+                                'table_local' => [
+                                        'value' => 'sys_file'
+                                ]
+                        ],
+                        'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
+                        'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
+                ]
         ]
 ];
 $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = [

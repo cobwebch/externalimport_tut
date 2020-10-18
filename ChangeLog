@@ -1,6 +1,7 @@
 2020-10-18 Francois Suter (Idéative)  <typo3@ideative.ch>
 
 	* Update configuration and documentation for upcoming External Import 5.0
+	* Enhance fe_users import scenario to demonstrate importing images
 
 2020-05-12 Francois Suter (Idéative)  <typo3@ideative.ch>
 

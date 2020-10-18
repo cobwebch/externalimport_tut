@@ -26,7 +26,7 @@ These new columns are added to the TCA of the :code:`fe_users` table. At this
 point we don't yet set the external data for these columns, as we will
 do it later for all relevant columns. As this is a standard TCA
 operation, it is not repeated here and can be simply looked up in the
-:file:`ext_tables.php` file.
+:file:`Configuration/TCA/Overrides/fe_users.php` file.
 
 Next we add the external information to the TCA of the
 :code:`fe_users` table:
@@ -36,15 +36,12 @@ Next we add the external information to the TCA of the
    // Add the general external information
    $GLOBALS['TCA']['fe_users']['external']['general'] = [
            0 => [
-                   'connector' => 'csv',
+                   'connector' => 'feed',
                    'parameters' => [
-                           'filename' => 'EXT:externalimport_tut/Resources/Private/Data/employees.txt',
-                           'delimiter' => ';',
-                           'text_qualifier' => '',
-                           'skip_rows' => 1,
-                           'encoding' => 'utf8'
+                           'uri' => 'EXT:externalimport_tut/Resources/Private/Data/employees.xml'
                    ],
-                   'data' => 'array',
+                   'data' => 'xml',
+                   'nodetype' => 'employee',
                    'referenceUid' => 'tx_externalimporttut_code',
                    'priority' => 50,
                    'group' => 'externalimport_tut',
@@ -113,7 +110,7 @@ Finally we set the external configuration for each column that will
 receive external data.
 
 .. code-block:: php
-   :emphasize-lines: 1-42,61-99
+   :emphasize-lines: 1-42,61-99,103-145
 
    $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
            0 => [
@@ -219,6 +216,49 @@ receive external data.
                    'field' => 1
            ]
    ];
+   $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
+           0 => [
+                   'field' => 'picture',
+                   'transformations' => [
+                           10 => [
+                                   'userFunc' => [
+                                           'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
+                                           'method' => 'saveImageFromBase64',
+                                           'params' => [
+                                                   'storage' => '1:imported_images',
+                                                   'nameField' => 'name',
+                                                   'defaultExtension' => 'jpg'
+                                           ]
+                                   ]
+                           ]
+                   ],
+                   'children' => [
+                           'table' => 'sys_file_reference',
+                           'columns' => [
+                                   'uid_local' => [
+                                           'field' => 'image'
+                                   ],
+                                   'uid_foreign' => [
+                                           'field' => '__parent.id__'
+                                   ],
+                                   'title' => [
+                                           'field' => 'name'
+                                   ],
+                                   'tablenames' => [
+                                           'value' => 'fe_users'
+                                   ],
+                                   'fieldname' => [
+                                           'value' => 'image'
+                                   ],
+                                   'table_local' => [
+                                           'value' => 'sys_file'
+                                   ]
+                           ],
+                           'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
+                           'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
+                   ]
+           ]
+   ];
 
 Several columns have more interesting configurations than the
 departments table described previously. They have been highlighted.
@@ -280,20 +320,35 @@ the "parameters" property. So what happens for these three fields?
    untouched during further updates. That way the field can be safely
    modified from within TYPO3 and changes will not be overwritten.
 
-#. Last but not least, the "tx\_externalimporttut\_department" will need
+#. The "tx\_externalimporttut\_department" will need
    to relate to the department the employee works in. Now we don't want
    to use the primary key of the external data for departments as a
    foreign key in the :code:`fe_users` table. We want the uid from the
    departments as they were inserted into the TYPO3 database. This is the
    task of the "mapping" property. The first sub-property – "table" – is
    used to point to the table where the records are stored inside the
-   TYPO3 database. The second sub-property – "reference\_field" –
+   TYPO3 database. The second sub-property – "referenceField" –
    indicates in which field from that table the external primary key for
    departments has been stored.What will happen during import is that the
    mapping function will build a hash table relating the external primary
    keys from the departments table ("code" column) to the internal
    primary keys ("uid" column). This hash table is then used to find out
    the foreign keys for the :code:`fe_users`.
+
+#. Finally comes the "image" field. The external data contains the image information
+   encoded in base64. So the first thing we want to do is to take this data,
+   make it into a file and store it in some designated place. This is achieved
+   by the user function called in the "transformations" property. The user
+   function returns the "uid" of a "sys\_file" record.
+
+   Then we need to create a "sys\_file\_reference" entry for storing along with the
+   "fe\_user" record. This is done with the "children" property, which defines
+   what table is targeted and what fields need to be filled (the one with the special
+   :code:`__parent.id__` points to the "fe\_user" record thus creating the
+   relationship). Both "controlColumnsForUpdate" and "controlColumnsForDelete"
+   properties are used to fetch existing records and either update or delete
+   them, just like what happens for the main table being imported (in this case,
+   "fe\_users").
 
 One more operation happens during the import process, but is not
 visible in the TCA. In the :file:`ext_localconf.php` file, we make use of the
@@ -331,7 +386,7 @@ noticing:
 
 If you now run the employees and then the holidays synchronisations,
 you should end up with a situation that can be represented like this
-(sorry, it's a bit small but hopefully still readable):
+(note: the base64 information from the "picture" node has been left out):
 
 .. figure:: ../../Images/EmployeesImportedWithHolidays.png
 	:alt: The imported employees
