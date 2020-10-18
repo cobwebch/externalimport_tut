@@ -1,3 +1,7 @@
+2020-10-18 Francois Suter (Idéative)  <typo3@ideative.ch>
+
+	* Update configuration and documentation for upcoming External Import 5.0
+
 2020-05-12 Francois Suter (Idéative)  <typo3@ideative.ch>
 
 	* Ensure compatibility with TYPO3 10 LTS and updates to external_import and connector services, resolves #5

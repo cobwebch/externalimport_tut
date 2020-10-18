@@ -15,8 +15,10 @@ return [
                 'searchFields' => 'code,name',
                 'typeicon_classes' => [
                         'default' => 'tx_externalimport_tut-team'
-                ],
-                'external' => [
+                ]
+        ],
+        'external' => [
+                'general' => [
                         0 => [
                                 'connector' => 'csv',
                                 'parameters' => [
@@ -28,10 +30,16 @@ return [
                                 ],
                                 'data' => 'array',
                                 'referenceUid' => 'code',
-                                'additionalFields' => 'rank',
                                 'priority' => 100,
                                 'group' => 'externalimport_tut',
                                 'description' => 'Import of all employee teams'
+                        ]
+                ],
+                'additionalFields' => [
+                        0 => [
+                                'rank' => [
+                                        'field' => 'rank'
+                                ]
                         ]
                 ]
         ],
@@ -41,7 +49,7 @@ return [
         'columns' => [
                 'hidden' => [
                         'exclude' => 1,
-                        'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
                         'config' => [
                                 'type' => 'check',
                                 'default' => '0'
@@ -90,12 +98,15 @@ return [
                         'external' => [
                                 0 => [
                                         'field' => 'employee',
-                                        'MM' => [
-                                                'mapping' => [
-                                                        'table' => 'fe_users',
-                                                        'referenceField' => 'tx_externalimporttut_code',
-                                                ],
-                                                'sorting' => 'rank'
+                                        'multipleRows' => true,
+                                        'multipleSorting' => 'rank',
+                                        'transformations' => [
+                                                10 => [
+                                                        'mapping' => [
+                                                                'table' => 'fe_users',
+                                                                'referenceField' => 'tx_externalimporttut_code',
+                                                        ],
+                                                ]
                                         ]
                                 ]
                         ]

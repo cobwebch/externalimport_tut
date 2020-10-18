@@ -33,11 +33,11 @@ Thus we start with the news items. A new column was added to the
 :code:`tx_news_domain_model_news` table. It is used to store the
 external id found in the RSS feed.
 
-Here is the setup for the "ctrl" section:
+Here is the setup for the general section:
 
 .. code-block:: php
 
-   $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = [
+   $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
            0 => [
                    'connector' => 'feed',
                    'parameters' => [
@@ -166,12 +166,12 @@ Importing related links
 """""""""""""""""""""""
 
 Next we want to run this import again, to store the links and make
-them related to their respective news items. Here is the "ctrl"
+them related to their respective news items. Here is the general
 section for the :code:`tx_news_domain_model_link`:
 
 .. code-block:: php
 
-   $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
+   $GLOBALS['TCA']['tx_news_domain_model_link']['external']['general'] = [
            0 => [
                    'connector' => 'feed',
                    'parameters' => [

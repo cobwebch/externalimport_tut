@@ -16,15 +16,15 @@ departments, except that teams have a many-to-many relationship to
 employees. Indeed a team will be comprised of several employees and
 any employee may be part of several teams.
 
-When such data comes along, the external\_import extension expects it
-to be denormalised. This means that if team A contains 3 employees,
-there will be 3 entries for team A, each with a relationship to a
-different employee. Let's look at the example data:
+In this example the incoming data is denormalised. This means that
+if team A contains 3 employees, there will be 3 entries for team A,
+each with a relationship to a different employee.
+Let's look at the example data:
 
 .. figure:: ../../Images/TeamsFileContent.png
 	:alt: The teams file
 
-	CSV data in the temas.txt file
+	CSV data in the teams.txt file
 
 We clearly see that the "Planet Destroyers" team appears
 three times, because it is comprised of employees 256, 421 and 784.
@@ -34,12 +34,12 @@ single copy of each team, based on the external primary key (the
 
 .. note::
 
-   It is also possible to create MM-relationships with data represented as a
+   It is also possible to create many-to-many relations with data represented as a
    comma-separated list of keys, commonly used in TYPO3.
 
 In the example data above, you can see that there's a "rank" field.
-This will be used to set the "sorting" column in the MM-relations
-table.
+We want to use it for sorting the many-to-many relations, so we define it
+as an additional field (you can look up the TCA for yourself).
 
 The SQL for the teams table is not repeated here as it is quite
 standard. The MM-relations table is also an absolutely standard TYPO3
@@ -63,15 +63,13 @@ table for MM-relations:
 		KEY parent (pid)
 	);
 
-The "external" definition of the team's table "ctrl" section is also
-not repeated here as it does not contain anything not already covered
-in this tutorial. The really interesting part is the "external"
-information for creating the relationship between teams and fe\_users.
-The definition is to be found in the "members" column of the teams
-table:
+
+The "general" configuration for this import has nothing special about it.
+All the action about the many-to-many relations happens in the configuration
+of the "members" column:
 
 .. code-block:: php
-   :emphasize-lines: 19-25
+   :emphasize-lines: 19-28
 
 	$GLOBALS['TCA']['tx_externalimporttut_teams'] = [
            ...
@@ -91,12 +89,15 @@ table:
                            'external' => [
                                    0 => [
                                            'field' => 'employee',
-                                           'MM' => [
-                                                   'mapping' => [
-                                                           'table' => 'fe_users',
-                                                           'referenceField' => 'tx_externalimporttut_code',
-                                                   ],
-                                                   'sorting' => 'rank'
+                                           'multipleRows' => true,
+                                           'multipleSorting' => 'rank',
+                                           'transformations' => [
+                                                   10 => [
+                                                           'mapping' => [
+                                                                   'table' => 'fe_users',
+                                                                   'referenceField' => 'tx_externalimporttut_code',
+                                                           ],
+                                                   ]
                                            ]
                                    ]
                            ]
@@ -105,25 +106,20 @@ table:
            ...
 	];
 
-Looking at the TCA for this column, you can see that it contains the
-traditional information for a MM column. The external part describes
-the column as pointing to the "employee" field, which contains the
-employee number as we saw above. It then contains a "MM" section which
-describes how the relationships can be created on the TYPO3 side. The
-main part is the "mapping" information which is similar in syntax to
-what we saw for simply mapped fields (a.k.a one-to-many
-relationships). It references a table and the column in that table
-which contains the external primary key.
+What happens here? The "multipleRows" tells External Import that the external data
+is denormalised and that this is the column for which it should keep every value,
+because they represent many-to-many relations. Each of these values will be mapped
+to the "fe\_users" table, according to the defined transformation.
 
-Additionally it is possible to choose a field from the external data
-that will be used to define the sorting of the relationships. In this
-case it is the "rank" field. If this is not defined, the sorting will
-be simply based on the first in, first out basis (i.e. the first
-record will have a sorting of 1, the second a sorting of 2, etc.).
+At a later point, the values will be sorted according to the value found in the field
+defined with the "multipleSorting" property (in this case "rank"). For each team, the values
+(i.e. the "fe\_users" primary keys) are thus sorted and then made into a comma-separated
+list for storage by TYPO3.
 
-Note that it is currently not possible to define a sorting field for
-the "sorting\_foreign" column, should you have such a configuration.
-Sorting is always relative to the "uid\_local" column.
+As a result, only two team records are created in the TYPO3 database instead of 4,
+which is what we expect. However the extra rows in the external data have not been
+lost and have been used to create the many-to-many relations (of which there are 4,
+as expected).
 
 After running the teams import, you should get something like this:
 

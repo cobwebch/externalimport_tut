@@ -69,7 +69,5 @@ look like:
 
 	Checking installed import configurations using the BE module
 
-If you want to follow the process in more details, it is
-advised to activate the debug mode of "external\_import" and to
-install an extension capable of using the Developer's Log (such as
-"devlog").
+If you want to follow the process in more details, activate logging at "debug" level.
+You can also check what happens in each step by using the Preview mode.

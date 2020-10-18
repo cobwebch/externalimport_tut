@@ -1,7 +1,7 @@
 <?php
 
-// Add the external information to the ctrl section
-$GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['external'] = [
+// Add the external general information
+$GLOBALS['TCA']['tx_news_domain_model_link']['external']['general'] = [
         0 => [
                 'connector' => 'feed',
                 'parameters' => [

@@ -32,52 +32,54 @@ like this:
 		KEY parent (pid)
 	);
 
-and the TCA looks like this (without the "columns" section, which is
-in the dynamic configuration file):
+The TCA looks like this (with all the colums definition ommitted):
 
 .. code-block:: php
-   :emphasize-lines: 17-33
+   :emphasize-lines: 18-36
 
 	$GLOBALS['TCA']['tx_externalimporttut_departments'] = [
-           'ctrl' => [
-                   'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
-                   'label' => 'name',
-                   'tstamp' => 'tstamp',
-                   'crdate' => 'crdate',
-                   'cruser_id' => 'cruser_id',
-                   'default_sortby' => 'ORDER BY name',
-                   'delete' => 'deleted',
-                   'enablecolumns' => [
-                           'disabled' => 'hidden',
-                   ],
-                   'searchFields' => 'code,name',
-                   'typeicon_classes' => [
-                           'default' => 'tx_externalimport_tut-department'
-                   ],
-                   'external' => [
-                           0 => [
-                                   'connector' => 'csv',
-                                   'parameters' => [
-                                           'filename' => 'EXT:externalimport_tut/Resources/Private/Data/departments.txt',
-                                           'delimiter' => "\t",
-                                           'text_qualifier' => '"',
-                                           'skip_rows' => 1,
-                                           'encoding' => 'latin1'
-                                   ],
-                                   'data' => 'array',
-                                   'referenceUid' => 'code',
-                                   'priority' => 10,
-                                   'group' => 'externalimport_tut',
-                                   'description' => 'Import of all company departments'
-                           ]
-                   ]
-           ],
+        'ctrl' => [
+                'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
+                'label' => 'name',
+                'tstamp' => 'tstamp',
+                'crdate' => 'crdate',
+                'cruser_id' => 'cruser_id',
+                'default_sortby' => 'ORDER BY name',
+                'delete' => 'deleted',
+                'enablecolumns' => [
+                        'disabled' => 'hidden',
+                ],
+                'searchFields' => 'code,name',
+                'typeicon_classes' => [
+                        'default' => 'tx_externalimport_tut-department'
+                ]
+        ],
+        'external' => [
+                'general' => [
+                        0 => [
+                                'connector' => 'csv',
+                                'parameters' => [
+                                        'filename' => 'EXT:externalimport_tut/Resources/Private/Data/departments.txt',
+                                        'delimiter' => "\t",
+                                        'text_qualifier' => '"',
+                                        'skip_rows' => 1,
+                                        'encoding' => 'latin1'
+                                ],
+                                'data' => 'array',
+                                'referenceUid' => 'code',
+                                'priority' => 10,
+                                'group' => 'externalimport_tut',
+                                'description' => 'Import of all company departments'
+                        ]
+                ]
+        ],
+        ...
 	];
 
-Compared to a traditional "ctrl" section, this TCA declaration
-contains an "external" sub-section which is used to described the
-external source from which the data will come. This external sub-
-section is itself an indexed array (note index "0" in the TCA extract
+Note how the External Import configuration is defined at the same level
+as the "ctrl" section. It contains a "general" part with the description of the
+external source(s) from which the data will come. This general configuration
+is itself an indexed array (note index "0" in the TCA extract
 above). Several indices are used when a table is synchronised with
 multiple external sources. We will see with with the :code:`fe_users` table.
 
@@ -191,7 +193,7 @@ how fields from the file can be matched to columns from the database.
 
 The important thing to note here is that the indices used in the
 "external" configuration for each field match the indices used in the
-"external" configuration found inside the "ctrl" section. This is
+general external configuration. This is
 crucial. If the indices don't match the different bits of "external"
 configurations will not know to which other bits they relate.
 

@@ -28,12 +28,13 @@ do it later for all relevant columns. As this is a standard TCA
 operation, it is not repeated here and can be simply looked up in the
 :file:`ext_tables.php` file.
 
-Next we add the external information to the "ctrl" section of the
+Next we add the external information to the TCA of the
 :code:`fe_users` table:
 
 .. code-block:: php
 
-	$GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
+   // Add the general external information
+   $GLOBALS['TCA']['fe_users']['external']['general'] = [
            0 => [
                    'connector' => 'csv',
                    'parameters' => [
@@ -45,7 +46,6 @@ Next we add the external information to the "ctrl" section of the
                    ],
                    'data' => 'array',
                    'referenceUid' => 'tx_externalimporttut_code',
-                   'additionalFields' => 'last_name,first_name',
                    'priority' => 50,
                    'group' => 'externalimport_tut',
                    'disabledOperations' => '',
@@ -68,26 +68,37 @@ Next we add the external information to the "ctrl" section of the
                    'disabledOperations' => 'insert,delete',
                    'description' => 'Import of holidays balance'
            ]
-	];
+   ];
+   // Add the additional fields configuration
+   $GLOBALS['TCA']['fe_users']['external']['additionalFields'] = [
+           0 => [
+                   'last_name' => [
+                           'field' => 'last_name'
+                   ],
+                   'first_name' => [
+                           'field' => 'first_name'
+                   ]
+           ]
+   ];
+
 
 The first thing to note is that there are 2 external configurations in
 this case. As was described in the description of the scenario, the
 :code:`fe_users` users table will be synchronised with the employees list and
-with a second file containing the balance of holidays. Two things are
-worth of notice in the first configuration:
+with a second file containing the balance of holidays.
 
-#. the use of the "additional\_fields" property: two fields from the
-   external data ("last\_name" and "first\_name") will be used during the
-   import for assembling the user's full name and its password. So we
-   need to keep those two fields for calculations, but they won't be
-   stored at the end of the process.
+In the first configuration, note how the "enforcePid" property is set to true
+so that not all :code:`fe_users` records will be affected be the import process.
+If some :code:`fe_users` are stored in a different page than the one where the
+imported records are stored, those records will not be considered for updates or deletion.
+This makes it possible to have several sources of :code:`fe_users` without interference with one another.
 
-#. The "enforcePid" property is set to true so that not all :code:`fe_users`
-   records will be affected be the import process. If some :code:`fe_users` are
-   stored in a different page than the one where the imported records are
-   stored, those records will not be considered for updates or deletion.
-   This makes it possible to have several sources of :code:`fe_users` without
-   interference with one another.
+The first configuration also makes use of so-called "additional fields". These
+are defined next to the "general" configuration and use the same indexed structure.
+In the example above, it means that two fields from the external data
+("last\_name" and "first\_name") will be read and made available all along the
+import process, but will not be saved to the database. They are actually used to
+assemble the user's full name and its password (see below).
 
 In the second configuration, we make use of the "disabledOperations"
 property. Indeed the holidays balance file will contain only

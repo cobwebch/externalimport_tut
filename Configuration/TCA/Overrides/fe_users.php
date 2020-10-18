@@ -44,8 +44,8 @@ $newColumns = [
         '--div--;LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees,tx_externalimporttut_code,tx_externalimporttut_department,tx_externalimporttut_holidays'
 );
 
-// Add the external information to the ctrl section
-$GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
+// Add the general external information
+$GLOBALS['TCA']['fe_users']['external']['general'] = [
         0 => [
                 'connector' => 'csv',
                 'parameters' => [
@@ -57,7 +57,6 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
                 ],
                 'data' => 'array',
                 'referenceUid' => 'tx_externalimporttut_code',
-                'additionalFields' => 'last_name,first_name',
                 'priority' => 50,
                 'group' => 'externalimport_tut',
                 'disabledOperations' => '',
@@ -79,6 +78,17 @@ $GLOBALS['TCA']['fe_users']['ctrl']['external'] = [
                 'group' => 'externalimport_tut',
                 'disabledOperations' => 'insert,delete',
                 'description' => 'Import of holidays balance'
+        ]
+];
+// Add the additional fields configuration
+$GLOBALS['TCA']['fe_users']['external']['additionalFields'] = [
+        0 => [
+                'last_name' => [
+                        'field' => 'last_name'
+                ],
+                'first_name' => [
+                        'field' => 'first_name'
+                ]
         ]
 ];
 

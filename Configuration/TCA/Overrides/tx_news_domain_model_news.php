@@ -19,8 +19,8 @@ $tempColumns = [
         'tx_externalimporttut_externalid'
 );
 
-// Add the external information to the ctrl section
-$GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['external'] = [
+// Add the external general information
+$GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
         0 => [
                 'connector' => 'feed',
                 'parameters' => [
