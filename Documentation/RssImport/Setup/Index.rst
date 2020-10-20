@@ -92,10 +92,10 @@ Let's now look at the setup for the columns:
                    'field' => 'pubDate',
                    'transformations' => [
                            10 => [
-                                   'userFunc' => [
+                                   'userFunction' => [
                                            'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
                                            'method' => 'absolutizeUrls',
-                                           'params' => [
+                                           'parameters' => [
                                                    'host' => 'https://typo3.org'
                                            ]
                                    ]

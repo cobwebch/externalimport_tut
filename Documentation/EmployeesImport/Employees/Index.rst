@@ -117,7 +117,7 @@ receive external data.
                    'field' => 'last_name',
                    'transformations' => [
                            10 => [
-                                   'userFunc' => [
+                                   'userFunction' => [
                                            'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                                            'method' => 'assembleName'
                                    ]
@@ -130,10 +130,10 @@ receive external data.
                    'field' => 'last_name',
                    'transformations' => [
                            10 => [
-                                   'userFunc' => [
+                                   'userFunction' => [
                                            'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                                            'method' => 'assembleUserName',
-                                           'params' => [
+                                           'parameters' => [
                                                    'encoding' => 'utf8'
                                            ]
                                    ]
@@ -146,7 +146,7 @@ receive external data.
                    'field' => 'start_date',
                    'transformations' => [
                            10 => [
-                                   'userFunc' => [
+                                   'userFunction' => [
                                            'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
                                            'method' => 'parseDate'
                                    ]
@@ -221,10 +221,10 @@ receive external data.
                    'field' => 'picture',
                    'transformations' => [
                            10 => [
-                                   'userFunc' => [
+                                   'userFunction' => [
                                            'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
                                            'method' => 'saveImageFromBase64',
-                                           'params' => [
+                                           'parameters' => [
                                                    'storage' => '1:imported_images',
                                                    'nameField' => 'name',
                                                    'defaultExtension' => 'jpg'

@@ -52,7 +52,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] 
                 'field' => 'pubDate',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
                                         'method' => 'parseDate'
                                 ]
@@ -75,10 +75,10 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] 
                 'field' => 'encoded',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
                                         'method' => 'absolutizeUrls',
-                                        'params' => [
+                                        'parameters' => [
                                                 'host' => 'https://typo3.org'
                                         ]
                                 ]

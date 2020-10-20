@@ -95,7 +95,7 @@ $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
                 'field' => 'last_name',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                                         'method' => 'assembleName'
                                 ]
@@ -108,10 +108,10 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
                 'field' => 'last_name',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
                                         'method' => 'assembleUserName',
-                                        'params' => [
+                                        'parameters' => [
                                                 'encoding' => 'utf-8'
                                         ]
                                 ]
@@ -124,7 +124,7 @@ $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
                 'field' => 'start_date',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
                                         'method' => 'parseDate'
                                 ]
@@ -181,10 +181,10 @@ $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
                 'field' => 'picture',
                 'transformations' => [
                         10 => [
-                                'userFunc' => [
+                                'userFunction' => [
                                         'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
                                         'method' => 'saveImageFromBase64',
-                                        'params' => [
+                                        'parameters' => [
                                                 'storage' => '1:imported_images',
                                                 'nameField' => 'name',
                                                 'defaultExtension' => 'jpg'
