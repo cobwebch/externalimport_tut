@@ -19,12 +19,12 @@ $EM_CONF[$_EXTKEY] = [
         'createDirs' => '',
         'clearCacheOnLoad' => 1,
         'author_company' => '',
-        'version' => '2.3.0',
+        'version' => '3.0.0',
         'constraints' =>
                 [
                         'depends' =>
                                 [
-                                        'external_import' => '4.3.0-0.0.0',
+                                        'external_import' => '5.0.0-0.0.0',
                                         'svconnector_csv' => '2.3.0-0.0.0',
                                         'svconnector_feed' => '2.3.0-0.0.0',
                                         'news' => '8.0.0-0.0.0',
@@ -35,7 +35,6 @@ $EM_CONF[$_EXTKEY] = [
                                 ],
                         'suggests' =>
                                 [
-                                        'devlog' => '',
                                 ],
                 ],
 ];

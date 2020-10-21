@@ -16,10 +16,10 @@
 			"Cobweb\\ExternalimportTut\\": "Classes/"
 		}
 	},
-	"version": "2.3.0",
+	"version": "3.0.0",
 	"require": {
 		"typo3/cms-core": ">=9.5.0,<11.0",
-		"cobweb/external_import": "dev-platypus",
+		"cobweb/external_import": ">=5.0.0",
 		"cobweb/svconnector_csv": ">=2.3.0",
 		"cobweb/svconnector_feed": ">=2.3.0",
 		"georgringer/news": "^8"
