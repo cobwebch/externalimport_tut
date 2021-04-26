@@ -22,11 +22,11 @@
 		}
 	},
 	"require": {
-		"typo3/cms-core": "^9.5.0 || ^10.3",
-		"cobweb/external_import": "^5.0.0",
-		"cobweb/svconnector_csv": "^2.3.0",
-		"cobweb/svconnector_feed": "^2.3.0",
-		"georgringer/news": "^8"
+		"typo3/cms-core": "^10.4.0 || ^11",
+		"cobweb/external_import": "dev-bettong",
+		"cobweb/svconnector_csv": "dev-develop",
+		"cobweb/svconnector_feed": "dev-develop",
+		"georgringer/news": "^11"
 	},
 	"replace": {
 		"typo3-ter/externalimport_tut": "self.version"
