@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Example transformation functions for the 'externalimport_tut' extension
  *
- * @author Francois Suter (Cobweb) <typo3@ideative.ch>
+ * @author Francois Suter (Idéative) <typo3@ideative.ch>
  * @package TYPO3
  * @subpackage tx_externalimporttut
  */
