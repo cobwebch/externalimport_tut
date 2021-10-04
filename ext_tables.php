@@ -1,8 +1,4 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
-
 
 // Register sprite icons for new tables
 /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
