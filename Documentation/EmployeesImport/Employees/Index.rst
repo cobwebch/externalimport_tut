@@ -110,154 +110,160 @@ Finally we set the external configuration for each column that will
 receive external data.
 
 .. code-block:: php
-   :emphasize-lines: 1-42,61-99,103-145
+   :emphasize-lines: 1-42,61-105,109-151
 
    $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
-           0 => [
-                   'field' => 'last_name',
-                   'transformations' => [
-                           10 => [
-                                   'userFunction' => [
-                                           'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
-                                           'method' => 'assembleName'
-                                   ]
-                           ]
-                   ]
-           ]
+        0 => [
+             'field' => 'last_name',
+             'transformations' => [
+                  10 => [
+                       'userFunction' => [
+                            'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                            'method' => 'assembleName'
+                       ]
+                  ]
+             ]
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
-           0 => [
-                   'field' => 'last_name',
-                   'transformations' => [
-                           10 => [
-                                   'userFunction' => [
-                                           'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
-                                           'method' => 'assembleUserName',
-                                           'parameters' => [
-                                                   'encoding' => 'utf8'
-                                           ]
-                                   ]
-                           ]
-                   ]
-           ]
+        0 => [
+             'field' => 'last_name',
+             'transformations' => [
+                  10 => [
+                       'userFunction' => [
+                            'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                            'method' => 'assembleUserName',
+                            'parameters' => [
+                                 'encoding' => 'utf8'
+                            ]
+                       ]
+                  ]
+             ]
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
-           0 => [
-                   'field' => 'start_date',
-                   'transformations' => [
-                           10 => [
-                                   'userFunction' => [
-                                           'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
-                                           'method' => 'parseDate'
-                                   ]
-                           ]
-                   ]
-           ]
+        0 => [
+             'field' => 'start_date',
+             'transformations' => [
+                  10 => [
+                       'userFunction' => [
+                            'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                            'method' => 'parseDate'
+                       ]
+                  ]
+             ]
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_code']['external'] = [
-           0 => [
-                   'field' => 'employee_number'
-           ],
-           1 => [
-                   'field' => 0
-           ]
+        0 => [
+             'field' => 'employee_number'
+        ],
+        1 => [
+             'field' => 0
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['email']['external'] = [
-           0 => [
-                   'field' => 'mail'
-           ]
+        0 => [
+             'field' => 'mail'
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['telephone']['external'] = [
-           0 => [
-                   'field' => 'phone'
-           ]
+        0 => [
+             'field' => 'phone'
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['company']['external'] = [
-           0 => [
-                   'transformations' => [
-                           10 => [
-                                   'value' => 'The Empire'
-                           ]
-                   ]
-           ]
+        0 => [
+             'transformations' => [
+                  10 => [
+                       'value' => 'The Empire'
+                  ]
+             ]
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
-           0 => [
-                   'field' => 'rank',
-                   'transformations' => [
-                           10 => [
-                                   'mapping' => [
-                                           'valueMap' => [
-                                                   '1' => 'Captain',
-                                                   '2' => 'Senior',
-                                                   '3' => 'Junior'
-                                           ]
-                                   ]
-                           ]
-                   ],
-                   'excludedOperations' => 'update'
-           ]
+        0 => [
+             'field' => 'rank',
+             'transformations' => [
+                  10 => [
+                      'userFunction' => [
+                          'class' => \Cobweb\ExternalimportTut\Transformation\CastTransformation::class,
+                          'method' => 'castToInteger'
+                      ]
+                  ],
+                  20 => [
+                       'mapping' => [
+                            'valueMap' => [
+                                 1 => 'Captain',
+                                 2 => 'Senior',
+                                 3 => 'Junior'
+                            ]
+                       ]
+                  ]
+             ],
+             'excludedOperations' => 'update'
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = [
-           0 => [
-                   'field' => 'department',
-                   'transformations' => [
-                           10 => [
-                                   'mapping' => [
-                                           'table' => 'tx_externalimporttut_departments',
-                                           'referenceField' => 'code'
-                                   ]
-                           ]
-                   ]
-           ]
+        0 => [
+             'field' => 'department',
+             'transformations' => [
+                  10 => [
+                       'mapping' => [
+                            'table' => 'tx_externalimporttut_departments',
+                            'referenceField' => 'code'
+                       ]
+                  ]
+             ]
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = [
-           1 => [
-                   'field' => 1
-           ]
+        1 => [
+             'field' => 1
+        ]
    ];
    $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
-           0 => [
-                   'field' => 'picture',
-                   'transformations' => [
-                           10 => [
-                                   'userFunction' => [
-                                           'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
-                                           'method' => 'saveImageFromBase64',
-                                           'parameters' => [
-                                                   'storage' => '1:imported_images',
-                                                   'nameField' => 'name',
-                                                   'defaultExtension' => 'jpg'
-                                           ]
-                                   ]
-                           ]
-                   ],
-                   'children' => [
-                           'table' => 'sys_file_reference',
-                           'columns' => [
-                                   'uid_local' => [
-                                           'field' => 'image'
-                                   ],
-                                   'uid_foreign' => [
-                                           'field' => '__parent.id__'
-                                   ],
-                                   'title' => [
-                                           'field' => 'name'
-                                   ],
-                                   'tablenames' => [
-                                           'value' => 'fe_users'
-                                   ],
-                                   'fieldname' => [
-                                           'value' => 'image'
-                                   ],
-                                   'table_local' => [
-                                           'value' => 'sys_file'
-                                   ]
-                           ],
-                           'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
-                           'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
-                   ]
-           ]
+        0 => [
+             'field' => 'picture',
+             'transformations' => [
+                  10 => [
+                       'userFunction' => [
+                            'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
+                            'method' => 'saveImageFromBase64',
+                            'parameters' => [
+                                 'storage' => '1:imported_images',
+                                 'nameField' => 'name',
+                                 'defaultExtension' => 'jpg'
+                            ]
+                       ]
+                  ]
+             ],
+             'children' => [
+                  'table' => 'sys_file_reference',
+                  'columns' => [
+                       'uid_local' => [
+                            'field' => 'image'
+                       ],
+                       'uid_foreign' => [
+                            'field' => '__parent.id__'
+                       ],
+                       'title' => [
+                            'field' => 'name'
+                       ],
+                       'tablenames' => [
+                            'value' => 'fe_users'
+                       ],
+                       'fieldname' => [
+                            'value' => 'image'
+                       ],
+                       'table_local' => [
+                            'value' => 'sys_file'
+                       ]
+                  ],
+                  'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
+                  'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
+             ]
+        ]
    ];
 
 Several columns have more interesting configurations than the
@@ -309,16 +315,19 @@ the "parameters" property. So what happens for these three fields?
    "company" field for every :code:`fe_users` record will contain the value "The
    Empire".
 
-#. The same goes for the "title" field, but a bit more sophisticated. In
-   this case the values from the external source are matched to other
+#. The same goes for the "title" field, but a bit more sophisticated.
+   In this case the values from the external source are matched to other
    values using a simple array. For example, if the external data is "1",
    the title will be "Captain". This way we can avoid creating a separate
    table for titles, assuming there are only a few and they don't change
-   often.Furthermore we decided that this field should not be updated
+   often. Furthermore we decided that this field should not be updated
    (using the "excludedOperations" property). This means that this field
    will be written when a new record is created, but will be left
    untouched during further updates. That way the field can be safely
    modified from within TYPO3 and changes will not be overwritten.
+
+   To ensure that values are safely matched, we first apply a transformation
+   to cast the external value to integer.
 
 #. The "tx\_externalimporttut\_department" will need
    to relate to the department the employee works in. Now we don't want
