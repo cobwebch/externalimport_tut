@@ -29,34 +29,36 @@ class NameTransformation implements SingletonInterface
 {
 
     /**
-     * This method assembles the user's full name
+     * Assembles the user's full name.
+     *
      * At the point where it is called, the name field already contains the last name,
      * so it's just a question of concatenating the first name
      *
      * @param array $record The full record that is being transformed
-     * @param string $index The index of the field to transform
+     * @param mixed $index The index of the field to transform
      * @param array $params Additional parameters from the TCA
-     * @return mixed Full name, i.e. last name and first name concatenated
+     * @return string Full name, i.e. last name and first name concatenated
      */
-    public function assembleName($record, $index, $params)
+    public function assembleName(array $record, $index, array $params): string
     {
         return $record['last_name'] . ' ' . $record['first_name'];
     }
 
     /**
-     * This method assembles a valid user name
+     * Assembles a valid username.
+     *
      * At the point where it is called, this field contains the last name,
      * which is not what we want
      *
      * @param array $record The full record that is being transformed
-     * @param string $index The index of the field to transform
+     * @param mixed $index The index of the field to transform
      * @param array $params Additional parameters from the TCA
-     * @return mixed Calculated user name
+     * @return string Calculated username
      */
-    public function assembleUserName($record, $index, $params)
+    public function assembleUserName(array $record, $index, array $params): string
     {
         $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
-        // The base for the user name will be the first name, a dot and the last name (lowercase)
+        // The base for the username will be the first name, a dot and the last name (lowercase)
         $baseName = $record['first_name'] . '.' . $record['last_name'];
         $userNameBase = mb_strtolower($baseName, $params['encoding']);
         // We must make sure this doesn't contain non-ASCII characters

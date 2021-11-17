@@ -33,19 +33,18 @@ class LinkTransformation implements SingletonInterface
      * This is a workaround rather than digging in the Core.
      *
      * @param array $record The full record that is being transformed
-     * @param string $index The index of the field to transform
+     * @param mixed $index The index of the field to transform
      * @param array $params Additional parameters from the TCA
      * @return string The text with modified links
      */
-    public function absolutizeUrls($record, $index, $params): string
+    public function absolutizeUrls(array $record, $index, array $params): string
     {
         $host = $params['host'];
-        $text = $record[$index];
-        $text = str_replace(
+        $text = $record[$index] ?? '';
+        return str_replace(
                 'href="/',
                 'href="' . $host . '/',
                 $text
         );
-        return $text;
     }
 }
