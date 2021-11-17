@@ -1,6 +1,7 @@
 2021-11-17 Francois Suter (Idéative)  <typo3@ideative.ch>
 
 	* Improve fe_users example by casting external values with a transformation
+	* Fix bug with import of news links
 
 2021-10-04 Francois Suter (Idéative)  <typo3@ideative.ch>
 
