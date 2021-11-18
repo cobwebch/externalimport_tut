@@ -110,7 +110,7 @@ Finally we set the external configuration for each column that will
 receive external data.
 
 .. code-block:: php
-   :emphasize-lines: 1-42,61-105,109-151
+   :emphasize-lines: 1-42,61-105,111-153
 
    $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
         0 => [
