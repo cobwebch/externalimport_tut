@@ -261,7 +261,7 @@ use two features:
 So here is the complete setup, with the special bit highlighted:
 
 .. code-block:: php
-   :emphasize-lines: 17-42
+   :emphasize-lines: 17-41
 
    $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = [
        0 => [

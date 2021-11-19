@@ -17,17 +17,17 @@ like this:
 
 .. code-block:: sql
 
-	CREATE TABLE tx_externalimporttut_departments (
-		code varchar(4) DEFAULT '' NOT NULL,
-		name varchar(255) DEFAULT '' NOT NULL
-	);
+   CREATE TABLE tx_externalimporttut_departments (
+      code varchar(4) DEFAULT '' NOT NULL,
+      name varchar(255) DEFAULT '' NOT NULL
+   );
 
 The TCA looks like this (with all the colums definition ommitted):
 
 .. code-block:: php
    :emphasize-lines: 21-56
 
-	$GLOBALS['TCA']['tx_externalimporttut_departments'] = [
+   $GLOBALS['TCA']['tx_externalimporttut_departments'] = [
        'ctrl' => [
            'title' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_departments',
            'label' => 'name',
@@ -84,7 +84,7 @@ The TCA looks like this (with all the colums definition ommitted):
            ]
        ],
         ...
-	];
+   ];
 
 Note how the External Import configuration is defined at the same level
 as the "ctrl" section. It contains a "general" part with the description of the
