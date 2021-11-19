@@ -36,7 +36,7 @@
 	* Update documentation settings, resolves #6
 	* Release version 2.3.0
 
-2019-01-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2019-01-13 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Ensure compatibility with TYPO3 9 LTS, drop support for TYPO3 7
 	* Adapt code to new Connector Services possibilities
@@ -44,113 +44,113 @@
 	* Change icons to SVG
 	* Release version 2.2.0
 
-2018-02-17 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2018-02-17 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released version 2.1.1
 
-2018-02-15 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2018-02-15 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Corrected composer dependencies declaration
 
-2018-02-04 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2018-02-04 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Updated for TYPO3 CMS 8 LTS and External Import 4.0
 	* Updated documentation
 	* Released version 2.1.0
 
-2016-08-03 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2016-08-03 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Corrected wrong namespaces, resolves #77382
 	* Released version 2.0.1, resolves #77395
 
-2016-06-13 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2016-06-13 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Adapted to renamed configuration properties, resolves #76620
 	* Added composer support, resolves #76622
 	* Released version 2.0.0, resolves #76580
 
-2016-06-10 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2016-06-10 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Updated and restructured for TYPO3 CMS 7 LTS, resolves #76575
 	* Migrated language file to XLIFF, resolves #76577
 	* Updated documentation, resolves #76579
 
-2014-06-19 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2014-06-19 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Corrected LaTeX setup for PDF rendering, resolves #59665
 	* Released version 1.6.1, resolves #59668
 
-2014-06-05 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2014-06-05 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released version 1.6.0, resolves #59320
 
-2014-06-03 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2014-06-03 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Moved documentation to reStructuredText, resolves #58402
 	* Verified compatibility with TYPO3 CMS 6.2, resolves #58401
 
-2014-06-01 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2014-06-01 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Made all user functions and hooks into singletons, resolves #58400
 
-2013-07-22 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2013-07-22 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Ensured compatibility with TYPO3 CMS 6.1, resolves #50311
 	* Released version 1.5.0
 
-2013-01-24 Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2013-01-24 Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released version 1.4.0
 
-2012-01-18  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2012-01-18  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Ensured compatibility with TYPO3 CMS 6.0, resolves #44618
 	* Switched RSS import example from tt_news to news, references #44618
 
 
-2012-06-15  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2012-06-15  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released version 1.3.0
 	* Updated the manual and the dependencies, resolves #38071
 
-2012-05-29  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2012-05-29  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Updated XML import example to match new typo3.org RSS feed, resolves #37573
 
-2011-03-08  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2011-03-08  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released version 1.2.0
 
-2011-02-27  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2011-02-27  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Added example for importing data in XML format, resolves #12043
 
-2010-03-26  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2010-03-26  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Released to TER as version 1.1.3
 
-2010-03-23  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2010-03-23  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Updated screenshot to reflect UI changes
 
-2010-01-19  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2010-01-19  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Added example for usage of excludedOperations property
 
-2009-11-23  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-11-23  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Updated the manual to fit latest version of external_import
 	* Released to TER as version 1.1.2
 
-2009-06-16  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-06-16  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Added example for usage of fixed value maps
 	* Released to TER as version 1.1.0
 
-2009-06-02  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-06-02  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* Added example for usage of fixed values
 
-2009-01-16  Francois Suter (Cobweb)  <typo3@cobweb.ch>
+2009-01-16  Francois Suter (Cobweb)  <typo3@ideative.ch>
 
 	* First public release
