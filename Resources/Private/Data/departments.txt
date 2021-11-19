@@ -1,4 +1,4 @@
-code	name
-AA12	"Central Command"
-A101	"Übergunnery"
-B234	"Catering"
+code	name_en	name_fr
+AA12	"Central Command"	"Contrôle central"
+A101	"Übergunnery"	"Le gros canon"
+B234	"Catering"	"Traiteur"

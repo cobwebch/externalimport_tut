@@ -110,7 +110,7 @@ Finally we set the external configuration for each column that will
 receive external data.
 
 .. code-block:: php
-   :emphasize-lines: 1-42,61-105,111-153
+   :emphasize-lines: 1-42,61-105,112-154
 
    $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
         0 => [
@@ -211,7 +211,8 @@ receive external data.
                   10 => [
                        'mapping' => [
                             'table' => 'tx_externalimporttut_departments',
-                            'referenceField' => 'code'
+                            'referenceField' => 'code',
+                            'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0'
                        ]
                   ]
              ]
@@ -338,7 +339,10 @@ the "parameters" property. So what happens for these three fields?
    used to point to the table where the records are stored inside the
    TYPO3 database. The second sub-property – "referenceField" –
    indicates in which field from that table the external primary key for
-   departments has been stored.What will happen during import is that the
+   departments has been stored. The third sub-property - "whereClause" -
+   ensures that we map the relation only to records in the original language.
+
+   What will happen during import is that the
    mapping function will build a hash table relating the external primary
    keys from the departments table ("code" column) to the internal
    primary keys ("uid" column). This hash table is then used to find out

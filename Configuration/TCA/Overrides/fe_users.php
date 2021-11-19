@@ -232,7 +232,8 @@ $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['exter
             10 => [
                 'mapping' => [
                     'table' => 'tx_externalimporttut_departments',
-                    'referenceField' => 'code'
+                    'referenceField' => 'code',
+                    'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0'
                 ]
             ]
         ]
