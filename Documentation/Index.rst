@@ -27,7 +27,7 @@ External Import Tutorial
 		  data import, fetch data, services, tutorial
 
 	:Copyright:
-		2007-2020
+		2007-2021
 
 	:Author:
 		  François Suter (Idéative)
