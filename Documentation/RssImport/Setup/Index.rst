@@ -38,20 +38,20 @@ Here is the setup for the general section:
 .. code-block:: php
 
    $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
-           0 => [
-                   'connector' => 'feed',
-                   'parameters' => [
-                           'uri' => 'http://typo3.org/xml-feeds/rss.xml'
-                   ],
-                   'data' => 'xml',
-                   'nodetype' => 'item',
-                   'referenceUid' => 'tx_externalimporttut_externalid',
-                   'enforcePid' => true,
-                   'priority' => 200,
-                   'group' => 'externalimport_tut',
-                   'disabledOperations' => 'delete',
-                   'description' => 'Import of typo3.org news'
+       0 => [
+           'connector' => 'feed',
+           'parameters' => [
+               'uri' => 'https://typo3.org/?type=100'
            ],
+           'data' => 'xml',
+           'nodetype' => 'item',
+           'referenceUid' => 'tx_externalimporttut_externalid',
+           'enforcePid' => true,
+           'priority' => 200,
+           'group' => 'externalimport_tut',
+           'disabledOperations' => 'delete',
+           'description' => 'Import of typo3.org news'
+       ],
    ];
 
 Note that we don't use the same connector service as before. Indeed,
@@ -73,76 +73,121 @@ this case, as an RSS feed normally contains only the latest news
 items. Thus if you don't want each import to delete the data from the
 previous import, the delete operation should be disabled.
 
+In the previous chapter, we said that we wanted to import only the news items
+that are part of the "TYPO3 CMS" category. For this, we want to read the
+:code:`<category>` tag, but not store it in the database. Thus we declare it as an
+additional field:
+
+.. code-block:: php
+
+   $GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [
+       0 => [
+           'category' => [
+               'xpath' => './category[text()=\'TYPO3 CMS\']',
+               'transformations' => [
+                   10 => [
+                       'isEmpty' => [
+                           'invalidate' => true
+                       ]
+                   ]
+               ]
+           ]
+       ]
+   ];
+
+The "xpath" property makes it so that only items who have the following:
+
+.. code-block:: xml
+
+   <category>TYPO3 CMS</category>
+
+will have a value in the "category" field. For all other records, it will be empty.
+And thus we can filter by using the "isEmpty" transformation property. This property
+tests whether a given value is empty or not. By default, it relies on the PHP
+:code:`empty()` function, but it can also use the Symfony Expression Language for
+more sophisticated conditions. In this case, we have declared nothing special, so
+:code:`empty()` will be used. We then set the "invalidate" sub-property to :code:`true`,
+meaning that records which have an empty value will be discarded from the imported
+dataset. As a result, only items with the "TYPO3 CMS" category are imported.
+
 Let's now look at the setup for the columns:
 
 .. code-block:: php
 
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = [
-           0 => [
-                   'field' => 'title'
-           ]
+       0 => [
+           'field' => 'title'
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['tx_externalimporttut_externalid']['external'] = [
-           0 => [
-                   'field' => 'link'
+       0 => [
+           'field' => 'link',
+           'transformations' => [
+               10 => [
+                   'trim' => true
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] = [
-           0 => [
-                   'field' => 'pubDate',
-                   'transformations' => [
-                           10 => [
-                                   'userFunction' => [
-                                           'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
-                                           'method' => 'absolutizeUrls',
-                                           'parameters' => [
-                                                   'host' => 'https://typo3.org'
-                                           ]
-                                   ]
-                           ],
-                           20 => [
-                                   'rteEnabled' => true
-                           ]
+       0 => [
+           'field' => 'pubDate',
+           'transformations' => [
+               10 => [
+                   'userFunction' => [
+                       'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                       'method' => 'parseDate'
                    ]
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = [
-           0 => [
-                   'field' => 'description',
-                   'transformations' => [
-                           10 => [
-                                   'trim' => true
-                           ]
-                   ]
+       0 => [
+           'field' => 'description',
+           'transformations' => [
+               10 => [
+                   'trim' => true
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = [
-           0 => [
-                   'field' => 'encoded',
-                   'transformations' => [
-                           10 => [
-                                   'rteEnabled' => true
-                           ]
+       0 => [
+           'field' => 'encoded',
+           'transformations' => [
+               10 => [
+                   'userFunction' => [
+                       'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
+                       'method' => 'absolutizeUrls',
+                       'parameters' => [
+                           'host' => 'https://typo3.org'
+                       ]
                    ]
+               ],
+               20 => [
+                   'rteEnabled' => true
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = [
-           0 => [
-                   'transformations' => [
-                           10 => [
-                                   'value' => 0
-                           ]
-                   ]
+       0 => [
+           'transformations' => [
+               10 => [
+                   'value' => 0
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['hidden']['external'] = [
-           0 => [
-                   'transformations' => [
-                           10 => [
-                                   'value' => 0
-                           ]
-                   ]
+       0 => [
+           'transformations' => [
+               10 => [
+                   'value' => 0
+               ]
            ]
+       ]
    ];
 
 For most of the fields, the setup is just as simple as if we were
@@ -172,20 +217,20 @@ section for the :code:`tx_news_domain_model_link`:
 .. code-block:: php
 
    $GLOBALS['TCA']['tx_news_domain_model_link']['external']['general'] = [
-           0 => [
-                   'connector' => 'feed',
-                   'parameters' => [
-                           'uri' => 'http://typo3.org/xml-feeds/rss.xml'
-                   ],
-                   'data' => 'xml',
-                   'nodetype' => 'item',
-                   'referenceUid' => 'uri',
-                   'enforcePid' => true,
-                   'priority' => 210,
-                   'group' => 'externalimport_tut',
-                   'disabledOperations' => 'delete',
-                   'description' => 'Import of typo3.org news related links'
+       0 => [
+           'connector' => 'feed',
+           'parameters' => [
+               'uri' => 'https://typo3.org/?type=100'
            ],
+           'data' => 'xml',
+           'nodetype' => 'item',
+           'referenceUid' => 'uri',
+           'enforcePid' => true,
+           'priority' => 210,
+           'group' => 'externalimport_tut',
+           'disabledOperations' => 'delete',
+           'description' => 'Import of typo3.org news related links'
+       ],
    ];
 
 In this case we don't need to add a special field for storing
@@ -199,38 +244,66 @@ So we need to add a configuration for that field. As we don't need
 anything special, we can just give it the
 :ref:`passthrough <t3tca:columns-passthrough>` type.
 
+Furthermore, we don't want to import all links. We want to import only those
+links which are related to news that we actually imported (remember, that's
+only those which are part of the "TYPO3 CMS" category). To ensure this, we
+use two features:
+
+#. In the "mapping" transformation, we use the sub-property "default" to ensure
+   that the value after mapping is :code:`0` if no record was matched.
+
+#. Then the next transformation is as above for news items, the "isEmpty"
+   transformation with the "invalidate" sub-property set to :code:`true`.
+   Since we ensured in the previous transformation that the value is :code:`0`
+   when no parent record was matched, we can safely rely on the default use
+   of the :code:`empty()` function.
+
 So here is the complete setup, with the special bit highlighted:
 
 .. code-block:: php
-   :emphasize-lines: 11-28
+   :emphasize-lines: 17-42
 
    $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = [
-           0 => [
-                   'field' => 'title'
-           ]
+       0 => [
+           'field' => 'title'
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = [
-           0 => [
-                   'field' => 'link'
+       0 => [
+           'field' => 'link',
+           'transformations' => [
+               10 => [
+                   'trim' => true
+               ]
            ]
+       ]
    ];
    $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
-           'config' => [
-                   'type' => 'passthrough',
-           ],
-           'external' => [
-                   0 => [
-                           'field' => 'link',
-                           'transformations' => [
-                                   10 => [
-                                           'mapping' => [
-                                                   'table' => 'tx_news_domain_model_news',
-                                                   'referenceField' => 'tx_externalimporttut_externalid'
-                                           ]
-                                   ]
-                           ]
+       'config' => [
+           'type' => 'passthrough',
+       ],
+       'external' => [
+           0 => [
+               'field' => 'link',
+               'transformations' => [
+                   10 => [
+                       'trim' => true
+                   ],
+                   20 => [
+                       'mapping' => [
+                           'table' => 'tx_news_domain_model_news',
+                           'referenceField' => 'tx_externalimporttut_externalid',
+                           'default' => 0
+                       ]
+                   ],
+                   30 => [
+                       'isEmpty' => [
+                           'invalidate' => true
+                       ]
                    ]
+               ]
            ]
+       ]
    ];
 
 

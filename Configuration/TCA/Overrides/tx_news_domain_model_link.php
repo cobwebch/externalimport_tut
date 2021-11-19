@@ -47,7 +47,13 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
                 20 => [
                     'mapping' => [
                         'table' => 'tx_news_domain_model_news',
-                        'referenceField' => 'tx_externalimporttut_externalid'
+                        'referenceField' => 'tx_externalimporttut_externalid',
+                        'default' => 0
+                    ]
+                ],
+                30 => [
+                    'isEmpty' => [
+                        'invalidate' => true
                     ]
                 ]
             ]

@@ -37,6 +37,20 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
         'description' => 'Import of typo3.org news'
     ],
 ];
+$GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [
+    0 => [
+        'category' => [
+            'xpath' => './category[text()=\'TYPO3 CMS\']',
+            'transformations' => [
+                10 => [
+                    'isEmpty' => [
+                        'invalidate' => true
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
 // Add the external information for each column
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = [
     0 => [
