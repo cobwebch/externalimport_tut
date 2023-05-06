@@ -13,7 +13,8 @@
 	"authors": [
 		{
 			"name": "Francois Suter",
-			"role": "Developer"
+			"role": "Developer",
+			"homepage": "https://www.ideative.ch/"
 		}
 	],
 	"autoload": {
@@ -22,6 +23,7 @@
 		}
 	},
 	"require": {
+		"php": "^7.4 || ^8.0 || ^8.1",
 		"typo3/cms-core": "^11.5 || ^12.4",
 		"cobweb/external_import": "^7.0 || dev-master",
 		"cobweb/svconnector_csv": "^4.0",

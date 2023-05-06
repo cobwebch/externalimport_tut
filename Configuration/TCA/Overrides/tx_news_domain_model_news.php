@@ -1,5 +1,9 @@
 <?php
 
+use Cobweb\ExternalImport\Transformation\DateTimeTransformation;
+use Cobweb\ExternalimportTut\Transformation\LinkTransformation;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 // Add a new column for containing the external id
 $tempColumns = [
     'tx_externalimporttut_externalid' => [
@@ -11,11 +15,11 @@ $tempColumns = [
         ]
     ],
 ];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+ExtensionManagementUtility::addTCAcolumns(
     'tx_news_domain_model_news',
     $tempColumns
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'tx_news_domain_model_news',
     'tx_externalimporttut_externalid'
 );
@@ -73,7 +77,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] 
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                    'class' => DateTimeTransformation::class,
                     'method' => 'parseDate'
                 ]
             ]
@@ -96,7 +100,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] 
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalimportTut\Transformation\LinkTransformation::class,
+                    'class' => LinkTransformation::class,
                     'method' => 'absolutizeUrls',
                     'parameters' => [
                         'host' => 'https://typo3.org'
