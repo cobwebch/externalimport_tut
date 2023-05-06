@@ -24,11 +24,11 @@ $EM_CONF[$_EXTKEY] = [
                 [
                         'depends' =>
                                 [
-                                        'external_import' => '6.0.0-0.0.0',
-                                        'svconnector_csv' => '3.0.0-0.0.0',
-                                        'svconnector_feed' => '3.0.0-0.0.0',
-                                        'news' => '9.1.0-0.0.0',
-                                        'typo3' => '10.4.0-11.5.99',
+                                        'external_import' => '7.0.0-0.0.0',
+                                        'svconnector_csv' => '4.0.0-0.0.0',
+                                        'svconnector_feed' => '4.0.0-0.0.0',
+                                        'news' => '11.0.0-0.0.0',
+                                        'typo3' => '11.5.0-12.4.99',
                                 ],
                         'conflicts' =>
                                 [
