@@ -257,12 +257,9 @@ receive external data.
                        'fieldname' => [
                             'value' => 'image'
                        ],
-                       'table_local' => [
-                            'value' => 'sys_file'
-                       ]
                   ],
-                  'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
-                  'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
+                  'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname',
+                  'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname'
              ]
         ]
    ];
@@ -364,12 +361,8 @@ the "parameters" property. So what happens for these three fields?
    "fe\_users").
 
 One more operation happens during the import process, but is not
-visible in the TCA. In the :file:`ext_localconf.php` file, we make use of the
-"insertPreProcess" hook:
-
-.. code-block:: php
-
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['external_import']['insertPreProcess'][] = 'EXT:externalimport_tut/class.tx_externalimporttut_hooks.php:tx_externalimporttut_hooks';
+visible in the TCA. We react to the "insertPreProcess" event with
+the :php:`\Cobweb\ExternalimportTut\EventListener\InsertRecordPreprocess` class.
 
 This makes it possible to add an automatically generated password to
 the data to be stored, but only in the case when it is a new user

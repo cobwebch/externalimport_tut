@@ -2,6 +2,7 @@
 
 	* Drop compatibility with TYPO3 10, modernize and clean up code
 	* Ensure compatibility with External Import 7.0.0
+	* Ensure compatibility with TYPO3 12
 
 2021-11-19 Francois Suter (Idéative)  <typo3@ideative.ch>
 

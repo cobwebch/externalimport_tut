@@ -27,8 +27,11 @@ class InsertRecordPreprocess
         // Perform operation only for the fe_users table and for external index 0
         if ($importer->getExternalConfiguration()->getTable() === 'fe_users' && (int)$importer->getExternalConfiguration()->getIndex() === 0) {
             $record = $event->getRecord();
-            // Simply reverse the username to create the password
-            $record['password'] = strrev($record['username']);
+            // Generate the password from the reversed username and add some numbers and special characters
+            // to satisfy password policy (NOTE: this is really just an example, don't try this at home)
+            $password = strrev($record['username']);
+            $password .= random_int(33, 47) . random_int(48, 57) . random_int(33, 47) . random_int(48, 57);
+            $record['password'] = $password;
             $event->setRecord($record);
         }
     }
