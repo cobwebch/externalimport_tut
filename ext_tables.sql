@@ -18,19 +18,6 @@ CREATE TABLE tx_externalimporttut_teams (
 
 
 #
-# MM-table for teams-fe_users relations
-#
-CREATE TABLE tx_externalimporttut_teams_feusers_mm (
-	uid_local int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting int(11) DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-
-#
 # Table structure for extending table 'fe_users'
 #
 CREATE TABLE fe_users (

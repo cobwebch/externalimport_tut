@@ -1,5 +1,9 @@
 <?php
 
+use Cobweb\ExternalImport\Transformation\ImageTransformation;
+use Cobweb\ExternalimportTut\Transformation\CastTransformation;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 // Add new columns to fe_users table
 $newColumns = [
     'tx_externalimporttut_code' => [
@@ -35,11 +39,11 @@ $newColumns = [
         ]
     ]
 ];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+ExtensionManagementUtility::addTCAcolumns(
     'fe_users',
     $newColumns
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'fe_users',
     '--div--;LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees,tx_externalimporttut_code,tx_externalimporttut_department,tx_externalimporttut_holidays'
 );
@@ -165,7 +169,7 @@ $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalimportTut\Transformation\CastTransformation::class,
+                    'class' => CastTransformation::class,
                     'method' => 'castToInteger'
                 ]
             ],
@@ -188,7 +192,7 @@ $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalImport\Transformation\ImageTransformation::class,
+                    'class' => ImageTransformation::class,
                     'method' => 'saveImageFromBase64',
                     'parameters' => [
                         'storage' => '1:imported_images',
@@ -216,12 +220,9 @@ $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
                 'fieldname' => [
                     'value' => 'image'
                 ],
-                'table_local' => [
-                    'value' => 'sys_file'
-                ]
             ],
-            'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname, table_local',
-            'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname, table_local'
+            'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname',
+            'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname'
         ]
     ]
 ];

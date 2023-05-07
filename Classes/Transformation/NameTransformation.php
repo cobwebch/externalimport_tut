@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Cobweb\ExternalimportTut\Transformation;
 
 /*
@@ -20,10 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Example transformation functions for the 'externalimport_tut' extension
- *
- * @author Francois Suter (Idéative) <typo3@ideative.ch>
- * @package TYPO3
- * @subpackage tx_externalimporttut
  */
 class NameTransformation implements SingletonInterface
 {

@@ -13,7 +13,8 @@
 	"authors": [
 		{
 			"name": "Francois Suter",
-			"role": "Developer"
+			"role": "Developer",
+			"homepage": "https://www.ideative.ch/"
 		}
 	],
 	"autoload": {
@@ -22,11 +23,12 @@
 		}
 	},
 	"require": {
-		"typo3/cms-core": "^10.4 || ^11.5",
-		"cobweb/external_import": "^6.0",
-		"cobweb/svconnector_csv": "^3.0",
-		"cobweb/svconnector_feed": "^3.0",
-		"georgringer/news": "^9.1"
+		"php": "^7.4 || ^8.0 || ^8.1",
+		"typo3/cms-core": "^11.5 || ^12.4",
+		"cobweb/external_import": "^7.0 || dev-master",
+		"cobweb/svconnector_csv": "^4.0",
+		"cobweb/svconnector_feed": "^4.0",
+		"georgringer/news": "^11.0"
 	},
 	"replace": {
 		"typo3-ter/externalimport_tut": "self.version"
