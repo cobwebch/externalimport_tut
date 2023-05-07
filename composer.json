@@ -25,7 +25,7 @@
 	"require": {
 		"php": "^7.4 || ^8.0 || ^8.1",
 		"typo3/cms-core": "^11.5 || ^12.4",
-		"cobweb/external_import": "^7.0 || dev-master",
+		"cobweb/external_import": "^7.0",
 		"cobweb/svconnector_csv": "^4.0",
 		"cobweb/svconnector_feed": "^4.0",
 		"georgringer/news": "^11.0"
