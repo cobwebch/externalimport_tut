@@ -23,9 +23,9 @@
 		}
 	},
 	"require": {
-		"php": "^7.4 || ^8.0 || ^8.1",
+		"php": "^7.4 || ^8.0 || ^8.1 || ^8.2",
 		"typo3/cms-core": "^11.5 || ^12.4",
-		"cobweb/external_import": "^7.0",
+		"cobweb/external_import": "^7.0 || ^7.1",
 		"cobweb/svconnector_csv": "^4.0",
 		"cobweb/svconnector_feed": "^4.0",
 		"georgringer/news": "^11.0"
