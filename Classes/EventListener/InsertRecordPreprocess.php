@@ -29,7 +29,7 @@ class InsertRecordPreprocess
             $record = $event->getRecord();
             // Generate the password from the reversed username and add some numbers and special characters
             // to satisfy password policy (NOTE: this is really just an example, don't try this at home)
-            $password = strrev($record['username']);
+            $password = strrev((string)$record['username']);
             $password .= random_int(33, 47) . random_int(48, 57) . random_int(33, 47) . random_int(48, 57);
             $record['password'] = $password;
             $event->setRecord($record);

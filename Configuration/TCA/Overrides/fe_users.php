@@ -1,5 +1,7 @@
 <?php
 
+use Cobweb\ExternalimportTut\Transformation\NameTransformation;
+use Cobweb\ExternalImport\Transformation\DateTimeTransformation;
 use Cobweb\ExternalImport\Transformation\ImageTransformation;
 use Cobweb\ExternalimportTut\Transformation\CastTransformation;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -20,7 +22,6 @@ $newColumns = [
         'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees.department',
         'config' => [
             'type' => 'group',
-            'internal_type' => 'db',
             'allowed' => 'tx_externalimporttut_departments',
             'size' => 1,
             'minitems' => 0,
@@ -31,9 +32,8 @@ $newColumns = [
         'exclude' => 0,
         'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_employees.holidays',
         'config' => [
-            'type' => 'input',
+            'type' => 'number',
             'size' => '10',
-            'eval' => 'int',
             'checkbox' => '0',
             'default' => 0
         ]
@@ -59,10 +59,10 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
         'nodetype' => 'employee',
         'referenceUid' => 'tx_externalimporttut_code',
         'priority' => 50,
-        'group' => 'externalimport_tut',
         'disabledOperations' => '',
         'enforcePid' => true,
-        'description' => 'Import of full employee list'
+        'description' => 'Import of full employee list',
+        'groups' => ['externalimport_tut']
     ],
     1 => [
         'connector' => 'csv',
@@ -76,9 +76,9 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
         'data' => 'array',
         'referenceUid' => 'tx_externalimporttut_code',
         'priority' => 60,
-        'group' => 'externalimport_tut',
         'disabledOperations' => 'insert,delete',
-        'description' => 'Import of holidays balance'
+        'description' => 'Import of holidays balance',
+        'groups' => ['externalimport_tut']
     ]
 ];
 // Add the additional fields configuration
@@ -100,7 +100,7 @@ $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                    'class' => NameTransformation::class,
                     'method' => 'assembleName'
                 ]
             ]
@@ -113,7 +113,7 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalimportTut\Transformation\NameTransformation::class,
+                    'class' => NameTransformation::class,
                     'method' => 'assembleUserName',
                     'parameters' => [
                         'encoding' => 'utf-8'
@@ -129,7 +129,7 @@ $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
         'transformations' => [
             10 => [
                 'userFunction' => [
-                    'class' => \Cobweb\ExternalImport\Transformation\DateTimeTransformation::class,
+                    'class' => DateTimeTransformation::class,
                     'method' => 'parseDate'
                 ]
             ]

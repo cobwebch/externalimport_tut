@@ -6,7 +6,6 @@ return [
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'default_sortby' => 'ORDER BY name',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -35,8 +34,8 @@ return [
                 'referenceUid' => 'code',
                 'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0',
                 'priority' => 10,
-                'group' => 'externalimport_tut',
-                'description' => 'Import of all company departments (English, default language)'
+                'description' => 'Import of all company departments (English, default language)',
+                'groups' => ['externalimport_tut']
             ],
             'french' => [
                 'connector' => 'csv',
@@ -51,8 +50,8 @@ return [
                 'referenceUid' => 'code',
                 'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 1',
                 'priority' => 15,
-                'group' => 'externalimport_tut',
-                'description' => 'Import of all company departments (French translation)'
+                'description' => 'Import of all company departments (French translation)',
+                'groups' => ['externalimport_tut']
             ]
         ]
     ],
@@ -68,23 +67,7 @@ return [
         'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.title',
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-                        -1
-                    ],
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value',
-                        0
-                    ]
-                ],
-                'allowNonIdValues' => true,
-            ],
+            'config' => ['type' => 'language'],
             'external' => [
                 'french' => [
                     'field' => 'code',
@@ -104,8 +87,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        0
+                        'label' => '',
+                        'value' => 0
                     ]
                 ],
                 'foreign_table' => 'tx_externalimporttut_departments',
@@ -139,7 +122,8 @@ return [
                 'type' => 'input',
                 'size' => 10,
                 'max' => 4,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
             'external' => [
                 'english' => [
@@ -156,7 +140,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
             'external' => [
                 'english' => [

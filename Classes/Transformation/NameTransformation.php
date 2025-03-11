@@ -38,7 +38,7 @@ class NameTransformation implements SingletonInterface
      * @param array $params Additional parameters from the TCA
      * @return string Full name, i.e. last name and first name concatenated
      */
-    public function assembleName(array $record, $index, array $params): string
+    public function assembleName(array $record, mixed $index, array $params): string
     {
         return $record['last_name'] . ' ' . $record['first_name'];
     }
@@ -54,7 +54,7 @@ class NameTransformation implements SingletonInterface
      * @param array $params Additional parameters from the TCA
      * @return string Calculated username
      */
-    public function assembleUserName(array $record, $index, array $params): string
+    public function assembleUserName(array $record, mixed $index, array $params): string
     {
         $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
         // The base for the username will be the first name, a dot and the last name (lowercase)

@@ -12,9 +12,9 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['external']['general'] = [
         'referenceUid' => 'uri',
         'enforcePid' => true,
         'priority' => 210,
-        'group' => 'externalimport_tut',
         'disabledOperations' => 'delete',
-        'description' => 'Import of typo3.org news related links'
+        'description' => 'Import of typo3.org news related links',
+        'groups' => ['externalimport_tut']
     ],
 ];
 // Add the external information for each column

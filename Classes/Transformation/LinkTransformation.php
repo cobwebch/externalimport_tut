@@ -36,7 +36,7 @@ class LinkTransformation implements SingletonInterface
      * @param array $params Additional parameters from the TCA
      * @return string The text with modified links
      */
-    public function absolutizeUrls(array $record, $index, array $params): string
+    public function absolutizeUrls(array $record, mixed $index, array $params): string
     {
         $host = $params['host'];
         $text = $record[$index] ?? '';

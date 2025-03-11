@@ -36,9 +36,9 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
         'referenceUid' => 'tx_externalimporttut_externalid',
         'enforcePid' => true,
         'priority' => 200,
-        'group' => 'externalimport_tut',
         'disabledOperations' => 'delete',
-        'description' => 'Import of typo3.org news'
+        'description' => 'Import of typo3.org news',
+        'groups' => ['externalimport_tut']
     ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [

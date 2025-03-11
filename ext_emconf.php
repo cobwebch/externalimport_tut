@@ -13,7 +13,7 @@ $EM_CONF[$_EXTKEY] = [
         [
             'depends' =>
                 [
-                    'external_import' => '7.0.0-0.0.0',
+                    'external_import' => '8.0.0-0.0.0',
                     'svconnector_csv' => '5.0.0-0.0.0',
                     'svconnector_feed' => '5.0.0-0.0.0',
                     'news' => '12.0.0-0.0.0',

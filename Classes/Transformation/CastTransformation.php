@@ -33,7 +33,7 @@ class CastTransformation implements SingletonInterface
      * @param array $params Additional parameters from the TCA
      * @return int
      */
-    public function castToInteger(array $record, $index, array $params): int
+    public function castToInteger(array $record, mixed $index, array $params): int
     {
         return (int)($record[$index] ?? '0');
     }

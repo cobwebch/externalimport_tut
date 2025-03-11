@@ -6,7 +6,6 @@ return [
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'default_sortby' => 'ORDER BY name',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -31,8 +30,8 @@ return [
                 'data' => 'array',
                 'referenceUid' => 'code',
                 'priority' => 100,
-                'group' => 'externalimport_tut',
-                'description' => 'Import of all employee teams'
+                'description' => 'Import of all employee teams',
+                'groups' => ['externalimport_tut']
             ]
         ],
         'additionalFields' => [
@@ -42,9 +41,6 @@ return [
                 ]
             ]
         ]
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,code,name'
     ],
     'columns' => [
         'hidden' => [
@@ -62,7 +58,8 @@ return [
                 'type' => 'input',
                 'size' => 10,
                 'max' => 5,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
             'external' => [
                 0 => [
@@ -76,7 +73,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
             'external' => [
                 0 => [
@@ -90,7 +88,6 @@ return [
             'config' => [
                 'type' => 'group',
                 'size' => 5,
-                'internal_type' => 'db',
                 'allowed' => 'fe_users',
                 'MM' => 'tx_externalimporttut_teams_feusers_mm',
                 'maxitems' => 100
