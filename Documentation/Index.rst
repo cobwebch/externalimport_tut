@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: Includes.txt
+﻿.. include:: /Includes.rst.txt
 
 
 .. _start:
@@ -25,9 +20,6 @@ External Import Tutorial
 
 	:Keywords:
 		  data import, fetch data, services, tutorial
-
-	:Copyright:
-		2007-2023
 
 	:Author:
 		  François Suter (Idéative)
@@ -57,4 +49,10 @@ a GNU/GPL CMS/Framework available from `typo3.org <https://typo3.org/>`_.
    Scenario/Index
    EmployeesImport/Index
    RssImport/Index
-   Targets
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap

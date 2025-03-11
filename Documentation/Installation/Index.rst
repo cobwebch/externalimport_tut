@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../Includes.txt
+﻿.. include:: /Includes.rst.txt
 
 
 .. _installation:
@@ -23,20 +18,6 @@ This extensions requires the following other extensions:
 
 Upon installation, the extension will create or alter the necessary
 tables.
-
-
-.. _installation-upgrade-140:
-
-Upgrading to 1.4.0
-^^^^^^^^^^^^^^^^^^
-
-As of version 1.4.0, this tutorial relies on extension "news" for the
-RSS feed import example rather than "tt\_news". If you are upgrading
-don't be surprised if your "tt\_news" records don't get updated
-anymore upon import. If nothing gets imported, it may be because you
-don't have "news" installed.
-
-Nothing serious, just a little something to pay attention to.
 
 
 .. _installation-verify-configuration:

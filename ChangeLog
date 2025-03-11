@@ -1,7 +1,9 @@
 2025-03-11 Francois Suter (Idéative)  <typo3@ideative.ch>
 
+	* Drop compatibility with TYPO3 11
 	* Ensure compatibility with External Import 8.0.0
 	* Ensure compatibility with TYPO3 13
+	* Upgrade documentation
 
 2023-08-07 Francois Suter (Idéative)  <typo3@ideative.ch>
 
