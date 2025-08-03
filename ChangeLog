@@ -1,3 +1,8 @@
+2025-08-03 Francois Suter (Idéative)  <typo3@ideative.ch>
+
+    * Add automated code testing and cleanup
+	* Release version 6.0.0
+
 2025-03-11 Francois Suter (Idéative)  <typo3@ideative.ch>
 
 	* Drop compatibility with TYPO3 11
