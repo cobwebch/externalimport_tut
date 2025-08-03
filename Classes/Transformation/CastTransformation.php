@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\SingletonInterface;
  */
 class CastTransformation implements SingletonInterface
 {
-
     /**
      * Casts the current value to integer.
      *

@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\SingletonInterface;
  */
 class LinkTransformation implements SingletonInterface
 {
-
     /**
      * Parses a rich-text content to make links absolute.
      *
@@ -41,9 +40,9 @@ class LinkTransformation implements SingletonInterface
         $host = $params['host'];
         $text = $record[$index] ?? '';
         return str_replace(
-                'href="/',
-                'href="' . $host . '/',
-                $text
+            'href="/',
+            'href="' . $host . '/',
+            $text
         );
     }
 }

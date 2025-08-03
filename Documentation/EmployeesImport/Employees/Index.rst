@@ -272,10 +272,10 @@ the "parameters" property. So what happens for these three fields?
 
    .. code-block:: php
 
-		public function assembleName($record, $index, $params)
-		{
-			return $record['last_name'] . ' ' . $record['first_name'];
-		}
+      public function assembleName($record, $index, $params)
+      {
+         return $record['last_name'] . ' ' . $record['first_name'];
+      }
 
    The method receives the record being handled, so that all fields
    (mapped fields and additional fields) from the external data are

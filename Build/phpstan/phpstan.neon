@@ -1,0 +1,16 @@
+includes:
+	- phpstan-baseline.neon
+parameters:
+  level: 1
+
+  inferPrivatePropertyTypeFromConstructor: true
+  treatPhpDocTypesAsCertain: false
+
+  paths:
+    - ../../Classes/
+    - ../../Configuration/
+
+  tmpDir: ../../.Build/.cache/phpstan/
+
+  excludePaths:
+    - '../../ext_emconf.php'

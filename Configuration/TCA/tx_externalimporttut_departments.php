@@ -52,8 +52,8 @@ return [
                 'priority' => 15,
                 'description' => 'Import of all company departments (French translation)',
                 'groups' => ['externalimport_tut'],
-            ]
-        ]
+            ],
+        ],
     ],
     'columns' => [
         'hidden' => [
@@ -61,8 +61,8 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => '0'
-            ]
+                'default' => '0',
+            ],
         ],
         'sys_language_uid' => [
             'exclude' => 1,
@@ -112,8 +112,8 @@ return [
         ],
         'l10n_diffsource' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'code' => [
             'exclude' => 0,

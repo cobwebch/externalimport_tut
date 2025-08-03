@@ -13,8 +13,8 @@ return [
         ],
         'searchFields' => 'code,name',
         'typeicon_classes' => [
-            'default' => 'tx_externalimport_tut-team'
-        ]
+            'default' => 'tx_externalimport_tut-team',
+        ],
     ],
     'external' => [
         'general' => [
@@ -32,7 +32,7 @@ return [
                 'priority' => 100,
                 'description' => 'Import of all employee teams',
                 'groups' => ['externalimport_tut'],
-            ]
+            ],
         ],
         'additionalFields' => [
             0 => [

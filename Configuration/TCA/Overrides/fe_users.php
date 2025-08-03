@@ -1,9 +1,9 @@
 <?php
 
-use Cobweb\ExternalimportTut\Transformation\NameTransformation;
 use Cobweb\ExternalImport\Transformation\DateTimeTransformation;
 use Cobweb\ExternalImport\Transformation\ImageTransformation;
 use Cobweb\ExternalimportTut\Transformation\CastTransformation;
+use Cobweb\ExternalimportTut\Transformation\NameTransformation;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 // Add new columns to fe_users table
@@ -53,7 +53,7 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
     0 => [
         'connector' => 'feed',
         'parameters' => [
-            'uri' => 'EXT:externalimport_tut/Resources/Private/Data/employees.xml'
+            'uri' => 'EXT:externalimport_tut/Resources/Private/Data/employees.xml',
         ],
         'data' => 'xml',
         'nodetype' => 'employee',
@@ -79,7 +79,7 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
         'disabledOperations' => 'insert,delete',
         'description' => 'Import of holidays balance',
         'groups' => ['externalimport_tut'],
-    ]
+    ],
 ];
 // Add the additional fields configuration
 $GLOBALS['TCA']['fe_users']['external']['additionalFields'] = [
@@ -183,8 +183,8 @@ $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
                 ],
             ],
         ],
-        'excludedOperations' => 'update'
-    ]
+        'excludedOperations' => 'update',
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
     0 => [

@@ -26,7 +26,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NameTransformation implements SingletonInterface
 {
-
     /**
      * Assembles the user's full name.
      *
@@ -62,15 +61,15 @@ class NameTransformation implements SingletonInterface
         $userNameBase = mb_strtolower($baseName, $params['encoding']);
         // We must make sure this doesn't contain non-ASCII characters
         $userName = $charsetConverter->specCharsToASCII(
-                $params['encoding'],
-                $userNameBase
+            $params['encoding'],
+            $userNameBase
         );
         // Lastly replace single quotes, double quotes or spaces by underscores
         // Other special characters are acceptable
         return preg_replace(
-                '/[\'"\s]/',
-                '_',
-                trim($userName)
+            '/[\'"\s]/',
+            '_',
+            trim($userName)
         );
     }
 }
