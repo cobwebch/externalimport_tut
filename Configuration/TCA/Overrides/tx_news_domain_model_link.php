@@ -14,24 +14,24 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['external']['general'] = [
         'priority' => 210,
         'disabledOperations' => 'delete',
         'description' => 'Import of typo3.org news related links',
-        'groups' => ['externalimport_tut']
+        'groups' => ['externalimport_tut'],
     ],
 ];
 // Add the external information for each column
 $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['title']['external'] = [
     0 => [
-        'field' => 'title'
-    ]
+        'field' => 'title',
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['external'] = [
     0 => [
         'field' => 'link',
         'transformations' => [
             10 => [
-                'trim' => true
-            ]
-        ]
-    ]
+                'trim' => true,
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
     'config' => [
@@ -42,21 +42,21 @@ $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['parent'] = [
             'field' => 'link',
             'transformations' => [
                 10 => [
-                    'trim' => true
+                    'trim' => true,
                 ],
                 20 => [
                     'mapping' => [
                         'table' => 'tx_news_domain_model_news',
                         'referenceField' => 'tx_externalimporttut_externalid',
-                        'default' => 0
-                    ]
+                        'default' => 0,
+                    ],
                 ],
                 30 => [
                     'isEmpty' => [
-                        'invalidate' => true
-                    ]
-                ]
-            ]
-        ]
-    ]
+                        'invalidate' => true,
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];

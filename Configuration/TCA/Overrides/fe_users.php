@@ -15,7 +15,7 @@ $newColumns = [
             'type' => 'input',
             'size' => '10',
             'eval' => 'trim',
-        ]
+        ],
     ],
     'tx_externalimporttut_department' => [
         'exclude' => 0,
@@ -26,7 +26,7 @@ $newColumns = [
             'size' => 1,
             'minitems' => 0,
             'maxitems' => 1,
-        ]
+        ],
     ],
     'tx_externalimporttut_holidays' => [
         'exclude' => 0,
@@ -35,9 +35,9 @@ $newColumns = [
             'type' => 'number',
             'size' => '10',
             'checkbox' => '0',
-            'default' => 0
-        ]
-    ]
+            'default' => 0,
+        ],
+    ],
 ];
 ExtensionManagementUtility::addTCAcolumns(
     'fe_users',
@@ -62,7 +62,7 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
         'disabledOperations' => '',
         'enforcePid' => true,
         'description' => 'Import of full employee list',
-        'groups' => ['externalimport_tut']
+        'groups' => ['externalimport_tut'],
     ],
     1 => [
         'connector' => 'csv',
@@ -71,26 +71,26 @@ $GLOBALS['TCA']['fe_users']['external']['general'] = [
             'delimiter' => ',',
             'text_qualifier' => '',
             'skip_rows' => 0,
-            'encoding' => 'utf8'
+            'encoding' => 'utf8',
         ],
         'data' => 'array',
         'referenceUid' => 'tx_externalimporttut_code',
         'priority' => 60,
         'disabledOperations' => 'insert,delete',
         'description' => 'Import of holidays balance',
-        'groups' => ['externalimport_tut']
+        'groups' => ['externalimport_tut'],
     ]
 ];
 // Add the additional fields configuration
 $GLOBALS['TCA']['fe_users']['external']['additionalFields'] = [
     0 => [
         'last_name' => [
-            'field' => 'last_name'
+            'field' => 'last_name',
         ],
         'first_name' => [
-            'field' => 'first_name'
-        ]
-    ]
+            'field' => 'first_name',
+        ],
+    ],
 ];
 
 // Add the external information for each column
@@ -101,11 +101,11 @@ $GLOBALS['TCA']['fe_users']['columns']['name']['external'] = [
             10 => [
                 'userFunction' => [
                     'class' => NameTransformation::class,
-                    'method' => 'assembleName'
-                ]
-            ]
-        ]
-    ]
+                    'method' => 'assembleName',
+                ],
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
     0 => [
@@ -116,12 +116,12 @@ $GLOBALS['TCA']['fe_users']['columns']['username']['external'] = [
                     'class' => NameTransformation::class,
                     'method' => 'assembleUserName',
                     'parameters' => [
-                        'encoding' => 'utf-8'
-                    ]
-                ]
-            ]
-        ]
-    ]
+                        'encoding' => 'utf-8',
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
     0 => [
@@ -130,38 +130,38 @@ $GLOBALS['TCA']['fe_users']['columns']['starttime']['external'] = [
             10 => [
                 'userFunction' => [
                     'class' => DateTimeTransformation::class,
-                    'method' => 'parseDate'
-                ]
-            ]
-        ]
-    ]
+                    'method' => 'parseDate',
+                ],
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_code']['external'] = [
     0 => [
-        'field' => 'employee_number'
+        'field' => 'employee_number',
     ],
     1 => [
-        'field' => 0
-    ]
+        'field' => 0,
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['email']['external'] = [
     0 => [
-        'field' => 'mail'
-    ]
+        'field' => 'mail',
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['telephone']['external'] = [
     0 => [
-        'field' => 'phone'
-    ]
+        'field' => 'phone',
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['company']['external'] = [
     0 => [
         'transformations' => [
             10 => [
-                'value' => 'The Empire'
-            ]
-        ]
-    ]
+                'value' => 'The Empire',
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
     0 => [
@@ -170,18 +170,18 @@ $GLOBALS['TCA']['fe_users']['columns']['title']['external'] = [
             10 => [
                 'userFunction' => [
                     'class' => CastTransformation::class,
-                    'method' => 'castToInteger'
-                ]
+                    'method' => 'castToInteger',
+                ],
             ],
             20 => [
                 'mapping' => [
                     'valueMap' => [
                         1 => 'Captain',
                         2 => 'Senior',
-                        3 => 'Junior'
-                    ]
-                ]
-            ]
+                        3 => 'Junior',
+                    ],
+                ],
+            ],
         ],
         'excludedOperations' => 'update'
     ]
@@ -197,34 +197,34 @@ $GLOBALS['TCA']['fe_users']['columns']['image']['external'] = [
                     'parameters' => [
                         'storage' => '1:imported_images',
                         'nameField' => 'name',
-                        'defaultExtension' => 'jpg'
-                    ]
-                ]
-            ]
+                        'defaultExtension' => 'jpg',
+                    ],
+                ],
+            ],
         ],
         'children' => [
             'table' => 'sys_file_reference',
             'columns' => [
                 'uid_local' => [
-                    'field' => 'image'
+                    'field' => 'image',
                 ],
                 'uid_foreign' => [
-                    'field' => '__parent.id__'
+                    'field' => '__parent.id__',
                 ],
                 'title' => [
-                    'field' => 'name'
+                    'field' => 'name',
                 ],
                 'tablenames' => [
-                    'value' => 'fe_users'
+                    'value' => 'fe_users',
                 ],
                 'fieldname' => [
-                    'value' => 'image'
+                    'value' => 'image',
                 ],
             ],
             'controlColumnsForUpdate' => 'uid_local, uid_foreign, tablenames, fieldname',
-            'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname'
-        ]
-    ]
+            'controlColumnsForDelete' => 'uid_foreign, tablenames, fieldname',
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['external'] = [
     0 => [
@@ -234,14 +234,14 @@ $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_department']['exter
                 'mapping' => [
                     'table' => 'tx_externalimporttut_departments',
                     'referenceField' => 'code',
-                    'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0'
-                ]
-            ]
-        ]
-    ]
+                    'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0',
+                ],
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['fe_users']['columns']['tx_externalimporttut_holidays']['external'] = [
     1 => [
-        'field' => 1
-    ]
+        'field' => 1,
+    ],
 ];

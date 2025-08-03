@@ -11,7 +11,7 @@ $tempColumns = [
         'label' => 'LLL:EXT:externalimport_tut/Resources/Private/Language/locallang_db.xlf:tx_externalimporttut_ttnews.externalid',
         'config' => [
             'type' => 'input',
-            'size' => '20'
+            'size' => '20',
         ]
     ],
 ];
@@ -29,7 +29,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
     0 => [
         'connector' => 'feed',
         'parameters' => [
-            'uri' => 'https://typo3.org/?type=100'
+            'uri' => 'https://typo3.org/?type=100',
         ],
         'data' => 'xml',
         'nodetype' => 'item',
@@ -38,7 +38,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['general'] = [
         'priority' => 200,
         'disabledOperations' => 'delete',
         'description' => 'Import of typo3.org news',
-        'groups' => ['externalimport_tut']
+        'groups' => ['externalimport_tut'],
     ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [
@@ -48,28 +48,28 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['external']['additionalFields'] = [
             'transformations' => [
                 10 => [
                     'isEmpty' => [
-                        'invalidate' => true
-                    ]
-                ]
-            ]
-        ]
-    ]
+                        'invalidate' => true,
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
 // Add the external information for each column
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['external'] = [
     0 => [
-        'field' => 'title'
-    ]
+        'field' => 'title',
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['tx_externalimporttut_externalid']['external'] = [
     0 => [
         'field' => 'link',
         'transformations' => [
             10 => [
-                'trim' => true
-            ]
-        ]
-    ]
+                'trim' => true,
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] = [
     0 => [
@@ -78,21 +78,21 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['external'] 
             10 => [
                 'userFunction' => [
                     'class' => DateTimeTransformation::class,
-                    'method' => 'parseDate'
-                ]
-            ]
-        ]
-    ]
+                    'method' => 'parseDate',
+                ],
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['teaser']['external'] = [
     0 => [
         'field' => 'description',
         'transformations' => [
             10 => [
-                'trim' => true
-            ]
-        ]
-    ]
+                'trim' => true,
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] = [
     0 => [
@@ -103,31 +103,31 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['bodytext']['external'] 
                     'class' => LinkTransformation::class,
                     'method' => 'absolutizeUrls',
                     'parameters' => [
-                        'host' => 'https://typo3.org'
-                    ]
-                ]
+                        'host' => 'https://typo3.org',
+                    ],
+                ],
             ],
             20 => [
-                'rteEnabled' => true
-            ]
-        ]
-    ]
+                'rteEnabled' => true,
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['external'] = [
     0 => [
         'transformations' => [
             10 => [
-                'value' => 0
-            ]
-        ]
-    ]
+                'value' => 0,
+            ],
+        ],
+    ],
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['hidden']['external'] = [
     0 => [
         'transformations' => [
             10 => [
-                'value' => 0
-            ]
-        ]
-    ]
+                'value' => 0,
+            ],
+        ],
+    ],
 ];

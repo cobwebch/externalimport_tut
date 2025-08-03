@@ -25,22 +25,22 @@ return [
                     'delimiter' => "\t",
                     'text_qualifier' => '',
                     'skip_rows' => 1,
-                    'encoding' => 'utf8'
+                    'encoding' => 'utf8',
                 ],
                 'data' => 'array',
                 'referenceUid' => 'code',
                 'priority' => 100,
                 'description' => 'Import of all employee teams',
-                'groups' => ['externalimport_tut']
+                'groups' => ['externalimport_tut'],
             ]
         ],
         'additionalFields' => [
             0 => [
                 'rank' => [
-                    'field' => 'rank'
-                ]
-            ]
-        ]
+                    'field' => 'rank',
+                ],
+            ],
+        ],
     ],
     'columns' => [
         'hidden' => [
@@ -48,8 +48,8 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => '0'
-            ]
+                'default' => '0',
+            ],
         ],
         'code' => [
             'exclude' => 0,
@@ -63,9 +63,9 @@ return [
             ],
             'external' => [
                 0 => [
-                    'field' => 'code'
-                ]
-            ]
+                    'field' => 'code',
+                ],
+            ],
         ],
         'name' => [
             'exclude' => 0,
@@ -78,9 +78,9 @@ return [
             ],
             'external' => [
                 0 => [
-                    'field' => 'name'
-                ]
-            ]
+                    'field' => 'name',
+                ],
+            ],
         ],
         'members' => [
             'exclude' => 0,
@@ -90,7 +90,7 @@ return [
                 'size' => 5,
                 'allowed' => 'fe_users',
                 'MM' => 'tx_externalimporttut_teams_feusers_mm',
-                'maxitems' => 100
+                'maxitems' => 100,
             ],
             'external' => [
                 0 => [
@@ -103,13 +103,15 @@ return [
                                 'table' => 'fe_users',
                                 'referenceField' => 'tx_externalimporttut_code',
                             ],
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'hidden, code, name, members']
-    ]
+        '0' => [
+            'showitem' => 'hidden, code, name, members',
+        ],
+    ],
 ];

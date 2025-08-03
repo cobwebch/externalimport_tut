@@ -16,8 +16,8 @@ return [
         'languageField' => 'sys_language_uid',
         'searchFields' => 'code, name',
         'typeicon_classes' => [
-            'default' => 'tx_externalimport_tut-department'
-        ]
+            'default' => 'tx_externalimport_tut-department',
+        ],
     ],
     'external' => [
         'general' => [
@@ -28,14 +28,14 @@ return [
                     'delimiter' => "\t",
                     'text_qualifier' => '"',
                     'skip_rows' => 1,
-                    'encoding' => 'latin1'
+                    'encoding' => 'latin1',
                 ],
                 'data' => 'array',
                 'referenceUid' => 'code',
                 'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0',
                 'priority' => 10,
                 'description' => 'Import of all company departments (English, default language)',
-                'groups' => ['externalimport_tut']
+                'groups' => ['externalimport_tut'],
             ],
             'french' => [
                 'connector' => 'csv',
@@ -44,14 +44,14 @@ return [
                     'delimiter' => "\t",
                     'text_qualifier' => '"',
                     'skip_rows' => 1,
-                    'encoding' => 'latin1'
+                    'encoding' => 'latin1',
                 ],
                 'data' => 'array',
                 'referenceUid' => 'code',
                 'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 1',
                 'priority' => 15,
                 'description' => 'Import of all company departments (French translation)',
-                'groups' => ['externalimport_tut']
+                'groups' => ['externalimport_tut'],
             ]
         ]
     ],
@@ -73,11 +73,11 @@ return [
                     'field' => 'code',
                     'transformations' => [
                         10 => [
-                            'value' => 1
-                        ]
-                    ]
-                ]
-            ]
+                            'value' => 1,
+                        ],
+                    ],
+                ],
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -88,12 +88,12 @@ return [
                 'items' => [
                     [
                         'label' => '',
-                        'value' => 0
-                    ]
+                        'value' => 0,
+                    ],
                 ],
                 'foreign_table' => 'tx_externalimporttut_departments',
                 'foreign_table_where' => 'AND tx_externalimporttut_departments.pid=###CURRENT_PID### AND tx_externalimporttut_departments.sys_language_uid IN (-1,0)',
-                'default' => 0
+                'default' => 0,
             ],
             'external' => [
                 'french' => [
@@ -103,12 +103,12 @@ return [
                             'mapping' => [
                                 'table' => 'tx_externalimporttut_departments',
                                 'referenceField' => 'code',
-                                'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'whereClause' => 'tx_externalimporttut_departments.sys_language_uid = 0',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
         'l10n_diffsource' => [
             'config' => [
@@ -127,12 +127,12 @@ return [
             ],
             'external' => [
                 'english' => [
-                    'field' => 'code'
+                    'field' => 'code',
                 ],
                 'french' => [
-                    'field' => 'code'
-                ]
-            ]
+                    'field' => 'code',
+                ],
+            ],
         ],
         'name' => [
             'exclude' => 0,
@@ -145,12 +145,12 @@ return [
             ],
             'external' => [
                 'english' => [
-                    'field' => 'name_en'
+                    'field' => 'name_en',
                 ],
                 'french' => [
-                    'field' => 'name_fr'
-                ]
-            ]
+                    'field' => 'name_fr',
+                ],
+            ],
         ],
     ],
     'types' => [
@@ -158,7 +158,7 @@ return [
             'showitem' => '
                 hidden, code, name,
                 --div--;LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language, sys_language_uid, l10n_parent
-            '
-        ]
-    ]
+            ',
+        ],
+    ],
 ];
